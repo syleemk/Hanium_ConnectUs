@@ -26,7 +26,7 @@ public class UserRepositoryTest {
     }
 
     @Test
-    public void saveLoad() {
+    public void saveInfo() {
         String email = "222@222.com";
         String password = "aaaa";
         String name = "asdf";

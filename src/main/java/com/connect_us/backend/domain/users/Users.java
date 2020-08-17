@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+//@Column: not necessary if the field has no specific condition
 
 @Getter
 @NoArgsConstructor
@@ -24,49 +25,47 @@ public class User extends BaseTimeEntity {
     @Column(nullable = false)
     private String password;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Social social;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Role role;
-
     @Column(nullable=false)
     private String name;
 
-    @Column
-    private String addr;
+    private String phone;
 
-    @Column
-    private String phoneNumber;
+    private String addr;
 
     @Enumerated(EnumType.STRING)
     @Column
     private Gender gender;
 
-    @Column
-    private Integer point;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Social social;
+
+    private Long point;
 
     @Builder
 
-    public User(String email, String password, Social social, Role role, String name
-    , String addr, String phoneNumber, Gender gender, int point){
+    //initializer
+    public User(String email, String password,String name,String phone, String addr,
+                Gender gender, Role role, Social social, Long point){
         this.email=email;
         this.password=password;
+        this.name=name;
         this.social=social;
         this.role=role;
-        this.name=name;
+        this.phone=phone;
         this.addr=addr;
-        this.phoneNumber=phoneNumber;
         this.gender=gender;
         this.point=point;
     }
 
-    public User updateSocial(String name, String addr, String phoneNumber){//social에서 사용자 정보 업데이트시 자동 반영
+    public User updateSocial(String name, String addr, String phone){//social에서 사용자 정보 업데이트시 자동 반영
         this.name=name;
         this.addr=addr;
-        this.phoneNumber=phoneNumber;
+        this.phone=phone;
 
         return this;
     }

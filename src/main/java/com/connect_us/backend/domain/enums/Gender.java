@@ -1,4 +1,4 @@
-package com.connect_us.backend.domain.enums;
+package com.connect_us.backend.domain.users;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -11,4 +11,8 @@ public enum Gender {
 
     private final String key;
     private final String value;
+    public String getKey(){
+        return key;
+    }
+
 }
