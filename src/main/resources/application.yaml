@@ -1,2 +1,12 @@
 server:
-  port: 80
+  port: 8080
+
+spring:
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MariaDBDialect
+    show-sql: true
+  h2:
+    console:
+      enabled=true
