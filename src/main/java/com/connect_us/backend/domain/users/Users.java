@@ -1,4 +1,4 @@
-package com.connect_us.backend.domain.user;
+package com.connect_us.backend.domain.users;
 
 import com.connect_us.backend.domain.BaseTimeEntity;
 import com.connect_us.backend.domain.enums.Gender;
@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @Entity
-public class User extends BaseTimeEntity {
+public class Users extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
@@ -46,11 +46,9 @@ public class User extends BaseTimeEntity {
 
     private Long point;
 
-    @Builder
-
-    //initializer
-    public User(String email, String password,String name,String phone, String addr,
-                Gender gender, Role role, Social social, Long point){
+    @Builder//initialize
+    public Users(String email, String password, String name, String phone, String addr,
+                 Gender gender, Role role, Social social, Long point){
         this.email=email;
         this.password=password;
         this.name=name;
@@ -62,7 +60,7 @@ public class User extends BaseTimeEntity {
         this.point=point;
     }
 
-    public User updateSocial(String name, String addr, String phone){//social에서 사용자 정보 업데이트시 자동 반영
+    public Users updateSocial(String name, String addr, String phone){//social에서 사용자 정보 업데이트시 자동 반영
         this.name=name;
         this.addr=addr;
         this.phone=phone;

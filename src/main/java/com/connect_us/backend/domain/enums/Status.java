@@ -1,4 +1,4 @@
-package com.connect_us.backend.domain.users;
+package com.connect_us.backend.domain.enums;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

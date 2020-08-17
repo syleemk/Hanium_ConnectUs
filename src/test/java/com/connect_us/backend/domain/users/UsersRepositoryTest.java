@@ -1,54 +1,48 @@
-package com.connect_us.backend.domain.user;
+package com.connect_us.backend.domain.users;
 
-import com.connect_us.backend.domain.enums.Gender;
 import com.connect_us.backend.domain.enums.Role;
 import com.connect_us.backend.domain.enums.Social;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
-public class UserRepositoryTest {
+@DataJpaTest
+public class UsersRepositoryTest {
     @Autowired
-    UserRepository userRepository;
+    UsersRepository usersRepository;
 
     @After
     public void cleanUp() {
-        userRepository.deleteAll();
+        usersRepository.deleteAll();
     }
 
     @Test
-    public void saveInfo() {
-        String email = "222@222.com";
+    public void saveTest() {
+        String email = "test";
         String password = "aaaa";
         String name = "asdf";
         Role role = Role.SELLER;
         Social social= Social.NONE;
 
-        userRepository.save(User.builder()
+        usersRepository.save(Users.builder()
                             .email(email)
                             .password(password)
                             .social(social)
                             .role(role)
                             .name(name)
-                            .addr("asdffffffff")
-                            .phoneNumber("123456789")
-                            .gender(Gender.FEMALE)
-                            .point(123)
                             .build());
 
-        List<User> userList = userRepository.findAll();
+        List<Users> usersList = usersRepository.findAll();
 
-        User user = userList.get(0);
-        assertThat(user.getEmail()).isEqualTo(email);
-        assertThat(user.getName()).isEqualTo(name);
+        Users users = usersList.get(0);
+        assertThat(users.getEmail()).isEqualTo(email);
+        assertThat(users.getRole()).isEqualTo(role);
     }
 }
