@@ -5,10 +5,10 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public enum Status {
+public enum ProductStatus {
    NORMAL("NORMAL","일반"),
-   DORMANT("DORMANT","휴면"),
-   DELETE("DELETE","탈퇴");
+   SOLD_OUT("SOLD_OUT","품절"),
+   DELETE("DELETE","삭제");
 
    private final String key;
    private final String value;
