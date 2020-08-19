@@ -6,10 +6,8 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum Social{
-    NONE("ROLE_NONE"),
-    GOOGLE("ROLE_GOOGLE"),
-    NAVER("ROLE_NAVER"),
-    KAKAO("ROLE_KAKAO");
+    FALSE("ROLE_FALSE"),
+    TRUE("ROLE_TRUE");
 
     private final String key;
 
