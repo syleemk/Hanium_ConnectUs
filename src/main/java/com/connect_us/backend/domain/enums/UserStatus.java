@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public enum Status {
+public enum UserStatus {
    NORMAL("NORMAL","일반"),
    DORMANT("DORMANT","휴면"),
    DELETE("DELETE","탈퇴");

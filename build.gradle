@@ -29,14 +29,15 @@ repositories {
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
-	compileOnly('org.projectlombok:lombok')
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('com.h2database:h2')//RDB, 메모리에서 실행되어 앱 재시작시 초기화
-	compile('org.springframework.boot:spring-boot-starter-mustache')
+//	compile('org.springframework.boot:spring-boot-starter-security')//인증 관련
+//	compile('org.springframework.security:spring-security-oauth2-client')//client 자동 인증 설정
+//	compile('org.springframework.security:spring-security-oauth2-jose') //jwt 관련 권한 전송
+	compileOnly('org.projectlombok:lombok')
 	runtime('org.springframework.boot:spring-boot-devtools')
 	annotationProcessor('org.projectlombok:lombok')
-	//compile('org.springframework.boot:spring-boot-starter-oauth2-client')
-	//compile('org.springframework.session:spring-session-jdbc')
+	compile('org.springframework.session:spring-session-jdbc')
 	testCompile ('org.springframework.boot:spring-boot-starter-test')
 	//testCompile('org.springframework.security:spring-security-test')
 }
