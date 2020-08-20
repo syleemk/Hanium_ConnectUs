@@ -1,12 +1,14 @@
 package com.connect_us.backend.domain.order;
 
+import com.connect_us.backend.domain.BaseTimeEntity;
 import com.connect_us.backend.domain.enums.Status;
 import com.connect_us.backend.domain.product.Product;
+import lombok.Builder;
 
 import javax.persistence.*;
 import java.beans.FeatureDescriptor;
 
-public class OrderItem {
+public class OrderItem extends BaseTimeEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "orderItem_id")
     private Long id;
@@ -24,4 +26,12 @@ public class OrderItem {
 
     @Enumerated(EnumType.STRING)
     private Status status;
+
+    @Builder
+    public OrderItem(Product product, Order order, int product_cnt, Status status){
+        this.product = product;
+        this.order = order;
+        this.product_cnt = product_cnt;
+        this.status = status;
+    }
 }

@@ -7,17 +7,14 @@ import com.connect_us.backend.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
-import javax.validation.constraints.Null;
 
 @Getter
 @NoArgsConstructor
 @Entity
 public class Product extends BaseTimeEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
     private Long id;
 
@@ -36,23 +33,23 @@ public class Product extends BaseTimeEntity {
     private String image;
 
     @Column
-    private int price;
+    private Long price;
+
+    @Column
+    private Long stock;
 
     @Enumerated(EnumType.STRING)
     private ProductStatus status;
 
-    @Column
-    private int stock;
-
     @Builder
-    public Product(Category category, User user, String name, String image, int price, ProductStatus status, int stock){
+    public Product(Category category, User user, String name, String image, Long price, Long stock, ProductStatus status){
         this.category = category;
         this.user = user;
         this.name = name;
         this.image = image;
         this.price = price;
-        this.status = status;
         this.stock = stock;
+        this.status = status;
     }
 
 }

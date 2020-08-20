@@ -16,11 +16,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DataJpaTest
 public class UserRepositoryTest {
     @Autowired
-    UsersRepository usersRepository;
+    UserRepository userRepository;
 
     @After
     public void cleanUp() {
-        usersRepository.deleteAll();
+        userRepository.deleteAll();
     }
 
     @Test
@@ -31,7 +31,7 @@ public class UserRepositoryTest {
         Role role = Role.SELLER;
         Social social= Social.NONE;
 
-        usersRepository.save(User.builder()
+        userRepository.save(User.builder()
                             .email(email)
                             .password(password)
                             .social(social)
@@ -39,7 +39,7 @@ public class UserRepositoryTest {
                             .name(name)
                             .build());
 
-        List<User> userList = usersRepository.findAll();
+        List<User> userList = userRepository.findAll();
 
         User user = userList.get(0);
         assertThat(user.getEmail()).isEqualTo(email);
