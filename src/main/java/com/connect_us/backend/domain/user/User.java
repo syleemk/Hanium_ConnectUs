@@ -4,7 +4,7 @@ import com.connect_us.backend.domain.BaseTimeEntity;
 import com.connect_us.backend.domain.enums.Gender;
 import com.connect_us.backend.domain.enums.Role;
 import com.connect_us.backend.domain.enums.Social;
-import com.connect_us.backend.domain.enums.Status;
+import com.connect_us.backend.domain.enums.UserStatus;
 import com.connect_us.backend.domain.order.Order;
 import com.connect_us.backend.domain.cart.Cart;
 import lombok.Builder;
@@ -51,7 +51,7 @@ public class User extends BaseTimeEntity {
     private Long point;
 
     @Enumerated(EnumType.STRING)
-    private Status status;
+    private UserStatus userStatus;
 
     @OneToOne(mappedBy = "user")//cart table의 user에 의해 mapping
     private Cart cart;
