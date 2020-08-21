@@ -33,16 +33,17 @@ public class FundingProduct extends BaseTimeEntity {
 
     private String image;
 
-    private int goal_price; // 목표 모금액
+    @Column(name = "goal_price")
+    private int goalPrice; // 목표 모금액
 
-    @Column(nullable = false)
-    private int current_price; // 현재 모금액
-
-    @Enumerated(EnumType.STRING)
-    private FundingStatus status;
+    @Column(name = "current_price",nullable = false)
+    private int currentPrice; // 현재 모금액
 
     @Column(name = "addr") // addr : 물품을 배송할 재난지역 주소
     private String address;
 
     private LocalDateTime due; // due : 펀딩 마감 날짜
+
+    @Enumerated(EnumType.STRING)
+    private FundingStatus status;
 }

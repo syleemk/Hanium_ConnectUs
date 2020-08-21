@@ -25,7 +25,7 @@ public class FundingCart extends BaseTimeEntity {
     private User user; // FK
 
     @OneToMany(mappedBy = "funding_cart")
-    private List<FundingCartItem> fundingCartItemList = new ArrayList<>();
+    private List<FundingCartItem> fundingCartItems = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
     private Status status;

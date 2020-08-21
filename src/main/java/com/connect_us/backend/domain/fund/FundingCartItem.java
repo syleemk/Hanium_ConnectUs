@@ -18,15 +18,16 @@ public class FundingCartItem extends BaseTimeEntity {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "funding_cart_id")
+    @JoinColumn(name = "funding_cart_id",nullable = false)
     FundingCart fundingCart; // FK
+
+    @Column(name = "funding_cnt",nullable = false)
+    private int fundingCount; // FundingCartItem 의 개수
+
+    @OneToOne
+    @JoinColumn(name = "funding_product_id",nullable = false)
+    FundingProduct fundingProduct;
 
     @Enumerated(EnumType.STRING)
     private FundingStatus status; // 펀드 상품의 상태를 나타낸다
-
-    @Column(name = "funding_cnt")
-    private int fundingCount; // FundingCartItem 의 개수
-
-    @Column(name = "funding_product_id")
-    FundingProduct fundingProductId;
 }
