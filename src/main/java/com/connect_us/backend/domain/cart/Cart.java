@@ -1,6 +1,6 @@
 package com.connect_us.backend.domain.cart;
 
-import com.connect_us.backend.domain.user.User;
+import com.connect_us.backend.domain.account.Account;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,6 +16,6 @@ public class Cart {
     private Long id;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="user_id")
-    private User user;
+    @JoinColumn(name="account_id")
+    private Account account;
 }
