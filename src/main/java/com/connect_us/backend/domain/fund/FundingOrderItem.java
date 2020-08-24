@@ -14,19 +14,19 @@ public class FundingOrderItem {
     @Id
     @GeneratedValue
     @Column(name = "funding_order_item_id")
-    private Long id;
+    private Long id; //PK
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "funding_product_id")
-    FundingProduct fundingProduct;
+    private FundingProduct fundingProduct; // FK
 
-    @Column(name = "funding_cnt")
+    @Column(name = "funding_cnt",nullable = false)
     private int fundingCount;
 
-    @Column(name = "funding_name")
+    @Column(name = "funding_name",nullable = false)
     private String fundingName;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
-    private Order order;
+    private Order fundingOrder; // FK
 }

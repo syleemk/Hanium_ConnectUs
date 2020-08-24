@@ -18,12 +18,12 @@ public class FundingCart extends BaseEntity {
     @Id
     @GeneratedValue
     @Column(name = "funding_cart_id")
-    private Long id;
+    private Long id; // PK
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user; // FK
 
-    @OneToMany(mappedBy = "funding_cart", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "fundingProduct", cascade = CascadeType.ALL)
     private List<FundingCartItem> fundingCartItems = new ArrayList<>();
 }

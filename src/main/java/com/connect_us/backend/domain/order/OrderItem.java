@@ -2,10 +2,15 @@ package com.connect_us.backend.domain.order;
 
 import com.connect_us.backend.domain.enums.Status;
 import com.connect_us.backend.domain.product.Product;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.beans.FeatureDescriptor;
 
+@Getter
+@NoArgsConstructor
+@Entity
 public class OrderItem {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "orderItem_id")

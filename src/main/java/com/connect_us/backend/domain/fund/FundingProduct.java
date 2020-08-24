@@ -18,19 +18,20 @@ public class FundingProduct extends BaseEntity {
     @Id
     @GeneratedValue
     @Column(name = "funding_product_id")
-    private Long id;
+    private Long id; // PK
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
-    Category category;
+    private Category category; // FK
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private User user;
+    private User user; // FK
 
     @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false)
     private String image;
 
     @Column(name = "goal_price")
@@ -42,9 +43,10 @@ public class FundingProduct extends BaseEntity {
     @Column(name = "addr") // addr : 물품을 배송할 재난지역 주소
     private String address;
 
+    @Column(nullable = false)
     private LocalDateTime due; // due : 펀딩 마감 날짜
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "funding_status")
+    @Column(name = "funding_status",nullable = false)
     private FundingStatus fundingStatus = FundingStatus.NORMAL;
 }
