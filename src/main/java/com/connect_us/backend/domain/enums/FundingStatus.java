@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum FundingStatus {
-    ON_GOING("NORMAL","진행"),
+    NORMAL("NORMAL","진행"),
     STOPPED("SOLD_OUT","중단"),
     CLOSED("DELETE","마감");
 

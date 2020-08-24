@@ -1,7 +1,7 @@
 package com.connect_us.backend.domain.fund;
 
 import com.connect_us.backend.domain.enums.FundingStatus;
-import com.connect_us.backend.domain.BaseTimeEntity;
+import com.connect_us.backend.domain.BaseEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @Entity
-public class FundingCartItem extends BaseTimeEntity {
+public class FundingCartItem extends BaseEntity {
 
     @Id
     @GeneratedValue
@@ -29,5 +29,6 @@ public class FundingCartItem extends BaseTimeEntity {
     FundingProduct fundingProduct;
 
     @Enumerated(EnumType.STRING)
-    private FundingStatus status; // 펀드 상품의 상태를 나타낸다
+    @Column(name = "funding_status")
+    private FundingStatus fundingStatus = FundingStatus.NORMAL;
 }

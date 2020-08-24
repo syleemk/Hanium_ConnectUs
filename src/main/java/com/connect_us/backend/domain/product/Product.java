@@ -1,21 +1,19 @@
 package com.connect_us.backend.domain.product;
 
-import com.connect_us.backend.domain.BaseTimeEntity;
+import com.connect_us.backend.domain.BaseEntity;
 import com.connect_us.backend.domain.category.Category;
 import com.connect_us.backend.domain.enums.ProductStatus;
 import com.connect_us.backend.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
-import javax.validation.constraints.Null;
 
 @Getter
 @NoArgsConstructor
 @Entity
-public class Product extends BaseTimeEntity {
+public class Product extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
@@ -39,19 +37,20 @@ public class Product extends BaseTimeEntity {
     private int price;
 
     @Enumerated(EnumType.STRING)
-    private ProductStatus status;
+    @Column(name = "product_status")
+    private ProductStatus productStatus;
 
     @Column
     private int stock;
 
     @Builder
-    public Product(Category category, User user, String name, String image, int price, ProductStatus status, int stock){
+    public Product(Category category, User user, String name, String image, int price, ProductStatus productStatus, int stock){
         this.category = category;
         this.user = user;
         this.name = name;
         this.image = image;
         this.price = price;
-        this.status = status;
+        this.productStatus = productStatus;
         this.stock = stock;
     }
 

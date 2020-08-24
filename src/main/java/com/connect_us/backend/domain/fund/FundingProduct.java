@@ -1,6 +1,6 @@
 package com.connect_us.backend.domain.fund;
 
-import com.connect_us.backend.domain.BaseTimeEntity;
+import com.connect_us.backend.domain.BaseEntity;
 import com.connect_us.backend.domain.category.Category;
 import com.connect_us.backend.domain.enums.FundingStatus;
 import com.connect_us.backend.domain.user.User;
@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 @Entity
-public class FundingProduct extends BaseTimeEntity {
+public class FundingProduct extends BaseEntity {
 
     @Id
     @GeneratedValue
@@ -45,5 +45,6 @@ public class FundingProduct extends BaseTimeEntity {
     private LocalDateTime due; // due : 펀딩 마감 날짜
 
     @Enumerated(EnumType.STRING)
-    private FundingStatus status;
+    @Column(name = "funding_status")
+    private FundingStatus fundingStatus = FundingStatus.NORMAL;
 }
