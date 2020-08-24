@@ -5,7 +5,7 @@ import com.connect_us.backend.domain.account.AccountRepository;
 import com.connect_us.backend.domain.enums.Gender;
 import com.connect_us.backend.domain.enums.Role;
 import com.connect_us.backend.domain.enums.Social;
-import com.connect_us.backend.security.AccountDto;
+import com.connect_us.backend.security.dto.AccountDto;
 import com.connect_us.backend.service.account.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

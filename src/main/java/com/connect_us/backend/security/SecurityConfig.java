@@ -4,6 +4,7 @@ import com.connect_us.backend.domain.enums.Role;
 import com.connect_us.backend.security.handler.CustomAuthenticationFailureHandler;
 import com.connect_us.backend.security.handler.CustomAuthenticationHandler;
 import com.connect_us.backend.security.provider.CustomAuthenticationProvider;
+import com.connect_us.backend.security.service.CustomOAuth2UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -19,12 +20,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
-
 @Configuration
 @RequiredArgsConstructor
 @EnableWebSecurity //Spring Security 활성화
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserDetailsService userDetailsService;
+    private final CustomOAuth2UserService customOAuth2UserService;
 
     @Bean //Security에서 제공하는 비밀번호 암호화 객체
     public PasswordEncoder passwordEncoder(){
@@ -46,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                    .antMatchers("/","/oauth2/**","/h2-console/**", "/v1/auth/**", "/v1/auth/login*").permitAll()
+                    .antMatchers("/","accounts.google.com/*","/oauth2/**","/login/oauth2/**","/h2-console/**", "/v1/auth/**", "/v1/auth/login*").permitAll()
                     .antMatchers("/v1/admin/**").hasRole(Role.ADMIN.name()) //관리자페이지 권한
                     .antMatchers("/v1/seller/**").hasRole(Role.SELLER.name())//판매자페이지 권한
                     .antMatchers("/v1/user/**").hasRole(Role.USER.name())
@@ -65,13 +66,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                     .logout()
                         .logoutSuccessUrl("/") // 로그아웃 성공시 home으로
-                        .invalidateHttpSession(true);
+                        .invalidateHttpSession(true)
+                .and()
+                    .oauth2Login()
+                    .defaultSuccessUrl("/")
+                    .userInfoEndpoint()//로그인 성공 후 사용자 정보 가져올때 설정 담당
+                    .userService(customOAuth2UserService);//로그인 성공시 후속 조치 진행
 //                .and()
 //                    .authenticationProvider(AuthProvider);
-//                .and()
-//                    .oauth2Login()
-//                    .userInfoEndpoint()//로그인 성공 후 사용자 정보 가져올때 설정 담당
-//                    .userService(customOAuth2UserService);//로그인 성공시 후속 조치 진행
+//
 
     }
 

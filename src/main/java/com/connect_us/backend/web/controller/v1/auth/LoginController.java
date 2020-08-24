@@ -1,6 +1,6 @@
 package com.connect_us.backend.web.controller.v1.auth;
 
-import com.connect_us.backend.security.AccountDto;
+import com.connect_us.backend.security.dto.AccountDto;
 import com.connect_us.backend.service.account.impl.UserServiceImp;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

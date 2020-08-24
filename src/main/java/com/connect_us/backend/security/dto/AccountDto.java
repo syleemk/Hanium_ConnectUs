@@ -1,4 +1,4 @@
-package com.connect_us.backend.security;
+package com.connect_us.backend.security.dto;
 
 import com.connect_us.backend.domain.enums.Gender;
 import com.connect_us.backend.domain.enums.Social;

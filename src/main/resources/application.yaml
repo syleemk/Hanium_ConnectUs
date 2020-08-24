@@ -16,6 +16,7 @@ spring:
         ddl-auto: create-drop
         show-sql: true
         format-sql: true
+  profiles.include: oauth
 
 logging.level:
   org.hibernate.SQL: debug
