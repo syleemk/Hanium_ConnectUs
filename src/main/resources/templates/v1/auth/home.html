@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header">
+    <title>Hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div class="container">
+    <div class="jumbotron">
+        <h1>CONNECT US</h1>
+        <p class="lead">로그인 or 회원가입</p>
+        <p>
+            <a class="btn btn-lg btn-secondary" href="/v1/auth/login">로그인</a>
+            <a class="btn btn-lg btn-secondary" href="/v1/auth/users">회원가입</a>
+            <br>
+            <a class="btn btn-lg btn-secondary" href="/oauth2/authorization/google">Google 로그인</a>
+            <a class="btn btn-lg btn-secondary" href="/">Kakao 로그인</a>
+            <a class="btn btn-lg btn-secondary" href="/oauth2/authorization/naver">Naver 로그인</a>
+        </p>
+        <div th:replace="fragments/footer :: footer"/>
+    </div> <!-- /container -->
+</div>
+</body>
+</html>

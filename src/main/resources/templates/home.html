@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="fragments/header :: header">
+    <title>Hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div class="container">
+    <div class="jumbotron">
+        <h1>CONNECT US TEST</h1>
+        <nav class="navbar navbar-dark sticky-top bg-dark ">
+            <div class="container">
+                <a class="text-light" href="/"><h4>HOME</h4></a>
+                <h2 sec:authorize="isAuthenticated()"th:text="${userName}+'님 안녕하세요'"></h2>
+                <ul class="nav justify-content-end">
+                    <li class="nav-item" sec:authorize="isAnonymous()">
+                        <a class="btn btn-lg btn-secondary" href="/v1/auth">로그인/회원가입</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="isAuthenticated()"><a class="nav-link text-light" href="/v1/logout">로그아웃</a></li>
+                    <li class="nav-item" sec:authorize="hasAuthority('ROLE_SELLER')"><a class="nav-link text-light" href="/v1/seller">판매자페이지</a></li>
+                    <li class="nav-item" sec:authorize="hasAuthority('ROLE_ADMIN')"><a class="nav-link text-light" href="/v1/admin">관리자페이지</a></li>
+                </ul>
+            </div>
+        </nav>
+        <p class="lead">기타 기능(추가)</p>
+        etc
+
+        <div th:replace="fragments/footer :: footer"/>
+    </div> <!-- /container -->
+</div>
+</body>
+</html>

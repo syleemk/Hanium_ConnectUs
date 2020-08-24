@@ -1,28 +1,21 @@
 package com.connect_us.backend.domain.cart;
 
-import com.connect_us.backend.domain.enums.Status;
-import com.connect_us.backend.domain.user.User;
+import com.connect_us.backend.domain.account.Account;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
-@Getter
-@NoArgsConstructor
 @Entity
+@Getter @Setter
 public class Cart {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cart_id")
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="cart_id")
     private Long id;
 
-    @Column
-    private User user;
-
-    @OneToMany(mappedBy = "cart")
-    List<CartItem> cartItems = new ArrayList<CartItem>();
-
-    @Enumerated(EnumType.STRING)
-    private Status status;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="account_id")
+    private Account account;
 }

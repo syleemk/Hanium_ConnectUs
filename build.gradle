@@ -28,18 +28,28 @@ repositories {
 }
 
 dependencies {
+	/**Web, JPA, H2**/
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
-	compile('com.h2database:h2')//RDB, 메모리에서 실행되어 앱 재시작시 초기화
-//	compile('org.springframework.boot:spring-boot-starter-security')//인증 관련
-//	compile('org.springframework.security:spring-security-oauth2-client')//client 자동 인증 설정
-//	compile('org.springframework.security:spring-security-oauth2-jose') //jwt 관련 권한 전송
+	compile('com.h2database:h2')
+
+	/**Security**/
+	compile('org.springframework.boot:spring-boot-starter-security')//인증 관련
+	compile('org.springframework.boot:spring-boot-starter-oauth2-client')//client 자동 인증 설정
+	compile('org.thymeleaf.extras:thymeleaf-extras-springsecurity5')
+
+	/**etc**/
+	implementation ('org.springframework.boot:spring-boot-starter-thymeleaf')
+	implementation ('org.springframework.boot:spring-boot-devtools')
+	compile('org.springframework.boot:spring-boot-configuration-processor')
+	compile('org.modelmapper:modelmapper:0.7.8')
 	compileOnly('org.projectlombok:lombok')
-	runtime('org.springframework.boot:spring-boot-devtools')
 	annotationProcessor('org.projectlombok:lombok')
-	compile('org.springframework.session:spring-session-jdbc')
+	implementation("com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.6.2") //logger
+
+	/**test**/
 	testCompile ('org.springframework.boot:spring-boot-starter-test')
-	//testCompile('org.springframework.security:spring-security-test')
+	testCompile('org.springframework.security:spring-security-test')
 }
 
 
