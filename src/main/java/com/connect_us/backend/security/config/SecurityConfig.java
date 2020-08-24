@@ -1,4 +1,4 @@
-package com.connect_us.backend.security;
+package com.connect_us.backend.security.config;
 
 import com.connect_us.backend.domain.enums.Role;
 import com.connect_us.backend.security.handler.CustomAuthenticationFailureHandler;
@@ -47,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                    .antMatchers("/","accounts.google.com/*","/oauth2/**","/login/oauth2/**","/h2-console/**", "/v1/auth/**", "/v1/auth/login*").permitAll()
+                    .antMatchers("/","/oauth2/**","/login/**", "/h2-console/**", "/v1/auth/**", "/v1/auth/login*").permitAll()
                     .antMatchers("/v1/admin/**").hasRole(Role.ADMIN.name()) //관리자페이지 권한
                     .antMatchers("/v1/seller/**").hasRole(Role.SELLER.name())//판매자페이지 권한
                     .antMatchers("/v1/user/**").hasRole(Role.USER.name())
@@ -72,9 +72,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .defaultSuccessUrl("/")
                     .userInfoEndpoint()//로그인 성공 후 사용자 정보 가져올때 설정 담당
                     .userService(customOAuth2UserService);//로그인 성공시 후속 조치 진행
-//                .and()
-//                    .authenticationProvider(AuthProvider);
-//
 
     }
 

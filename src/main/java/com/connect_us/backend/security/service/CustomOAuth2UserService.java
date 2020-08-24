@@ -58,14 +58,14 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         System.out.println("i'm in a saveOrUpdate");
         System.out.println(attributes.getEmail());
         Account account = accountRepository.findByEmail(attributes.getEmail());
-        if(account==null){
+    //네이버가 이메일을 못가져오는 문제 발생
+        if(account == null || account.getEmail().isEmpty()){
             System.out.println("it's null");
             account = attributes.toEntity();
+            return accountRepository.save(account);
         }
-        else{
-            account.setName(attributes.getName());
-        }
-        return accountRepository.save(account);
+        System.out.println("i found:" +account.getEmail());
+        return account;
     }
 }
 
