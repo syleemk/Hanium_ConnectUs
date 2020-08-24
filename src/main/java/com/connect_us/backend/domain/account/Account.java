@@ -6,6 +6,7 @@ import com.connect_us.backend.domain.enums.Gender;
 import com.connect_us.backend.domain.enums.Role;
 import com.connect_us.backend.domain.enums.Social;
 import com.connect_us.backend.domain.enums.Status;
+import com.connect_us.backend.domain.fund.FundingProduct;
 import com.connect_us.backend.domain.order.Order;
 import lombok.*;
 
@@ -53,6 +54,9 @@ public class Account extends BaseEntity {
 
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL) //order table의 account 의해 mapping
     private List<Order> orders = new ArrayList<>();
+
+    @OneToMany(mappedBy = "account",cascade = CascadeType.ALL) // funding_product table의 account 의해 mapping
+    private List<FundingProduct> fundingProducts = new ArrayList<>();
 
     @Builder//initialize
     public Account(String email, String password, String name, Social social, Gender gender ,Role role){

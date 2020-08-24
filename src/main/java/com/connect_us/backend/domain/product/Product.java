@@ -1,9 +1,9 @@
 package com.connect_us.backend.domain.product;
 
 import com.connect_us.backend.domain.BaseEntity;
+import com.connect_us.backend.domain.account.Account;
 import com.connect_us.backend.domain.category.Category;
 import com.connect_us.backend.domain.enums.ProductStatus;
-import com.connect_us.backend.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,8 +24,8 @@ public class Product extends BaseEntity {
     Category category;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "account_id")
+    private Account account;
 
     @Column
     private String name;
@@ -44,9 +44,9 @@ public class Product extends BaseEntity {
     private int stock;
 
     @Builder
-    public Product(Category category, User user, String name, String image, int price, ProductStatus productStatus, int stock){
+    public Product(Category category, Account account, String name, String image, int price, ProductStatus productStatus, int stock){
         this.category = category;
-        this.user = user;
+        this.account = account;
         this.name = name;
         this.image = image;
         this.price = price;

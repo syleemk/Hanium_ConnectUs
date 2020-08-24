@@ -1,8 +1,9 @@
 package com.connect_us.backend.domain.fund;
 
 import com.connect_us.backend.domain.BaseEntity;
+import com.connect_us.backend.domain.account.Account;
 import com.connect_us.backend.domain.enums.Status;
-import com.connect_us.backend.domain.user.User;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -20,10 +21,17 @@ public class FundingCart extends BaseEntity {
     @Column(name = "funding_cart_id")
     private Long id; // PK
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user; // FK
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "account_id")
+    private Account account; // FK
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "fundingProduct", cascade = CascadeType.ALL)
-    private List<FundingCartItem> fundingCartItems = new ArrayList<>();
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "fundingCart", cascade = CascadeType.ALL)
+    private List<FundingCartItem> fundingCartItems = new ArrayList<>(); // funding_cart_item table의 fundingCart 의해 mapping
+
+    /**
+     * 카트에 담을 아이템들을 삭제하거나 추가할 수 있다.
+     * */
+    public void update(List<FundingCartItem> fundingCartItems) {
+        this.fundingCartItems = fundingCartItems;
+    }
 }

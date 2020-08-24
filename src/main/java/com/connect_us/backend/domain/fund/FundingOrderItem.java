@@ -1,6 +1,7 @@
 package com.connect_us.backend.domain.fund;
 
 import com.connect_us.backend.domain.order.Order;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -29,4 +30,10 @@ public class FundingOrderItem {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
     private Order fundingOrder; // FK
+
+    @Builder
+    public FundingOrderItem(int fundingCount,String fundingName) {
+        this.fundingCount = fundingCount;
+        this.fundingName = fundingName;
+    }
 }
