@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class ProductOrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "orderItem_id")
+    @Column(name = "order_item_id")
     private Long id; // PK
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -21,7 +21,7 @@ public class ProductOrderItem {
     private Product product; // FK
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name = "base_order_id")
     private BaseOrder baseOrder; // FK
 
     @Column

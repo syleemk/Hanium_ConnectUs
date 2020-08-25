@@ -28,7 +28,7 @@ public class FundingOrderItem {
     private String fundingName;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name = "base_order_id")
     private BaseOrder fundingBaseOrder; // FK
 
     @Builder
