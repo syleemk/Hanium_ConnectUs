@@ -1,6 +1,7 @@
 package com.connect_us.backend.domain.category;
 
 import com.connect_us.backend.domain.BaseEntity;
+import com.connect_us.backend.domain.fund.FundingProduct;
 import com.connect_us.backend.domain.product.Product;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,6 +25,9 @@ public class Category extends BaseEntity {
     private String name;
 
     @OneToMany(mappedBy = "category")
-    List<Product> Products = new ArrayList<Product>();
+    private List<Product> Products = new ArrayList<Product>();
+
+    @OneToMany(mappedBy = "category")
+    private List<FundingProduct> fundingProducts = new ArrayList<>();
 
 }
