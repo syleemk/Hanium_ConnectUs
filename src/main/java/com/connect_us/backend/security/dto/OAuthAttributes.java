@@ -46,11 +46,12 @@ public class OAuthAttributes {
     private static OAuthAttributes ofNaver(String userNameAttributeName, Map<String, Object> attributes){
         Map<String,Object> response = (Map<String,Object>) attributes.get("response");
 
+        System.out.println(response);
         System.out.println("ofNaver");
-        System.out.println("naver email:" + (String)attributes.get("email"));
+
         return OAuthAttributes.builder()
                 .name((String) response.get("name"))
-                .email((String) attributes.get("email"))
+                .email((String) response.get("email"))
                 .attributes(response)
                 .nameAttributeKey(userNameAttributeName)
                 .build();
