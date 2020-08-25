@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class FundingCartItem extends BaseEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "funding_cart_item_id")
     private Long id; //PK
 

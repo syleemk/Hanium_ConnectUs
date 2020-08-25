@@ -9,11 +9,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class FundingProductServiceImpl implements FundingProductService {
     private final FundingProductRepository fundingProductRepository;
 
+    @Transactional
     @Override
     public void createFundingProduct(FundingProduct fundingProduct) {
         fundingProductRepository.save(fundingProduct);

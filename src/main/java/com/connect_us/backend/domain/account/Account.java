@@ -5,9 +5,9 @@ import com.connect_us.backend.domain.cart.Cart;
 import com.connect_us.backend.domain.enums.Gender;
 import com.connect_us.backend.domain.enums.Role;
 import com.connect_us.backend.domain.enums.Social;
-import com.connect_us.backend.domain.enums.Status;
+import com.connect_us.backend.domain.fund.FundingCart;
 import com.connect_us.backend.domain.fund.FundingProduct;
-import com.connect_us.backend.domain.order.Order;
+import com.connect_us.backend.domain.order.BaseOrder;
 import lombok.*;
 
 import javax.persistence.*;
@@ -19,6 +19,7 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class Account extends BaseEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="account_id")
@@ -49,11 +50,14 @@ public class Account extends BaseEntity {
 
     private Long point;
 
-    @OneToOne(mappedBy = "account", cascade = CascadeType.ALL)//cart table의 account 의해 mapping
+    @OneToOne(mappedBy = "account", cascade = CascadeType.ALL) // cart table의 account 의해 mapping
     private Cart cart;
 
-    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL) //order table의 account 의해 mapping
-    private List<Order> orders = new ArrayList<>();
+    @OneToOne(mappedBy = "account",cascade = CascadeType.ALL) // funding_cart table의 account 의해 mapping
+    private FundingCart fundingCart;
+
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL) // order table의 account 의해 mapping
+    private List<BaseOrder> baseOrders = new ArrayList<>();
 
     @OneToMany(mappedBy = "account",cascade = CascadeType.ALL) // funding_product table의 account 의해 mapping
     private List<FundingProduct> fundingProducts = new ArrayList<>();

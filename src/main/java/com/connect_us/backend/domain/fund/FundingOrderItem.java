@@ -1,6 +1,6 @@
 package com.connect_us.backend.domain.fund;
 
-import com.connect_us.backend.domain.order.Order;
+import com.connect_us.backend.domain.order.BaseOrder;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class FundingOrderItem {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "funding_order_item_id")
     private Long id; //PK
 
@@ -29,7 +29,7 @@ public class FundingOrderItem {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
-    private Order fundingOrder; // FK
+    private BaseOrder fundingBaseOrder; // FK
 
     @Builder
     public FundingOrderItem(int fundingCount,String fundingName) {
