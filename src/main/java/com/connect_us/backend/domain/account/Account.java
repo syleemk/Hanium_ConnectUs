@@ -5,8 +5,7 @@ import com.connect_us.backend.domain.cart.Cart;
 import com.connect_us.backend.domain.enums.Gender;
 import com.connect_us.backend.domain.enums.Role;
 import com.connect_us.backend.domain.enums.Social;
-import com.connect_us.backend.domain.enums.Status;
-import com.connect_us.backend.domain.order.Order;
+import com.connect_us.backend.domain.orders.Orders;
 import lombok.*;
 
 import javax.persistence.*;
@@ -52,7 +51,7 @@ public class Account extends BaseEntity {
     private Cart cart;
 
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL) //order table의 account 의해 mapping
-    private List<Order> orders = new ArrayList<>();
+    private List<Orders> orders = new ArrayList<>();
 
     @Builder//initialize
     public Account(String email, String password, String name, Social social, Gender gender ,Role role){

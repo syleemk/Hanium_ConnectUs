@@ -37,6 +37,7 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-security')//인증 관련
 	compile('org.springframework.boot:spring-boot-starter-oauth2-client')//client 자동 인증 설정
 	compile('org.thymeleaf.extras:thymeleaf-extras-springsecurity5')
+	compile('org.springframework.session:spring-session-jdbc')
 
 	/**etc**/
 	implementation ('org.springframework.boot:spring-boot-starter-thymeleaf')

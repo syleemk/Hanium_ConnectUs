@@ -6,7 +6,7 @@ import com.connect_us.backend.domain.enums.Gender;
 import com.connect_us.backend.domain.enums.Role;
 import com.connect_us.backend.domain.enums.Social;
 import com.connect_us.backend.security.dto.AccountDto;
-import com.connect_us.backend.service.account.UserService;
+import com.connect_us.backend.service.account.AccountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,13 +15,12 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
-public class UserServiceImp implements UserService {
+public class AccountServiceImp implements AccountService {
     private final AccountRepository accountRepository;
     @Override
     public void createUser(Account account){
         accountRepository.save(account);
     }
-
 
     /**
      * 회원정보 저장

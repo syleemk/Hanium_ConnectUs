@@ -16,6 +16,8 @@ spring:
         ddl-auto: create-drop
         show-sql: true
         format-sql: true
+  session:
+    store-type: jdbc
   profiles.include: oauth
 
 logging.level:

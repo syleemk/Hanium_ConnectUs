@@ -1,7 +1,7 @@
 package com.connect_us.backend.web.controller.v1.auth;
 
 import com.connect_us.backend.security.dto.AccountDto;
-import com.connect_us.backend.service.account.impl.UserServiceImp;
+import com.connect_us.backend.service.account.impl.AccountServiceImp;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -21,7 +21,7 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 @RequestMapping("/v1/auth")
 public class LoginController {
-    private final UserServiceImp userServiceImp;
+    private final AccountServiceImp userServiceImp;
     private final PasswordEncoder passwordEncoder;
 
     @RequestMapping
