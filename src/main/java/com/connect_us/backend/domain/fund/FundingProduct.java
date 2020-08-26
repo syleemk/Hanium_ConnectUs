@@ -47,8 +47,8 @@ public class FundingProduct extends BaseEntity {
     @Column(name = "due")
     private LocalDateTime due; // due : 펀딩 마감 날짜
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "funding_status")
+    @Enumerated(EnumType.STRING)
     private FundingStatus fundingStatus = FundingStatus.NORMAL;
 
     @OneToOne(mappedBy = "fundingProduct", cascade = CascadeType.ALL)
@@ -58,14 +58,13 @@ public class FundingProduct extends BaseEntity {
     private FundingOrderItem fundingOrderItem; // funding_order_item table의 fundingProduct 의해 mapping
 
     @Builder
-    public FundingProduct(String name,String image,int goalPrice,int currentPrice,String address,LocalDateTime due,FundingStatus fundingStatus) {
+    public FundingProduct(String name,String image,int goalPrice,int currentPrice,String address,LocalDateTime due) {
         this.name = name;
         this.image = image;
         this.goalPrice = goalPrice;
         this.currentPrice = currentPrice;
         this.address = address;
         this.due = due;
-        this.fundingStatus = fundingStatus;
     }
 
     /**

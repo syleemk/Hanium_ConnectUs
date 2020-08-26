@@ -17,16 +17,17 @@ public class FundingProductCreateRequestDto {
     private int goalPrice;
     private String address;
     private LocalDateTime due;
-    private FundingStatus fundingStatus;
 
+    /**
+     * Builder로 생성할 경우, name값을 설정하지 않는다면 NULL값이 들어간다.
+     * */
     @Builder
-    public FundingProductCreateRequestDto(String name, String image, int goalPrice, String address, LocalDateTime due, FundingStatus fundingStatus) {
+    public FundingProductCreateRequestDto(String name, String image, int goalPrice, String address, LocalDateTime due) {
         this.name = name;
         this.image = image;
         this.goalPrice = goalPrice;
         this.address = address;
         this.due = due;
-        this.fundingStatus = fundingStatus;
     }
 
     public FundingProduct toEntity() {
@@ -36,7 +37,6 @@ public class FundingProductCreateRequestDto {
                 .goalPrice(goalPrice)
                 .address(address)
                 .due(due)
-                .fundingStatus(fundingStatus)
                 .build();
     }
 
@@ -48,7 +48,6 @@ public class FundingProductCreateRequestDto {
                 ", goalPrice=" + goalPrice +
                 ", address='" + address + '\'' +
                 ", due=" + due +
-                ", fundingStatus=" + fundingStatus +
                 '}';
     }
 }

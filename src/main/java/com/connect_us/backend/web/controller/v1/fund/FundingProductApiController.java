@@ -17,8 +17,6 @@ public class FundingProductApiController {
 
     @PostMapping("/v1/fund/product")
     public Long save(@RequestBody FundingProductCreateRequestDto requestDto) {
-        log.debug("FundingProductApiController save");
-        log.debug(requestDto.toString());
         return fundingProductService.save(requestDto);
     }
 
