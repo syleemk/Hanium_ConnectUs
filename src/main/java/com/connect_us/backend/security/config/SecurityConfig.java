@@ -47,7 +47,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                    .antMatchers("/","/oauth2/**","/login/**", "/h2-console/**", "/v1/auth/**", "/v1/auth/login*").permitAll()
+                    .antMatchers(
+                            "/",
+                            "/js/**",
+                            "/js/fund/*",
+                            "/oauth2/**",
+                            "/login/**",
+                            "/h2-console/**",
+                            "/v1/fund/**",
+                            "/v1/fund/product/*",
+                            "/v1/auth/**",
+                            "/v1/auth/login*").permitAll()
                     .antMatchers("/v1/admin/**").hasRole(Role.ADMIN.name()) //관리자페이지 권한
                     .antMatchers("/v1/seller/**").hasRole(Role.SELLER.name())//판매자페이지 권한
                     .antMatchers("/v1/user/**").hasRole(Role.USER.name())

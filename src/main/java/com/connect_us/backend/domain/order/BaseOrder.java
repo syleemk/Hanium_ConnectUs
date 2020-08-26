@@ -20,11 +20,11 @@ public class BaseOrder extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="base_order_id")
-    private Long id;
+    private Long id; // PK
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="account_id")
-    private Account account;
+    private Account account; // FK
 
     @Column(name = "price")
     private int price;
@@ -42,10 +42,10 @@ public class BaseOrder extends BaseEntity {
     private String address;
 
     @OneToMany(mappedBy = "fundingBaseOrder",cascade = CascadeType.ALL)
-    private List<FundingOrderItem> fundingOrderItems = new ArrayList<>(); // funding_order_item table의 fundingOrder 의해 mapping
+    private List<FundingOrderItem> fundingOrderItems = new ArrayList<>(); // funding_order_item table의 fundingBaseOrder 의해 mapping
 
     @OneToMany(mappedBy = "baseOrder",cascade = CascadeType.ALL)
-    private List<ProductOrderItem> productOrderItems = new ArrayList<>();
+    private List<ProductOrderItem> productOrderItems = new ArrayList<>();  // base_order table의 baseOrder 의해 mapping
 
     @OneToMany(mappedBy = "baseOrder",cascade = CascadeType.ALL)
     private List<Payment> payments = new ArrayList<>(); // payments table의 baseOrder 의해 mapping

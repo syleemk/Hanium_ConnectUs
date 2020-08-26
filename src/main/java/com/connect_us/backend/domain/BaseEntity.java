@@ -2,6 +2,7 @@ package com.connect_us.backend.domain;
 
 import com.connect_us.backend.domain.enums.Status;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -24,4 +25,19 @@ public abstract class BaseEntity {
 
     @Enumerated(EnumType.STRING)
     private Status status = Status.NORMAL;
+
+    /**
+     * soft delete
+     * */
+    public void setStatusDelete() {
+        this.status = Status.DELETE;
+    }
+
+    /**
+     * rollback
+     * */
+    public void setStatusNormal() {
+        this.status = Status.NORMAL;
+    }
+
 }

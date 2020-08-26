@@ -38,17 +38,17 @@ public class FundingProduct extends BaseEntity {
     @Column(name = "goal_price")
     private int goalPrice; // 목표 모금액
 
-    @Column(name = "current_price",nullable = false)
+    @Column(name = "current_price")
     private int currentPrice; // 현재 모금액
 
     @Column(name = "addr") // addr : 물품을 배송할 재난지역 주소
     private String address;
 
-    @Column(name = "due",nullable = false)
+    @Column(name = "due")
     private LocalDateTime due; // due : 펀딩 마감 날짜
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "funding_status",nullable = false)
+    @Column(name = "funding_status")
     private FundingStatus fundingStatus = FundingStatus.NORMAL;
 
     @OneToOne(mappedBy = "fundingProduct", cascade = CascadeType.ALL)
@@ -68,5 +68,17 @@ public class FundingProduct extends BaseEntity {
         this.fundingStatus = fundingStatus;
     }
 
+    /**
+     * currentPrice 정보는 변경불가
+     * @see com.connect_us.backend.service.fund.impl.FundingProductServiceImpl
+     * */
+    public void update(String name,String image,int goalPrice,String address,LocalDateTime due,FundingStatus fundingStatus) {
+        this.name = name;
+        this.image = image;
+        this.goalPrice = goalPrice;
+        this.address = address;
+        this.due = due;
+        this.fundingStatus = fundingStatus;
+    }
 
 }

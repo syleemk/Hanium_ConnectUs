@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header"/>
+<style>
+    .fieldError {
+        border-color: #bd2130;
+    }
+</style>
+<body>
+<div class="container">
+    <form role="form">
+        <div class="form-group">
+            <label for="name">펀드 이름</label>
+            <input type="text" name="name" id="name" class="form-control" placeholder="펀드 이름을 입력하세요">
+        </div>
+        <div class="form-group">
+            <label for="image">펀드 썸네일</label>
+            <input type="text" name="image" id="image" class="form-control" placeholder="펀드 썸네일을 입력하세요">
+        </div>
+        <div class="form-group">
+            <label for="goalPrice">펀드 목표 금액</label>
+            <input type="text" name="goalPrice" id="goalPrice" class="form-control" placeholder="펀드 목표 금액을 입력하세요">
+        </div>
+        <div class="form-group">
+            <label for="address">재난 지역</label>
+            <input type="text" name="address" id="address" class="form-control" placeholder="물품을 보낼 재난 지역을 입력하세요">
+        </div>
+        <div class="form-group">
+            <label for="due">마감일</label>
+            <input type="datetime-local" name="due" id="due" class="form-control" placeholder="펀드 마감일을 입력하세요">
+        </div>
+    </form>
+    <button type="button" class="btn btn-primary" id="btn-fund-create">Submit</button>
+    <br/>
+    <div th:replace="fragments/footer :: footer"/>
+</div> <!-- /container -->
+</body>
+</html>
