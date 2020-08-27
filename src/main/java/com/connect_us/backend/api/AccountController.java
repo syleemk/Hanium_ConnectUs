@@ -2,11 +2,13 @@ package com.connect_us.backend.api;
 
 import com.connect_us.backend.domain.enums.Gender;
 import com.connect_us.backend.security.dto.AccountDto;
+import com.connect_us.backend.security.service.CustomAccountDetails;
 import com.connect_us.backend.service.account.impl.AccountServiceImp;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +20,8 @@ import javax.validation.Valid;
 @Slf4j
 public class AccountController {
     private final AccountServiceImp accountServiceImp;
+    private final AuthenticationManager authenticationManager;
+    private final CustomAccountDetails customAccountDetails;
 
     /**회원 가입**/
     @PostMapping("v1/auth/users")
@@ -45,7 +49,7 @@ public class AccountController {
 
     }
 
-    /**일반 로그인 - formLogin 사용할 수 없음**/
+    /**일반 로그인 - formLogin 사용할 수 없음, custom filter 이용**/
 
 
     /**정보 수정**/

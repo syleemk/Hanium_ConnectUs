@@ -25,7 +25,7 @@ public class AccountServiceImp implements AccountService {
     /**
      * 회원정보 저장
      *
-     * @param infoDto 회원정보가 들어있는 DTO
+     * @param //infoDto 회원정보가 들어있는 DTO
      * @return 저장되는 회원의 PK
      */
     @Transactional
@@ -56,6 +56,10 @@ public class AccountServiceImp implements AccountService {
         if(findAccount!=null){
             throw new IllegalStateException("이미 존재하는 회원 이메일 입니다.");
         }
+    }
+
+    public Account findByEmail(String email){
+        return accountRepository.findByEmail(email);
     }
 
 }
