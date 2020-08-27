@@ -4,9 +4,14 @@ import com.connect_us.backend.domain.BaseTimeEntity;
 import com.connect_us.backend.domain.enums.Status;
 import com.connect_us.backend.domain.product.Product;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+@Getter
+@NoArgsConstructor
+@Entity
 public class CartItem extends BaseTimeEntity {
     @Id @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "cartItem_id")

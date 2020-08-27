@@ -5,7 +5,7 @@ import com.connect_us.backend.domain.enums.Gender;
 import com.connect_us.backend.domain.enums.Role;
 import com.connect_us.backend.domain.enums.Social;
 import com.connect_us.backend.domain.enums.UserStatus;
-import com.connect_us.backend.domain.order.Order;
+import com.connect_us.backend.domain.order.BaseOrder;
 import com.connect_us.backend.domain.cart.Cart;
 import lombok.Builder;
 import lombok.Getter;
@@ -57,7 +57,7 @@ public class User extends BaseTimeEntity {
     private Cart cart;
 
     @OneToMany(mappedBy = "user") //order table의 user에 의해 mapping
-    private List<Order> orders = new ArrayList<>();
+    private List<BaseOrder> baseOrder = new ArrayList<>();
 
     @Builder//initialize
     public User(String email, String password, String name, String phone, String addr,

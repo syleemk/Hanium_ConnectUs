@@ -6,12 +6,18 @@ import com.connect_us.backend.domain.enums.OrderType;
 import com.connect_us.backend.domain.enums.Status;
 import com.connect_us.backend.domain.user.User;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Order extends BaseTimeEntity {
+@Getter
+@NoArgsConstructor
+@Entity
+public class BaseOrder extends BaseTimeEntity {
+
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_id")
     private Long id;
@@ -20,7 +26,7 @@ public class Order extends BaseTimeEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "baseOrder")
     private List<OrderItem> orderItems = new ArrayList<OrderItem>();
 
     @Enumerated(EnumType.STRING)
@@ -46,7 +52,7 @@ public class Order extends BaseTimeEntity {
     private Status status;
 
     @Builder
-    public Order(User user, OrderType orderType, OrderStatus orderStatus, Long price, String name, String address, String number, Status status){
+    public BaseOrder(User user, OrderType orderType, OrderStatus orderStatus, Long price, String name, String address, String number, Status status){
         this.user = user;
         this.orderType = orderType;
         this.orderStatus = orderStatus;

@@ -4,17 +4,23 @@ import com.connect_us.backend.domain.BaseTimeEntity;
 import com.connect_us.backend.domain.enums.Status;
 import com.connect_us.backend.domain.user.User;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@NoArgsConstructor
+@Entity
 public class Cart extends BaseTimeEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cart_id")
     private Long id;
 
-    @Column
+    @OneToOne
+    @JoinColumn(name="user_id")
     private User user;
 
     @OneToMany(mappedBy = "cart")
