@@ -1,8 +1,6 @@
 package com.connect_us.backend.domain.cart;
 
-import com.connect_us.backend.domain.BaseTimeEntity;
 import com.connect_us.backend.domain.account.Account;
-import com.connect_us.backend.domain.enums.Status;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +12,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @Entity
-public class Cart extends BaseTimeEntity {
+public class Cart {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cart_id")
     private Long id;
@@ -24,14 +22,10 @@ public class Cart extends BaseTimeEntity {
     private Account account;
 
     @OneToMany(mappedBy = "cart")
-    List<CartItem> cartItems = new ArrayList<CartItem>();
-
-    @Enumerated(EnumType.STRING)
-    private Status status;
+    List<CartItem> cartItems = new ArrayList<>();
 
     @Builder
-    public Cart(Account account, Status status){
+    public Cart(Account account){
         this.account = account;
-        this.status = status;
     }
 }

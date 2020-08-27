@@ -1,7 +1,4 @@
 package com.connect_us.backend.domain.cart;
-
-import com.connect_us.backend.domain.BaseTimeEntity;
-import com.connect_us.backend.domain.enums.Status;
 import com.connect_us.backend.domain.product.Product;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,7 +9,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @Entity
-public class CartItem extends BaseTimeEntity {
+public class CartItem {
     @Id @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "cart_item_id")
     private Long id;
@@ -28,14 +25,10 @@ public class CartItem extends BaseTimeEntity {
     @Column
     private Long product_cnt;
 
-    @Enumerated(EnumType.STRING)
-    private Status status;
-
     @Builder
-    public CartItem(Product product, Cart cart, Long product_cnt, Status status) {
+    public CartItem(Product product, Cart cart, Long product_cnt) {
         this.product = product;
         this.cart = cart;
         this.product_cnt = product_cnt;
-        this.status = status;
     }
 }

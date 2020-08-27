@@ -1,10 +1,12 @@
 package com.connect_us.backend.domain.order;
 
-import com.connect_us.backend.domain.BaseTimeEntity;
+import com.connect_us.backend.domain.BaseEntity;
 import com.connect_us.backend.domain.account.Account;
 import com.connect_us.backend.domain.enums.OrderStatus;
 import com.connect_us.backend.domain.enums.OrderType;
 import com.connect_us.backend.domain.enums.Status;
+import com.connect_us.backend.domain.fund.FundingOrderItem;
+import com.connect_us.backend.domain.payment.Payment;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,7 +18,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @Entity
-public class BaseOrder extends BaseTimeEntity {
+public class BaseOrder extends BaseEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "base_order_id")
@@ -26,7 +28,7 @@ public class BaseOrder extends BaseTimeEntity {
     @JoinColumn(name = "account_id")
     private Account account;
 
-    @OneToMany(mappedBy = "baseOrder")
+    @OneToMany(mappedBy = "baseOrder", cascade = CascadeType.ALL)
     private List<ProductOrderItem> productOrderItems = new ArrayList<ProductOrderItem>();
 
     @Enumerated(EnumType.STRING)
@@ -47,6 +49,11 @@ public class BaseOrder extends BaseTimeEntity {
     @Column
     private String number;
 
+    @OneToMany(mappedBy = "fundingBaseOrder",cascade = CascadeType.ALL)
+    private List<FundingOrderItem> fundingOrderItems = new ArrayList<>(); // funding_order_item table의 fundingBaseOrder 의해 mapping
+
+    @OneToMany(mappedBy = "baseOrder",cascade = CascadeType.ALL)
+    private List<Payment> payments = new ArrayList<>(); // payments table의 baseOrder 의해 mapping
 
     @Enumerated(EnumType.STRING)
     private Status status;

@@ -1,10 +1,9 @@
 package com.connect_us.backend.domain.account;
 
-import com.connect_us.backend.domain.BaseTimeEntity;
+import com.connect_us.backend.domain.BaseEntity;
 import com.connect_us.backend.domain.enums.Gender;
 import com.connect_us.backend.domain.enums.Role;
 import com.connect_us.backend.domain.enums.Social;
-import com.connect_us.backend.domain.enums.UserStatus;
 import com.connect_us.backend.domain.order.BaseOrder;
 import com.connect_us.backend.domain.cart.Cart;
 import lombok.Builder;
@@ -19,7 +18,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @Entity
-public class Account extends BaseTimeEntity {
+public class Account extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="account_id")
@@ -49,10 +48,6 @@ public class Account extends BaseTimeEntity {
     private Social social;
 
     private Long point;
-
-    @Enumerated(EnumType.STRING)
-    private UserStatus userStatus;
-
     @OneToOne(mappedBy = "account")//cart table의 user에 의해 mapping
     private Cart cart;
 
