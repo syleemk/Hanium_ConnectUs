@@ -1,1 +1,1 @@
-for user authority
+for account authority

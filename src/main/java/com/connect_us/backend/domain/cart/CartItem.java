@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Entity
 public class CartItem extends BaseTimeEntity {
     @Id @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name = "cartItem_id")
+    @Column(name = "cart_item_id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)

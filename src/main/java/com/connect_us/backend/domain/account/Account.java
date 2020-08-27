@@ -1,4 +1,4 @@
-package com.connect_us.backend.domain.user;
+package com.connect_us.backend.domain.account;
 
 import com.connect_us.backend.domain.BaseTimeEntity;
 import com.connect_us.backend.domain.enums.Gender;
@@ -19,10 +19,10 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @Entity
-public class User extends BaseTimeEntity {
+public class Account extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="user_id")
+    @Column(name="account_id")
     private Long id;
 
     @Column(nullable = false)
@@ -53,15 +53,15 @@ public class User extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     private UserStatus userStatus;
 
-    @OneToOne(mappedBy = "user")//cart table의 user에 의해 mapping
+    @OneToOne(mappedBy = "account")//cart table의 user에 의해 mapping
     private Cart cart;
 
-    @OneToMany(mappedBy = "user") //order table의 user에 의해 mapping
+    @OneToMany(mappedBy = "account") //order table의 user에 의해 mapping
     private List<BaseOrder> baseOrder = new ArrayList<>();
 
     @Builder//initialize
-    public User(String email, String password, String name, String phone, String addr,
-                Gender gender, Role role, Social social, Long point){
+    public Account(String email, String password, String name, String phone, String addr,
+                   Gender gender, Role role, Social social, Long point){
         this.email=email;
         this.password=password;
         this.name=name;
@@ -73,7 +73,7 @@ public class User extends BaseTimeEntity {
         this.point=point;
     }
 
-    public User update(String name){//social에서 사용자 정보 업데이트시 자동 반영
+    public Account update(String name){//social에서 사용자 정보 업데이트시 자동 반영
         this.name=name;
         return this;
     }

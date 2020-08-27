@@ -1,10 +1,10 @@
 package com.connect_us.backend.domain.order;
 
 import com.connect_us.backend.domain.BaseTimeEntity;
+import com.connect_us.backend.domain.account.Account;
 import com.connect_us.backend.domain.enums.OrderStatus;
 import com.connect_us.backend.domain.enums.OrderType;
 import com.connect_us.backend.domain.enums.Status;
-import com.connect_us.backend.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,15 +19,15 @@ import java.util.List;
 public class BaseOrder extends BaseTimeEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "order_id")
+    @Column(name = "base_order_id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "account_id")
+    private Account account;
 
     @OneToMany(mappedBy = "baseOrder")
-    private List<OrderItem> orderItems = new ArrayList<OrderItem>();
+    private List<ProductOrderItem> productOrderItems = new ArrayList<ProductOrderItem>();
 
     @Enumerated(EnumType.STRING)
     private OrderType orderType; // fund, product 주문 구분
@@ -52,8 +52,8 @@ public class BaseOrder extends BaseTimeEntity {
     private Status status;
 
     @Builder
-    public BaseOrder(User user, OrderType orderType, OrderStatus orderStatus, Long price, String name, String address, String number, Status status){
-        this.user = user;
+    public BaseOrder(Account account, OrderType orderType, OrderStatus orderStatus, Long price, String name, String address, String number, Status status){
+        this.account = account;
         this.orderType = orderType;
         this.orderStatus = orderStatus;
         this.price = price;

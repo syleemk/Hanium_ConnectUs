@@ -1,4 +1,4 @@
-package com.connect_us.backend.domain.user;
+package com.connect_us.backend.domain.account;
 
 import com.connect_us.backend.domain.enums.Role;
 import com.connect_us.backend.domain.enums.Social;
@@ -14,13 +14,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-public class UserRepositoryTest {
+public class AccountRepositoryTest {
     @Autowired
-    UserRepository userRepository;
+    AccountRepository accountRepository;
 
     @After
     public void cleanUp() {
-        userRepository.deleteAll();
+        accountRepository.deleteAll();
     }
 
     @Test
@@ -31,7 +31,7 @@ public class UserRepositoryTest {
         Role role = Role.SELLER;
         Social social= Social.NONE;
 
-        userRepository.save(User.builder()
+        accountRepository.save(Account.builder()
                             .email(email)
                             .password(password)
                             .social(social)
@@ -39,10 +39,10 @@ public class UserRepositoryTest {
                             .name(name)
                             .build());
 
-        List<User> userList = userRepository.findAll();
+        List<Account> accountList = accountRepository.findAll();
 
-        User user = userList.get(0);
-        assertThat(user.getEmail()).isEqualTo(email);
-        assertThat(user.getRole()).isEqualTo(role);
+        Account account = accountList.get(0);
+        assertThat(account.getEmail()).isEqualTo(email);
+        assertThat(account.getRole()).isEqualTo(role);
     }
 }

@@ -12,9 +12,9 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @Entity
-public class OrderItem extends BaseTimeEntity {
+public class ProductOrderItem extends BaseTimeEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "order_item_id")
+    @Column(name = "product_order_item_id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -22,7 +22,7 @@ public class OrderItem extends BaseTimeEntity {
     private Product product;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name = "base_order_id")
     private BaseOrder baseOrder;
 
     @Column
@@ -32,7 +32,7 @@ public class OrderItem extends BaseTimeEntity {
     private Status status;
 
     @Builder
-    public OrderItem(Product product, BaseOrder baseOrder, int product_cnt, Status status){
+    public ProductOrderItem(Product product, BaseOrder baseOrder, int product_cnt, Status status){
         this.product = product;
         this.baseOrder = baseOrder;
         this.product_cnt = product_cnt;

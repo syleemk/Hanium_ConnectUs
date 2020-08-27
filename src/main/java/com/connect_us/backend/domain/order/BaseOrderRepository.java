@@ -2,5 +2,5 @@ package com.connect_us.backend.domain.order;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {
+public interface BaseOrderRepository extends JpaRepository<BaseOrder,Long> {
 }
