@@ -30,6 +30,7 @@ public class AccountServiceImp implements AccountService {
      */
     @Transactional
     public Long save(AccountDto accountDto){
+        validateDuplicate(accountDto);
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         accountDto.setPassword(encoder.encode(accountDto.getPassword()));
 
@@ -49,5 +50,12 @@ public class AccountServiceImp implements AccountService {
                 .password(accountDto.getPassword()).build()).getId();
     }
 
+    //중복 회원 검사
+    private void validateDuplicate(AccountDto accountDto){
+        Account findAccount = accountRepository.findByEmail(accountDto.getEmail());
+        if(findAccount!=null){
+            throw new IllegalStateException("이미 존재하는 회원 이메일 입니다.");
+        }
+    }
 
 }

@@ -12,4 +12,6 @@ public class AccountDto {//회원가입정보 꼬이지 않기 위해 따로 관
     private String name;
     private Social social;
     private Gender gender;
+
+
 }
