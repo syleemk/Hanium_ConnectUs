@@ -6,9 +6,8 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum ProductStatus {
-   NORMAL("NORMAL","일반"),
-   SOLD_OUT("SOLD_OUT","품절"),
-   DELETE("DELETE","삭제");
+   NORMAL("SALE","판매중"),
+   SOLD_OUT("SOLD_OUT","품절");
 
    private final String key;
    private final String value;

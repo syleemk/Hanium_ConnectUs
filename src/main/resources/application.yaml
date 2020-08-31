@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:h2:tcp://localhost/~/backend
+    url: jdbc:h2:mem:testdb
     username: sa
     password:
     driver-class-name: org.h2.Driver
@@ -16,6 +16,7 @@ spring:
         ddl-auto: create-drop
         show-sql: true
         format-sql: true
+        dialect: org.hibernate.dialect.MariaDBDialect
   profiles.include: oauth
 
 logging.level:
