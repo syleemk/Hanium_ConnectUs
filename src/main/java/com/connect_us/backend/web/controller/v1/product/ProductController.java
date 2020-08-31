@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(path = "api/v1/product")
+@RequestMapping(path = "/v1/product")
 public class ProductController {
 
     private final ProductService productService;
@@ -19,6 +19,4 @@ public class ProductController {
     public Long save(@RequestBody ProductSaveRequestDto requestDto) {
         return productService.save(requestDto);
     }
-
-
 }

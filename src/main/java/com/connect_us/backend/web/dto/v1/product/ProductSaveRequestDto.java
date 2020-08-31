@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class ProductSaveRequestDto {
-    private Long category;
-    private Long account;
+    private Long categoryId;
+    private Long accountId;
     private String name;
     private String image;
     private int price;
@@ -19,9 +19,9 @@ public class ProductSaveRequestDto {
     private ProductStatus productStatus;
 
     @Builder
-    public ProductSaveRequestDto(Long category, Long account, String name, String image,int price, int stock, ProductStatus productStatus){
-        this.category = category;
-        this.account = account;
+    public ProductSaveRequestDto(Long categoryId, Long accountId, String name, String image, int price, int stock, ProductStatus productStatus){
+        this.categoryId = categoryId;
+        this.accountId = accountId;
         this.name = name;
         this.image = image;
         this.price = price;

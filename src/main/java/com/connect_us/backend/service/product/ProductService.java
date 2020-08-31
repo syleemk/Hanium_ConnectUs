@@ -22,8 +22,10 @@ public class ProductService {
 
     @Transactional
     public Long save(ProductSaveRequestDto requestDto) {
-        Account account = accountRepository.findById(requestDto.getAccount()).orElseThrow(()-> new NoSuchElementException());
-        Category category = categoryRepository.findById(requestDto.getCategory()).orElseThrow(() -> new NoSuchElementException());
+        Account account = accountRepository.findById(requestDto.getAccountId())
+                .orElseThrow(()-> new NoSuchElementException());
+        Category category = categoryRepository.findById(requestDto.getCategoryId())
+                .orElseThrow(() -> new NoSuchElementException());
 
         Product product = Product.builder()
                 .category(category)
@@ -36,6 +38,5 @@ public class ProductService {
                 .build();
 
         return productRepository.save(product).getId();
-
     }
 }

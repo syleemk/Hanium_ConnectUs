@@ -44,10 +44,7 @@ public class Product extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "product_status")
-    private ProductStatus productStatus;
-
-    @Enumerated(EnumType.STRING)
-    private Status status;
+    private ProductStatus productStatus = ProductStatus.SALE;
 
     @Builder
     public Product(Category category, Account account, String name, String image, int price, int stock, ProductStatus productStatus, Status status){
@@ -57,8 +54,15 @@ public class Product extends BaseEntity {
         this.image = image;
         this.price = price;
         this.stock = stock;
-        this.productStatus = productStatus;
-        this.status = status;
+        //this.productStatus = productStatus;
+        //this.status = status;
     }
 
+    public void soldOut() {
+        this.productStatus = ProductStatus.SOLD_OUT;
+    }
+
+    public void onSale() {
+        this.productStatus = ProductStatus.SALE;
+    }
 }
