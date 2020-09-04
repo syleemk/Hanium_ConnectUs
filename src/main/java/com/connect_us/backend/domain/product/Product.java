@@ -5,7 +5,6 @@ import com.connect_us.backend.domain.account.Account;
 import com.connect_us.backend.domain.category.Category;
 import com.connect_us.backend.domain.enums.ProductStatus;
 
-import com.connect_us.backend.domain.enums.Status;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -47,15 +46,13 @@ public class Product extends BaseEntity {
     private ProductStatus productStatus = ProductStatus.SALE;
 
     @Builder
-    public Product(Category category, Account account, String name, String image, int price, int stock, ProductStatus productStatus, Status status){
+    public Product(Category category, Account account, String name, String image, int price, int stock){
         this.category = category;
         this.account = account;
         this.name = name;
         this.image = image;
         this.price = price;
         this.stock = stock;
-        //this.productStatus = productStatus;
-        //this.status = status;
     }
 
     public void soldOut() {

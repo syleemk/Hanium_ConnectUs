@@ -26,7 +26,7 @@ public class ProductService {
 
         // 폼에서 선택한 카테고리 이름 전송 받음
         Category category = categoryRepository.findByName(requestDto.getCategoryName());
-        // user 정보에서 email 가져와서 검색
+        // user 정보에서 email 가져와서 검색 (현재는 일단 클라이언트에서 전송받는 것으로 구현)
         Account account = accountRepository.findByEmail(requestDto.getAccountEmail());
 
         Product product = requestDto.toEntity(category, account);

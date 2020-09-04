@@ -17,7 +17,6 @@ public class ProductSaveRequestDto {
     private String image;
     private int price;
     private int stock;
-    private ProductStatus productStatus;
 
     @Builder
     public ProductSaveRequestDto(String categoryName, String accountEmail, String name, String image, int price, int stock, ProductStatus productStatus){
@@ -27,7 +26,6 @@ public class ProductSaveRequestDto {
         this.image = image;
         this.price = price;
         this.stock = stock;
-        this.productStatus = productStatus;
     }
 
     public Product toEntity(Category category, Account account) {
@@ -38,7 +36,6 @@ public class ProductSaveRequestDto {
                 .image(image)
                 .price(price)
                 .stock(stock)
-                .productStatus(productStatus)
                 .build();
     }
 

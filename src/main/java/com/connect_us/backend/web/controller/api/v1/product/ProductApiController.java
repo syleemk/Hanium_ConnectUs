@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(path = "/api/v1/products")
+@RequestMapping(path = "/api/v1/products") //URI는 복수형 사용
 public class ProductApiController {
 
     private final ProductService productService;
