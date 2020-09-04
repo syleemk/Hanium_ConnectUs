@@ -38,5 +38,4 @@ public class ProductSaveRequestDto {
                 .stock(stock)
                 .build();
     }
-
 }
