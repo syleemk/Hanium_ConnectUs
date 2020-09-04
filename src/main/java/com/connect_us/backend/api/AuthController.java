@@ -30,7 +30,7 @@ public class AuthController {
         accountDto.setPassword(request.getPassword());
         accountDto.setGender(request.getGender());
         accountDto.setSocial(Social.FALSE);
-        accountDto.setRole(Role.NOT_PERMITTED);
+        accountDto.setRole(Role.USER);
         Long id = accountServiceImp.save(accountDto);
         return new CreateUserResponse(id);
     }
