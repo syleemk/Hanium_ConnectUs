@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Component
-public class CustomAuthenticationHandler extends SimpleUrlAuthenticationSuccessHandler {
+public class CustomAuthorizationHandler extends SimpleUrlAuthenticationSuccessHandler {
     // 이전 사용자의 요청을 담고있는 객체
 //    private RequestCache requestCache = new HttpSessionRequestCache();
 //
@@ -33,6 +33,7 @@ public class CustomAuthenticationHandler extends SimpleUrlAuthenticationSuccessH
 //            redirectStrategy.sendRedirect(request, response, getDefaultTargetUrl());
 //        }
 //    }
+
     public AuthenticationSuccessHandler successHandler() {
         return new AuthenticationSuccessHandler() {
             @Override

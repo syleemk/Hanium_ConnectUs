@@ -1,56 +1,80 @@
 package com.connect_us.backend.api;
 
+import com.connect_us.backend.domain.account.Account;
+import com.connect_us.backend.domain.account.AccountRepository;
 import com.connect_us.backend.domain.enums.Gender;
-import com.connect_us.backend.security.dto.AccountDto;
-import com.connect_us.backend.security.service.CustomAccountDetails;
 import com.connect_us.backend.service.account.impl.AccountServiceImp;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-
-import javax.validation.Valid;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
 @Slf4j
+@RequestMapping("v1/users")
+@CrossOrigin
 public class AccountController {
     private final AccountServiceImp accountServiceImp;
-    private final AuthenticationManager authenticationManager;
-    private final CustomAccountDetails customAccountDetails;
+    private final AccountRepository accountRepository;
 
-    /**회원 가입**/
-    @PostMapping("v1/auth/users")
-    public CreateUserResponse saveUserV1 (@RequestBody @Valid CreateUserRequest request){
-        AccountDto accountDto = new AccountDto();
-        accountDto.setEmail(request.getEmail());
-        accountDto.setName(request.getName());
-        accountDto.setPassword(request.getPassword());
-        accountDto.setGender(request.getGender());
-        Long id = accountServiceImp.save(accountDto);
-        return new CreateUserResponse(id);
+    @GetMapping("me") //유저 한명 프로필 조회
+    public Account getProfile(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
+        return accountServiceImp.findByEmail(email);
+    }
+
+    @PutMapping("me/{id}")
+    public EditUserResponse editProfile(
+            @PathVariable("id") Long id,
+            @RequestBody EditUserRequest request){
+        accountServiceImp.update(id,request.getName(), request.getAddr(),
+                                request.getPhone(),request.getGender());
+        Account account = accountRepository.findOne(id);
+        return new EditUserResponse(account.getId(), account.getName());
     }
 
     @Data
-    static class CreateUserRequest{
-        private String email;
-        private String password;
+    static class EditUserRequest{
         private String name;
+        private String addr;
+        private String phone;
         private Gender gender;
     }
-
-    @Data @AllArgsConstructor
-    static class CreateUserResponse{
+    @Data
+    @AllArgsConstructor
+    static class EditUserResponse{
         private Long id;
-
+        private String name;
     }
 
-    /**일반 로그인 - formLogin 사용할 수 없음, custom filter 이용**/
+//    @PutMapping("me/{id}/password") //비밀번호 수정
+//    public EditUserResponse editPassword(
+//            @PathVariable("id") Long id,
+//            @RequestBody EditPasswordRequest request){
+//        accountServiceImp.update(id,request.getName(), request.getAddr(),
+//                request.getPhone(),request.getGender());
+//        Account account = accountRepository.findOne(id);
+//        return new EditUserResponse(account.getId(), account.getName());
+//    }
+//
+//    @Data
+//    static class EditPasswordRequest{
+//        private String password;
+//    }
+//    @Data
+//    @AllArgsConstructor
+//    static class EditPasswordResponse{
+//        private Long id;
+//        private String name;
+//    }
+//
+//    @PostMapping("v1/auth/emails/password") //비밀번호 변경 이메일 전송
+//    @PostMapping("v1/auth/emails/verification") //인증 이메일 전송
+//    @PostMapping("v1/auth/emails/notification") //공지사항 이메일 전송
 
-
-    /**정보 수정**/
 }

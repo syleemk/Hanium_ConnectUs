@@ -19,6 +19,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
     @Override //검증을 위한 구현 authentication: 인증객체, 사용자의 정보가 담겨져있음
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+        System.out.println("authenticate");
         String email = authentication.getName();
         String password =(String)authentication.getCredentials();
 
@@ -39,4 +40,5 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
     public boolean supports(Class<?> authentication) {
         return UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication);
     }
+
 }
