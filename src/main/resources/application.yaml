@@ -17,9 +17,22 @@ spring:
         show-sql: true
         format-sql: true
         dialect: org.hibernate.dialect.MariaDBDialect
+  session:
+    store-type: jdbc
   profiles.include: oauth
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: admin
+    password: 1234
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls.enable: true
 
 logging.level:
   org.hibernate.SQL: debug
   org.springframework:
     security: DEBUG
+

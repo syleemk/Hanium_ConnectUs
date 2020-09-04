@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 @RequestMapping("/v1/admin")
 public class AdminController {
-
-    @RequestMapping
-    public String home(){
+  @RequestMapping
+    public String home() {
         return "v1/admin/home";
     }
+
+
 }

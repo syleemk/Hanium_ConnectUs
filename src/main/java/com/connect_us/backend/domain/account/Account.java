@@ -10,6 +10,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +55,7 @@ public class Account extends BaseEntity {
     @OneToMany(mappedBy = "account") //order table의 user에 의해 mapping
     private List<BaseOrder> baseOrder = new ArrayList<>();
 
+
     @Builder//initialize
     public Account(String email, String password, String name, String phone, String addr,
                    Gender gender, Role role, Social social, Long point){
@@ -74,7 +76,7 @@ public class Account extends BaseEntity {
     }
 
     public String getRoleKey(){
-        return this.role.getKey();
+        return this.role.name();
     }
 
 }
