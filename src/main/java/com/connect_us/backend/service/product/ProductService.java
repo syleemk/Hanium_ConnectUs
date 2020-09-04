@@ -7,6 +7,7 @@ import com.connect_us.backend.domain.category.CategoryRepository;
 import com.connect_us.backend.domain.product.Product;
 import com.connect_us.backend.domain.product.ProductRepository;
 import com.connect_us.backend.web.dto.v1.product.ProductSaveRequestDto;
+import com.connect_us.backend.web.dto.v1.product.ProductSaveResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,22 +22,20 @@ public class ProductService {
     private final AccountRepository accountRepository;
 
     @Transactional
-    public Long save(ProductSaveRequestDto requestDto) {
-        Account account = accountRepository.findById(requestDto.getAccountId())
-                .orElseThrow(()-> new NoSuchElementException());
-        Category category = categoryRepository.findById(requestDto.getCategoryId())
-                .orElseThrow(() -> new NoSuchElementException());
+    public ProductSaveResponseDto save(ProductSaveRequestDto requestDto) {
 
-        Product product = Product.builder()
-                .category(category)
-                .account(account)
-                .name(requestDto.getName())
-                .image(requestDto.getImage())
-                .price(requestDto.getPrice())
-                .stock(requestDto.getStock())
-                .productStatus(requestDto.getProductStatus())
+        // 폼에서 선택한 카테고리 이름 전송 받음
+        Category category = categoryRepository.findByName(requestDto.getCategoryName());
+        // user 정보에서 email 가져와서 검색
+        Account account = accountRepository.findByEmail(requestDto.getAccountEmail());
+
+        Product product = requestDto.toEntity(category, account);
+
+        productRepository.save(product);
+
+        return new ProductSaveResponseDto().builder()
+                .message("상품이 등록되었습니다.")
+                .success(true)
                 .build();
-
-        return productRepository.save(product).getId();
     }
 }

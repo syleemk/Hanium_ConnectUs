@@ -58,7 +58,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                             "/h2-console/**",
                             "/v1/fund/**",
                             "/v1/fund/product/*",
-                            "/v1/product/**",
+                            "/api/v1/products/**",
                             "/v1/auth/**",
                             "/v1/auth/login*").permitAll()
                     .antMatchers("/v1/admin/**").hasRole(Role.ADMIN.name()) //관리자페이지 권한

@@ -30,16 +30,16 @@ public class Product extends BaseEntity {
     @JoinColumn(name = "account_id")
     private Account account;
 
-    @Column
+    @Column(nullable = false)
     private String name;
 
     @Column
     private String image;
 
-    @Column
+    @Column(nullable = false)
     private int price;
 
-    @Column
+    @Column(nullable = false)
     private int stock;
 
     @Enumerated(EnumType.STRING)
