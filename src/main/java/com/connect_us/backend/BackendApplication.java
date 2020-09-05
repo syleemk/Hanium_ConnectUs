@@ -18,7 +18,7 @@ public class BackendApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BackendApplication.class, args);
 	}
-
+/*
 	@Bean
 	public CommandLineRunner runner(AccountRepository accountRepository, ProductRepository productRepository,
 									CategoryRepository categoryRepository) throws Exception {
@@ -35,6 +35,6 @@ public class BackendApplication {
 					categoryRepository.save(Category.builder()
 							.name("카테고리" + index)
 							.build()));
-		};
-	}
+		};*//*
+	}*/
 }

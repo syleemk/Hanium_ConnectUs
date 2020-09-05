@@ -29,7 +29,7 @@ public class AccountRepositoryTest {
         String password = "aaaa";
         String name = "asdf";
         Role role = Role.SELLER;
-        Social social= Social.NONE;
+        Social social= Social.FALSE;
 
         accountRepository.save(Account.builder()
                             .email(email)

@@ -1,3 +1,4 @@
+/*
 package com.connect_us.backend;
 
 import com.connect_us.backend.domain.account.Account;
@@ -33,3 +34,4 @@ public class DBInit implements CommandLineRunner {
         this.accountRepository.saveAll(accounts);
     }
 }
+*/

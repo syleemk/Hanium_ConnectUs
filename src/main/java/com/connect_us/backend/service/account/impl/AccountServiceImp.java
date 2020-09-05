@@ -66,17 +66,16 @@ public class AccountServiceImp implements AccountService {
     @Transactional
     public void update(Long id, String name, String addr, String phone, Gender gender){
         Account account=accountRepository.findOne(id);
-        account.setName(name);
-        account.setAddr(addr);
-        account.setPhone(phone);
-        account.setGender(gender);
+//        account.setName(name);
+//        account.setAddr(addr);
+//        account.setPhone(phone);
+//        account.setGender(gender);
         //Member을 반환하면 update 하면서 영속성 상태가 끊김(query 날리니까)
     }
 
     @Transactional
     public void updatePassword(Long id, String password){
         Account account = accountRepository.findOne(id);
-
 
 
         //Member을 반환하면 update 하면서 영속성 상태가 끊김(query 날리니까)

@@ -32,8 +32,7 @@ public class ProductApiController {
     public ResponseEntity<?> findAll
             // 기본 정렬, 수정일자 기준 내림차순 (최신순)
             (@PageableDefault(sort = {"modifiedDate"}, direction = Sort.Direction.DESC) Pageable pageable){
-        return productService.findAll(pageable).map(ProductsResponseDto::new);
-
-        return ResponseEntity.ok("{}");
+        Page<ProductsResponseDto> page = productService.findAll(pageable).map(ProductsResponseDto::new);
+        return ResponseEntity.ok(page);
     }
 }
