@@ -9,6 +9,7 @@ import com.connect_us.backend.domain.cart.Cart;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
 import javax.persistence.*;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 //@Column: not necessary if the field has no specific condition
 
+@Setter
 @Getter
 @NoArgsConstructor
 @Entity

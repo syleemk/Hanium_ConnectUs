@@ -32,6 +32,8 @@ public class DBInit implements CommandLineRunner {
 
         List<Account> accounts = Arrays.asList(user,seller,admin);
         this.accountRepository.saveAll(accounts);
+
+
     }
 }
 */

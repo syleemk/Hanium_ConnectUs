@@ -63,6 +63,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         .antMatchers("/v1/users/**").hasRole(Role.USER.name())
                         .anyRequest().authenticated()
                 .and()
+                    .headers().frameOptions().disable()
+                .and()
                     .logout()
                         .logoutSuccessUrl("/") // 로그아웃 성공시 home으로
                         .invalidateHttpSession(true)
