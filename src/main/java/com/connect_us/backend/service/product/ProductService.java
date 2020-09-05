@@ -6,6 +6,7 @@ import com.connect_us.backend.domain.category.Category;
 import com.connect_us.backend.domain.category.CategoryRepository;
 import com.connect_us.backend.domain.product.Product;
 import com.connect_us.backend.domain.product.ProductRepository;
+import com.connect_us.backend.web.dto.v1.product.ProductFindResponseDto;
 import com.connect_us.backend.web.dto.v1.product.ProductSaveRequestDto;
 import com.connect_us.backend.web.dto.v1.product.ProductSaveResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -45,5 +46,13 @@ public class ProductService {
     @Transactional(readOnly = true)
     public Page<Product> findAll(Pageable pageable) {
         return productRepository.findAll(pageable);
+    }
+
+    @Transactional(readOnly = true)
+    public ProductFindResponseDto findById(Long id){
+        Product product = productRepository.findById(id)
+                .orElseThrow(()-> new IllegalArgumentException("해당 펀드가 없습니다. id="+id));
+
+        return new ProductFindResponseDto(product);
     }
 }

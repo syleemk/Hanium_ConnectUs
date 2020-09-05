@@ -1,17 +1,15 @@
 package com.connect_us.backend.web.controller.api.v1.product;
 
-import com.connect_us.backend.domain.product.Product;
 import com.connect_us.backend.service.product.ProductService;
+import com.connect_us.backend.web.dto.v1.product.ProductFindResponseDto;
 import com.connect_us.backend.web.dto.v1.product.ProductSaveRequestDto;
 import com.connect_us.backend.web.dto.v1.product.ProductSaveResponseDto;
-import com.connect_us.backend.web.dto.v1.product.ProductsResponseDto;
+import com.connect_us.backend.web.dto.v1.product.ProductsFindResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,7 +30,12 @@ public class ProductApiController {
     public ResponseEntity<?> findAll
             // 기본 정렬, 수정일자 기준 내림차순 (최신순)
             (@PageableDefault(sort = {"modifiedDate"}, direction = Sort.Direction.DESC) Pageable pageable){
-        Page<ProductsResponseDto> page = productService.findAll(pageable).map(ProductsResponseDto::new);
+        Page<ProductsFindResponseDto> page = productService.findAll(pageable).map(ProductsFindResponseDto::new);
         return ResponseEntity.ok(page);
+    }
+
+    @GetMapping("/{id}")
+    public ProductFindResponseDto findById(@PathVariable Long id){
+        return productService.findById(id);
     }
 }
