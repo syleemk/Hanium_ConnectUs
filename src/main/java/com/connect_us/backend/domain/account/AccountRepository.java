@@ -12,6 +12,5 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
     *  delete(): 레코드 삭제
     * */
     Account findByEmail(String email); //이미 가입한 회원인지 확인
-    Account findOne(Long id);
     int countByEmail(String email);
 }

@@ -1,7 +1,6 @@
 package com.connect_us.backend.api;
 
 import com.connect_us.backend.domain.account.Account;
-import com.connect_us.backend.domain.account.AccountRepository;
 import com.connect_us.backend.domain.enums.Gender;
 import com.connect_us.backend.service.account.impl.AccountServiceImp;
 import lombok.AllArgsConstructor;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 public class AccountController {
     private final AccountServiceImp accountServiceImp;
-    private final AccountRepository accountRepository;
 
     @GetMapping("me") //유저 한명 프로필 조회
     public Account getProfile(){
@@ -30,11 +28,12 @@ public class AccountController {
 
     @PutMapping("me/{id}")
     public EditUserResponse editProfile(
-            @PathVariable("id") Long id,
+            @PathVariable Long id,
             @RequestBody EditUserRequest request){
-        accountServiceImp.update(id,request.getName(), request.getAddr(),
+        accountServiceImp.update(request.getName(), request.getAddr(),
                                 request.getPhone(),request.getGender());
-        Account account = accountRepository.findOne(id);
+
+        Account account = accountServiceImp.findOne(id);
         return new EditUserResponse(account.getId(), account.getName());
     }
 
@@ -51,7 +50,7 @@ public class AccountController {
         private Long id;
         private String name;
     }
-
+//
 //    @PutMapping("me/{id}/password") //비밀번호 수정
 //    public EditUserResponse editPassword(
 //            @PathVariable("id") Long id,
@@ -61,7 +60,7 @@ public class AccountController {
 //        Account account = accountRepository.findOne(id);
 //        return new EditUserResponse(account.getId(), account.getName());
 //    }
-//
+
 //    @Data
 //    static class EditPasswordRequest{
 //        private String password;
