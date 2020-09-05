@@ -4,10 +4,12 @@ import com.connect_us.backend.domain.product.Product;
 import com.connect_us.backend.service.product.ProductService;
 import com.connect_us.backend.web.dto.v1.product.ProductSaveRequestDto;
 import com.connect_us.backend.web.dto.v1.product.ProductSaveResponseDto;
+import com.connect_us.backend.web.dto.v1.product.ProductsResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,8 +27,12 @@ public class ProductApiController {
         return productService.save(requestDto);
     }
 
+    // 리스트 페이징 처리해서 전달
     @GetMapping
-    public ResponseEntity<?> findProductsByPageRequest(@PageableDefault PageRequest pageRequest){
+    public ResponseEntity<?> findAll
+            // 기본 정렬, 수정일자 기준 내림차순 (최신순)
+            (@PageableDefault(sort = {"modifiedDate"}, direction = Sort.Direction.DESC) Pageable pageable){
+        return productService.findAll(pageable).map(ProductsResponseDto::new);
 
         return ResponseEntity.ok("{}");
     }
