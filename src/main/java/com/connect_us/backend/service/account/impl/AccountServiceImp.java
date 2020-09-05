@@ -8,6 +8,8 @@ import com.connect_us.backend.domain.enums.Social;
 import com.connect_us.backend.security.dto.AccountDto;
 import com.connect_us.backend.service.account.AccountService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -62,22 +64,17 @@ public class AccountServiceImp implements AccountService {
         return accountRepository.findByEmail(email);
     }
 
+    public Account findOne(Long id){return accountRepository.findById(id).orElse(null);}
     //회원정보 업데이트
     @Transactional
-    public void update(Long id, String name, String addr, String phone, Gender gender){
-        Account account=accountRepository.findOne(id);
-//        account.setName(name);
-//        account.setAddr(addr);
-//        account.setPhone(phone);
-//        account.setGender(gender);
-        //Member을 반환하면 update 하면서 영속성 상태가 끊김(query 날리니까)
-    }
-
-    @Transactional
-    public void updatePassword(Long id, String password){
-        Account account = accountRepository.findOne(id);
-
-
+    public void update(String name, String addr, String phone, Gender gender){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
+        Account account = accountRepository.findByEmail(email);
+        account.setName(name);
+        account.setAddr(addr);
+        account.setPhone(phone);
+        account.setGender(gender);
         //Member을 반환하면 update 하면서 영속성 상태가 끊김(query 날리니까)
     }
 }
