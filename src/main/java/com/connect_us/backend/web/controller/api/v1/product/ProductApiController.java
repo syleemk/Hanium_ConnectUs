@@ -1,10 +1,7 @@
 package com.connect_us.backend.web.controller.api.v1.product;
 
 import com.connect_us.backend.service.product.ProductService;
-import com.connect_us.backend.web.dto.v1.product.ProductFindResponseDto;
-import com.connect_us.backend.web.dto.v1.product.ProductSaveRequestDto;
-import com.connect_us.backend.web.dto.v1.product.ProductSaveResponseDto;
-import com.connect_us.backend.web.dto.v1.product.ProductsFindResponseDto;
+import com.connect_us.backend.web.dto.v1.product.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,6 +20,11 @@ public class ProductApiController {
     @PostMapping
     public ProductSaveResponseDto save(@RequestBody ProductSaveRequestDto requestDto) {
         return productService.save(requestDto);
+    }
+
+    @PutMapping("/{id}")
+    public ProductUpdateResponseDto update(@PathVariable Long id, @RequestBody ProductUpdateRequestDto requestDto){
+        return productService.update(id, requestDto);
     }
 
     // 리스트 페이징 처리해서 전달

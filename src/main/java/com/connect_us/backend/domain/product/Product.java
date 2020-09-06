@@ -55,6 +55,16 @@ public class Product extends BaseEntity {
         this.stock = stock;
     }
 
+    //영속성 컨텍스트 (트랜잭션안에서 데이터 가져오면, 해당 데이터는 영속성 컨텍스트가 유지된 상태, 이 상태에서 값 변경하면, 트랜잭션 끝나는 시점에 자동 반영)
+    public void update(Category category, String name, String image, int price, int stock, ProductStatus productStatus){
+        this.category = category;
+        this.name = name;
+        this.image = image;
+        this.price = price;
+        this.stock = stock;
+        this.productStatus = productStatus;
+    }
+
     public void soldOut() {
         this.productStatus = ProductStatus.SOLD_OUT;
     }
