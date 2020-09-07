@@ -72,6 +72,16 @@ public class Account extends BaseEntity {
         this.point=point;
     }
 
+    @Builder//initialize
+    public Account(String email, String password, String name, Social social, Gender gender ,Role role){
+        this.email=email;
+        this.password=password;
+        this.name=name;
+        this.social=social;
+        this.role=role;
+        this.gender=gender;
+    }
+
     public Account update(String name){//social에서 사용자 정보 업데이트시 자동 반영
         this.name=name;
         return this;

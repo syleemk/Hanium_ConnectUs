@@ -12,16 +12,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ProductSaveRequestDto {
     private String categoryName;
-    private String accountEmail;
     private String name;
     private String image;
     private int price;
     private int stock;
 
     @Builder
-    public ProductSaveRequestDto(String categoryName, String accountEmail, String name, String image, int price, int stock, ProductStatus productStatus){
+    public ProductSaveRequestDto(String categoryName, String name, String image, int price, int stock, ProductStatus productStatus){
         this.categoryName = categoryName;
-        this.accountEmail = accountEmail;
         this.name = name;
         this.image = image;
         this.price = price;

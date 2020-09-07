@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
@@ -18,8 +19,9 @@ public class ProductApiController {
     private final ProductService productService;
 
     @PostMapping
-    public ProductSaveResponseDto save(@RequestBody ProductSaveRequestDto requestDto) {
-        return productService.save(requestDto);
+    public ProductSaveResponseDto save(Authentication authentication, @RequestBody ProductSaveRequestDto requestDto) {
+        String accountEmail = authentication.getName();
+        return productService.save(accountEmail, requestDto);
     }
 
     @PutMapping("/{id}")
