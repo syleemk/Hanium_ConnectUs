@@ -20,21 +20,31 @@ public class AccountController {
     private final AccountServiceImp accountServiceImp;
 
     @GetMapping("me") //유저 한명 프로필 조회
-    public Account getProfile(){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String email = authentication.getName();
-        return accountServiceImp.findByEmail(email);
+    public CreateProfileResponse getProfile(){
+        try {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String email = authentication.getPrincipal().toString();
+            Account account = accountServiceImp.findByEmail(email);
+            return new CreateProfileResponse(account, true, "프로필 조회");
+        }catch(NullPointerException exception){
+            return new CreateProfileResponse(null,false,"토큰 만료 또는 존재하지 않음");
+        }
     }
 
-    @PutMapping("me/{id}")
+    @Data @AllArgsConstructor
+    static class CreateProfileResponse{
+        private Account account;
+        private boolean success;
+        private String message;
+    }
+
+    @PutMapping("me")
     public EditUserResponse editProfile(
-            @PathVariable Long id,
             @RequestBody EditUserRequest request){
         accountServiceImp.update(request.getName(), request.getAddr(),
                                 request.getPhone(),request.getGender());
 
-        Account account = accountServiceImp.findOne(id);
-        return new EditUserResponse(account.getId(), account.getName());
+        return new EditUserResponse();
     }
 
     @Data
@@ -44,36 +54,30 @@ public class AccountController {
         private String phone;
         private Gender gender;
     }
-    @Data
-    @AllArgsConstructor
-    static class EditUserResponse{
-        private Long id;
-        private String name;
-    }
-//
-//    @PutMapping("me/{id}/password") //비밀번호 수정
-//    public EditUserResponse editPassword(
-//            @PathVariable("id") Long id,
-//            @RequestBody EditPasswordRequest request){
-//        accountServiceImp.update(id,request.getName(), request.getAddr(),
-//                request.getPhone(),request.getGender());
-//        Account account = accountRepository.findOne(id);
-//        return new EditUserResponse(account.getId(), account.getName());
-//    }
 
-//    @Data
-//    static class EditPasswordRequest{
-//        private String password;
-//    }
-//    @Data
-//    @AllArgsConstructor
-//    static class EditPasswordResponse{
-//        private Long id;
-//        private String name;
-//    }
-//
-//    @PostMapping("v1/auth/emails/password") //비밀번호 변경 이메일 전송
-//    @PostMapping("v1/auth/emails/verification") //인증 이메일 전송
-//    @PostMapping("v1/auth/emails/notification") //공지사항 이메일 전송
+    @Data
+    static class EditUserResponse{
+        private boolean success=true;
+        private String message="수정 완료";
+    }
+
+    @PutMapping("me/password") //비밀번호 수정
+    public EditUserResponse editPassword(
+            @RequestBody EditPasswordRequest request){
+        accountServiceImp.updatePassword(request.password);
+        return new EditUserResponse();
+    }
+
+    @Data
+    static class EditPasswordRequest{
+        private String password;
+    }
+    @Data
+    static class EditPasswordResponse{
+        private boolean success=true;
+        private String message="비밀번호 수정 완료";
+    }
+
+
 
 }

@@ -57,7 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)//rest: stateless, cookie에 세션 저장 x
                 .and()
                     .authorizeRequests()
-                        .antMatchers("/","/oauth2/**","/login/**", "/h2-console/**", "/v1/auth/users", "/v1/auth/login*").permitAll()
+                        .antMatchers("/","/oauth2/**","/login/**", "/h2-console/**", "/v1/auth/users", "/v1/auth/login*","/v1/email/userVerification*").permitAll()
                         .antMatchers("/v1/admin/**").hasRole(Role.ADMIN.name()) //관리자페이지 권한
                         .antMatchers("/v1/seller/**").hasRole(Role.SELLER.name())//판매자페이지 권한
                         .antMatchers("/v1/users/**").hasRole(Role.USER.name())
@@ -89,8 +89,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         try{
             authenticationFilter.setFilterProcessesUrl("/v1/auth/login");
             authenticationFilter.setUsernameParameter("email");
-            authenticationFilter.setAuthenticationSuccessHandler(new CustomAuthorizationHandler().successHandler());
-            authenticationFilter.setAuthenticationFailureHandler(new CustomAuthenticationFailureHandler().failureHandler());
+            authenticationFilter.setAuthenticationSuccessHandler(new CustomAuthorizationHandler());
+            authenticationFilter.setAuthenticationFailureHandler(new CustomAuthenticationFailureHandler());
         }catch(Exception e){
             e.printStackTrace();
         }
