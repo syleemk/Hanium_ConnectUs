@@ -1,4 +1,5 @@
 package com.connect_us.backend.domain.cart;
+import com.connect_us.backend.domain.BaseEntity;
 import com.connect_us.backend.domain.product.Product;
 import lombok.Builder;
 import lombok.Getter;
@@ -9,7 +10,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @Entity
-public class CartItem {
+public class CartItem extends BaseEntity {
     @Id @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "cart_item_id")
     private Long id;
