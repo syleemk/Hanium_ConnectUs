@@ -6,6 +6,7 @@ import com.connect_us.backend.domain.category.Category;
 import com.connect_us.backend.domain.category.CategoryRepository;
 import com.connect_us.backend.domain.product.Product;
 import com.connect_us.backend.domain.product.ProductRepository;
+import com.connect_us.backend.web.dto.v1.ResponseDto;
 import com.connect_us.backend.web.dto.v1.product.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -24,7 +25,7 @@ public class ProductService {
     private final AccountRepository accountRepository;
 
     @Transactional
-    public ProductSaveResponseDto save(String accountEmail,ProductSaveRequestDto requestDto) {
+    public ProductSaveResponseDto save(String accountEmail, ProductSaveRequestDto requestDto) {
 
         // 폼에서 선택한 카테고리 이름 전송 받음
         Category category = categoryRepository.findByName(requestDto.getCategoryName());
@@ -36,8 +37,8 @@ public class ProductService {
         productRepository.save(product);
 
         return new ProductSaveResponseDto().builder()
-                .message("상품이 등록되었습니다.")
                 .success(true)
+                .message("상품이 등록되었습니다.")
                 .build();
     }
 
@@ -69,8 +70,12 @@ public class ProductService {
     @Transactional(readOnly = true)
     public ProductFindResponseDto findById(Long id){
         Product product = productRepository.findById(id)
-                .orElseThrow(()-> new IllegalArgumentException("해당 펀드가 없습니다. id="+id));
+                .orElseThrow(()-> new IllegalArgumentException("해당 상품이 없습니다. id="+id));
 
-        return new ProductFindResponseDto(product);
+        return new ProductFindResponseDto().builder()
+                .success(true)
+                .message("상품 상세 정보 조회 성공")
+                .data(product)
+                .build();
     }
 }

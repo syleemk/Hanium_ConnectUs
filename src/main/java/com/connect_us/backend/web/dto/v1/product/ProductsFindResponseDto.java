@@ -1,12 +1,13 @@
 package com.connect_us.backend.web.dto.v1.product;
 
 import com.connect_us.backend.domain.product.Product;
+import com.connect_us.backend.web.dto.v1.ResponseDto;
 import lombok.Getter;
 
 // products list api요청에 사용되는 dto
 // list 형식으로 표시할 정보만 넣어둔다
 @Getter
-public class ProductsFindResponseDto {
+public class ProductsFindResponseDto extends ResponseDto {
     private Long id;
     private String account;
     private String name;
