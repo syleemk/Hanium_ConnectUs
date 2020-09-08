@@ -18,6 +18,13 @@ public class CartService {
     private final CartItemRepository cartItemRepository;
     private final CartRepository cartRepository;
 
+    // 카트 생성 메서드
+    public Cart create(Account account) {
+        return Cart.builder()
+                .account(account)
+                .build();
+    }
+
     public void add(String accountEmail, Long id) {
         Account account = accountRepository.findByEmail(accountEmail);
         Cart cart = account.getCart();
