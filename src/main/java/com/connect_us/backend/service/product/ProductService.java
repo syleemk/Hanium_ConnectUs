@@ -36,7 +36,7 @@ public class ProductService {
 
         productRepository.save(product);
 
-        return new ProductSaveResponseDto().builder()
+        return ProductSaveResponseDto.builder()
                 .success(true)
                 .message("상품이 등록되었습니다.")
                 .build();
@@ -49,14 +49,14 @@ public class ProductService {
 
         Category category = product.getCategory();
 
-        if(product.getCategory().getName() != requestDto.getCategoryName()){ // 카테고리 달라진경우
+        if(!product.getCategory().getName().equals(requestDto.getCategoryName())){ // 카테고리 달라진경우
             category = categoryRepository.findByName(requestDto.getCategoryName());
         }
 
         product.update(category, requestDto.getName(), requestDto.getImage(), requestDto.getPrice(),
                 requestDto.getStock(), requestDto.getProductStatus());
 
-        return new ProductUpdateResponseDto().builder()
+        return ProductUpdateResponseDto.builder()
                 .success(true)
                 .message("상품 정보가 수정되었습니다.")
                 .build();
@@ -72,7 +72,7 @@ public class ProductService {
         Product product = productRepository.findById(id)
                 .orElseThrow(()-> new IllegalArgumentException("해당 상품이 없습니다. id="+id));
 
-        return new ProductFindResponseDto().builder()
+        return ProductFindResponseDto.builder()
                 .success(true)
                 .message("상품 상세 정보 조회 성공")
                 .data(product)
