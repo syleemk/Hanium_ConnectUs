@@ -61,6 +61,12 @@ public class AuthController {
         private String message;
     }
 
+    /** 로그아웃
+     *  로그아웃 API 호출하면
+     *  현재 jwt를  redis에 넣음
+     *  로그인 했는지 확인하는 API에서 validaton 할 때 redis에 토큰이 있는지 확인,  redis에 있으면 로그아웃 한 것으로 간주
+     * **/
+
 
 
 }
