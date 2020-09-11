@@ -1,12 +1,18 @@
 package com.connect_us.backend.web.controller.v1.fund;
 
+import com.connect_us.backend.domain.fund.FundingProduct;
+import com.connect_us.backend.domain.product.Product;
 import com.connect_us.backend.service.fund.FundingProductService;
 import com.connect_us.backend.web.dto.v1.fund.product.FundingProductCreateRequestDto;
+import com.connect_us.backend.web.dto.v1.fund.product.FundingProductListResponseDto;
 import com.connect_us.backend.web.dto.v1.fund.product.FundingProductResponseDto;
 import com.connect_us.backend.web.dto.v1.fund.product.FundingProductUpdateResquestDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -30,6 +36,11 @@ public class FundingProductApiController {
     @GetMapping("/{id}")
     public FundingProductResponseDto findById(@PathVariable Long id) {
         return fundingProductService.findById(id);
+    }
+
+    @GetMapping("/all")
+    public List<FundingProductListResponseDto> findAllDesc() {
+        return fundingProductService.findAllDesc();
     }
 
     @DeleteMapping("/{id}")

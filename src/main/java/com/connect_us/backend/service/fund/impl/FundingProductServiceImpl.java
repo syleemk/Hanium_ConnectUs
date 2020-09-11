@@ -8,6 +8,8 @@ import com.connect_us.backend.web.dto.v1.fund.product.FundingProductListResponse
 import com.connect_us.backend.web.dto.v1.fund.product.FundingProductResponseDto;
 import com.connect_us.backend.web.dto.v1.fund.product.FundingProductUpdateResquestDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -74,6 +76,7 @@ public class FundingProductServiceImpl implements FundingProductService {
 
         return new FundingProductResponseDto(entity);
     }
+
 
     @Transactional(readOnly = true)
     @Override
