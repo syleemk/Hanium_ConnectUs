@@ -1,6 +1,7 @@
 package com.connect_us.backend.api;
 
 import com.connect_us.backend.domain.account.MailDto;
+import com.connect_us.backend.domain.enums.Role;
 import com.connect_us.backend.service.account.impl.AccountServiceImp;
 import com.connect_us.backend.service.mail.MailService;
 import lombok.AllArgsConstructor;
@@ -27,7 +28,7 @@ public class EmailController {
     public  EmailValidationResponse acceptVerification(@RequestParam("id") Long id, @RequestParam("key") String key){
         try {
             String email = accountServiceImp.findOne(id).getEmail();
-            accountServiceImp.changeRole(email);
+            accountServiceImp.changeRole(email, Role.USER);
             return new EmailValidationResponse(true, "USER 권한 부여 성공");
         }catch(NullPointerException exception){
             exception.printStackTrace();

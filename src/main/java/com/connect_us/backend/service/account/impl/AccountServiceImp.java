@@ -5,6 +5,7 @@ import com.connect_us.backend.domain.account.AccountRepository;
 import com.connect_us.backend.domain.enums.Gender;
 import com.connect_us.backend.domain.enums.Role;
 import com.connect_us.backend.domain.enums.Social;
+import com.connect_us.backend.domain.enums.Status;
 import com.connect_us.backend.security.dto.AccountDto;
 import com.connect_us.backend.service.account.AccountService;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
@@ -57,10 +60,11 @@ public class AccountServiceImp implements AccountService {
     }
 
     @Transactional
-    public void changeRole(String email){
+    public void changeRole(String email, Role role){
         Account account = accountRepository.findByEmail(email);
-        account.setRole(Role.USER);
+        account.setRole(role);
     }
+
     //회원정보 업데이트
     @Transactional
     public void update(String name, String addr, String phone, Gender gender){
@@ -74,6 +78,7 @@ public class AccountServiceImp implements AccountService {
         //Member을 반환하면 update 하면서 영속성 상태가 끊김(query 날리니까)
     }
 
+    //비밀번호 업데이트
     @Transactional
     public void updatePassword(String password){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -83,6 +88,12 @@ public class AccountServiceImp implements AccountService {
         account.setPassword(encodedPassword);
     }
 
+    // 회원 삭제(Status 변경)
+    @Transactional
+    public void deleteUser(Long id){
+        Account account = accountRepository.findById(id).orElse(null);
+        account.setStatus(Status.DELETE);
+    }
 
     //중복 회원 검사
     private void validateDuplicate(AccountDto accountDto){
@@ -106,4 +117,6 @@ public class AccountServiceImp implements AccountService {
     public Account findOne(Long id){return accountRepository.findById(id).orElse(null);}
 
     public Long findId(String email){return accountRepository.findByEmail(email).getId();}
+
+    public List<Account> findAll(){return accountRepository.findAll();}
 }
