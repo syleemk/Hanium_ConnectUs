@@ -34,3 +34,5 @@ out/
 .vscode/
 
 application-oauth.properties
+application-mail.properties
+Jwtproperties.java

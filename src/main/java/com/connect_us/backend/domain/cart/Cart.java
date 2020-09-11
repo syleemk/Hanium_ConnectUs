@@ -1,6 +1,7 @@
 package com.connect_us.backend.domain.cart;
 
 import com.connect_us.backend.domain.account.Account;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,4 +19,10 @@ public class Cart {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="account_id")
     private Account account;
+
+    @Builder
+    public Cart(Account account){
+        this.account = account;
+    }
+
 }

@@ -78,7 +78,7 @@ public class Account extends BaseEntity {
     }
 
     public String getRoleKey(){
-        return this.role.getKey();
+        return this.role.name();
     }
 
 }

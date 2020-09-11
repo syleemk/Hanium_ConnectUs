@@ -28,8 +28,13 @@ public class OAuthAttributes {
     //OAuth2User에서 Map 반환함, 그래서 하나하나 변환해야 함
     public static OAuthAttributes of(String registrationId, String userNameAttributeName,
                                      Map<String, Object> attributes){
+        System.out.println("hihihihih");
         if("naver".equals(registrationId)){
             return ofNaver("id",attributes);
+        }
+        else if("kakao".equals(registrationId)){
+            System.out.println("check if it is kakao");
+            return ofKakao("id",attributes);
         }
         return ofGoogle(userNameAttributeName, attributes);
     }
@@ -46,11 +51,26 @@ public class OAuthAttributes {
     private static OAuthAttributes ofNaver(String userNameAttributeName, Map<String, Object> attributes){
         Map<String,Object> response = (Map<String,Object>) attributes.get("response");
 
+        System.out.println(response);
         System.out.println("ofNaver");
-        System.out.println("naver email:" + (String)attributes.get("email"));
+
         return OAuthAttributes.builder()
                 .name((String) response.get("name"))
-                .email((String) attributes.get("email"))
+                .email((String) response.get("email"))
+                .attributes(response)
+                .nameAttributeKey(userNameAttributeName)
+                .build();
+    }
+
+    private static OAuthAttributes ofKakao(String userNameAttributeName, Map<String, Object> attributes){
+        Map<String,Object> response = (Map<String,Object>) attributes.get("response");
+
+        System.out.println(attributes);
+        System.out.println("ofKakao");
+
+        return OAuthAttributes.builder()
+                .name((String) response.get("profile.name"))
+                .email((String) response.get("account_email"))
                 .attributes(response)
                 .nameAttributeKey(userNameAttributeName)
                 .build();

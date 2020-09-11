@@ -16,9 +16,12 @@ spring:
         ddl-auto: create-drop
         show-sql: true
         format-sql: true
-  profiles.include: oauth
+  session:
+    store-type: jdbc
+  profiles.include: oauth, mail, jwt
+
 
 logging.level:
   org.hibernate.SQL: debug
   org.springframework:
-    security: DEBUG
+          security: DEBUG
