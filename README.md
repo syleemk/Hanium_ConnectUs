@@ -8,11 +8,11 @@
 - [x] GET v1/email/userVerification
 - [x] POST v1/email/password
 
-#ADMIN
+# ADMIN
 - [x] GET v1/admin/users
 - [x] POST v1/admin/users
 - [x] POST v1/admin/users/delete
 
-#TODO
+# TODO
 OAuth2 API <br/>
 Redis
