@@ -11,27 +11,28 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RequiredArgsConstructor
 @RestController
+@RequestMapping(path = "/v1/fund/products")
 public class FundingProductApiController {
 
     private final FundingProductService fundingProductService;
 
-    @PostMapping("/v1/fund/product")
+    @PostMapping
     public Long save(@RequestBody FundingProductCreateRequestDto requestDto) {
         return fundingProductService.save(requestDto);
     }
 
-    @PutMapping("/v1/fund/product/{id}")
+    @PutMapping("/{id}")
     public Long update(@PathVariable Long id,
                        @RequestBody FundingProductUpdateResquestDto resquestDto) {
         return fundingProductService.update(id,resquestDto);
     }
 
-    @GetMapping("/v1/fund/product/{id}")
+    @GetMapping("/{id}")
     public FundingProductResponseDto findById(@PathVariable Long id) {
         return fundingProductService.findById(id);
     }
 
-    @DeleteMapping("/v1/fund/product/{id}")
+    @DeleteMapping("/{id}")
     public Long delete(@PathVariable Long id) {
         fundingProductService.delete(id);
         return id;

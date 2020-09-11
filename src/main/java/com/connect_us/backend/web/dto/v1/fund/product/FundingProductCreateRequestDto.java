@@ -16,17 +16,19 @@ public class FundingProductCreateRequestDto {
     private String image;
     private int goalPrice;
     private String address;
+    private String information;
     private LocalDateTime due;
 
     /**
      * Builder로 생성할 경우, name값을 설정하지 않는다면 NULL값이 들어간다.
      * */
     @Builder
-    public FundingProductCreateRequestDto(String name, String image, int goalPrice, String address, LocalDateTime due) {
+    public FundingProductCreateRequestDto(String name, String image, int goalPrice, String address, String information, LocalDateTime due) {
         this.name = name;
         this.image = image;
         this.goalPrice = goalPrice;
         this.address = address;
+        this.information = information;
         this.due = due;
     }
 
@@ -36,18 +38,9 @@ public class FundingProductCreateRequestDto {
                 .image(image)
                 .goalPrice(goalPrice)
                 .address(address)
+                .information(information)
                 .due(due)
                 .build();
     }
 
-    @Override
-    public String toString() {
-        return "FundingProductCreateRequestDto{" +
-                "name='" + name + '\'' +
-                ", image='" + image + '\'' +
-                ", goalPrice=" + goalPrice +
-                ", address='" + address + '\'' +
-                ", due=" + due +
-                '}';
-    }
 }

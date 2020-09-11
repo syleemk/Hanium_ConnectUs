@@ -44,6 +44,9 @@ public class FundingProduct extends BaseEntity {
     @Column(name = "addr") // addr : 물품을 배송할 재난지역 주소
     private String address;
 
+    @Column(name = "information")
+    private String information;
+
     @Column(name = "due")
     private LocalDateTime due; // due : 펀딩 마감 날짜
 
@@ -58,12 +61,13 @@ public class FundingProduct extends BaseEntity {
     private FundingOrderItem fundingOrderItem; // funding_order_item table의 fundingProduct 의해 mapping
 
     @Builder
-    public FundingProduct(String name,String image,int goalPrice,int currentPrice,String address,LocalDateTime due) {
+    public FundingProduct(String name,String image,int goalPrice,int currentPrice,String address,String information,LocalDateTime due) {
         this.name = name;
         this.image = image;
         this.goalPrice = goalPrice;
         this.currentPrice = currentPrice;
         this.address = address;
+        this.information = information;
         this.due = due;
     }
 
@@ -71,11 +75,12 @@ public class FundingProduct extends BaseEntity {
      * currentPrice 정보는 변경불가
      * @see com.connect_us.backend.service.fund.impl.FundingProductServiceImpl
      * */
-    public void update(String name,String image,int goalPrice,String address,LocalDateTime due,FundingStatus fundingStatus) {
+    public void update(String name,String image,int goalPrice,String address,String information,LocalDateTime due,FundingStatus fundingStatus) {
         this.name = name;
         this.image = image;
         this.goalPrice = goalPrice;
         this.address = address;
+        this.information = information;
         this.due = due;
         this.fundingStatus = fundingStatus;
     }

@@ -14,15 +14,17 @@ public class FundingProductUpdateResquestDto {
     private String image;
     private int goalPrice;
     private String address;
+    private String information;
     private LocalDateTime due;
     private FundingStatus fundingStatus;
 
     @Builder
-    public FundingProductUpdateResquestDto(String name, String image, int goalPrice, String address, LocalDateTime due, FundingStatus fundingStatus) {
+    public FundingProductUpdateResquestDto(String name, String image, int goalPrice, String address, String information, LocalDateTime due, FundingStatus fundingStatus) {
         this.name = name;
         this.image = image;
         this.goalPrice = goalPrice;
         this.address = address;
+        this.information = information;
         this.due = due;
         this.fundingStatus = fundingStatus;
     }

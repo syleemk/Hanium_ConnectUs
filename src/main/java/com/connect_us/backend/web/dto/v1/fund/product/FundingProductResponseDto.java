@@ -27,6 +27,7 @@ public class FundingProductResponseDto {
     private int goalPrice;
     private int currentPrice;
     private String address;
+    private String information;
     private LocalDateTime due;
     private FundingStatus fundingStatus;
 
@@ -39,6 +40,7 @@ public class FundingProductResponseDto {
         this.goalPrice = entity.getGoalPrice();
         this.currentPrice = entity.getCurrentPrice();
         this.address = entity.getAddress();
+        this.information = entity.getInformation();
         this.due = entity.getDue();
         this.fundingStatus = entity.getFundingStatus();
     }

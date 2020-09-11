@@ -44,6 +44,7 @@ public class FundingProductServiceImpl implements FundingProductService {
                 resquestDto.getImage(),
                 resquestDto.getGoalPrice(),
                 resquestDto.getAddress(),
+                resquestDto.getInformation(),
                 resquestDto.getDue(),
                 resquestDto.getFundingStatus());
 
