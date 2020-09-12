@@ -5,6 +5,7 @@ import com.connect_us.backend.domain.account.Account;
 import com.connect_us.backend.domain.account.AccountRepository;
 import com.connect_us.backend.security.config.JwtProperties;
 import com.connect_us.backend.security.dto.AccountPrincipal;
+import com.connect_us.backend.service.account.impl.AccountServiceImp;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -22,12 +23,15 @@ import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
 /** authorization with JWT from login success user
  *  find the user's ROLE using username(email)
  * **/
+
 public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
+    private AccountServiceImp accountServiceImp;
     private AccountRepository accountRepository;
 
     public JwtAuthorizationFilter(AuthenticationManager authenticationManager, AccountRepository accountRepository) {
         super(authenticationManager);
         this.accountRepository = accountRepository;
+        this.accountServiceImp = accountServiceImp;
     }
 
     /** At the endpoint, Every Request has to hit with Authorization**/
@@ -74,7 +78,9 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
             }
 
             return null;
+
         }
+
         return null;
     }
 }

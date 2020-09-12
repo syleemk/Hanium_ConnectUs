@@ -1,6 +1,7 @@
 package com.connect_us.backend.domain.account;
 
 import com.connect_us.backend.domain.BaseEntity;
+import com.connect_us.backend.domain.cart.Cart;
 import com.connect_us.backend.domain.enums.Gender;
 import com.connect_us.backend.domain.enums.Role;
 import com.connect_us.backend.domain.enums.Social;
@@ -11,15 +12,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import com.connect_us.backend.domain.order.BaseOrder;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 //@Column: not necessary if the field has no specific condition
 
-@Setter
-@Getter
-@NoArgsConstructor
+@Getter @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class Account extends BaseEntity {
     @Id
@@ -27,7 +29,7 @@ public class Account extends BaseEntity {
     @Column(name="account_id")
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)//같은 이메일 찾기
     private String email;
 
     private String password;
@@ -54,23 +56,8 @@ public class Account extends BaseEntity {
     @OneToOne(mappedBy = "account")//cart table의 user에 의해 mapping
     private Cart cart;
 
-    @OneToMany(mappedBy = "account") //order table의 user에 의해 mapping
+    @OneToMany(mappedBy = "account") //order table의 account 의해 mapping
     private List<BaseOrder> baseOrder = new ArrayList<>();
-
-
-    @Builder//initialize
-    public Account(String email, String password, String name, String phone, String addr,
-                   Gender gender, Role role, Social social, Long point){
-        this.email=email;
-        this.password=password;
-        this.name=name;
-        this.social=social;
-        this.role=role;
-        this.phone=phone;
-        this.addr=addr;
-        this.gender=gender;
-        this.point=point;
-    }
 
     @Builder//initialize
     public Account(String email, String password, String name, Social social, Gender gender ,Role role){

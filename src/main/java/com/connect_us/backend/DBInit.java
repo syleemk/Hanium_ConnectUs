@@ -29,8 +29,9 @@ public class DBInit implements CommandLineRunner {
         Account user = new Account("user", passwordEncoder.encode("1234"),"user",Social.FALSE, Gender.MALE, Role.USER);
         Account seller = new Account("seller", passwordEncoder.encode("1234"),"seller",Social.FALSE, Gender.MALE, Role.SELLER);
         Account admin = new Account("admin", passwordEncoder.encode("1234"),"admin",Social.FALSE,Gender.MALE, Role.ADMIN);
+        Account test = new Account("rain7i@naver.com", passwordEncoder.encode("1234"),"test",Social.FALSE,Gender.MALE, Role.USER);
 
-        List<Account> accounts = Arrays.asList(user,seller,admin);
+        List<Account> accounts = Arrays.asList(user,seller,admin,test);
         this.accountRepository.saveAll(accounts);
 
 

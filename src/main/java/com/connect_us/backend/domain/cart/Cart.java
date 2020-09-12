@@ -1,6 +1,5 @@
 package com.connect_us.backend.domain.cart;
 
-import com.connect_us.backend.domain.BaseEntity;
 import com.connect_us.backend.domain.account.Account;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,7 +17,7 @@ public class Cart {
     @Column(name = "cart_id")
     private Long id;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="account_id")
     private Account account;
 

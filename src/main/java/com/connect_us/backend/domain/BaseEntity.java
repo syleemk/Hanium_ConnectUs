@@ -24,6 +24,7 @@ public abstract class BaseEntity {
     private LocalDateTime modifiedDate;
 
     @Enumerated(EnumType.STRING)
+    @Setter
     private Status status = Status.NORMAL;
 
     /**

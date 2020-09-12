@@ -28,7 +28,7 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 
 @Configuration
 @RequiredArgsConstructor
-@EnableJpaAuditing // LastModifiedDate, CreatedDate 값 활성화 (이 어노테이션 없으면 NULL로 채워짐)
+@EnableJpaAuditing
 @EnableWebSecurity //Spring Security 활성화
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final AccountRepository accountRepository;
