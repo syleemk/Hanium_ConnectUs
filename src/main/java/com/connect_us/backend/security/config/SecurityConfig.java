@@ -36,19 +36,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     @Bean //Security에서 제공하는 비밀번호 암호화 객체
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     //static file 무시
     @Override
-    public void configure(WebSecurity web) throws Exception{
+    public void configure(WebSecurity web) throws Exception {
         web.ignoring().requestMatchers(PathRequest.toStaticResources().atCommonLocations());
     }
 
     //http 관련 인증
     @Override
-    protected void configure(HttpSecurity http) throws Exception{
+    protected void configure(HttpSecurity http) throws Exception {
         CharacterEncodingFilter filter = new CharacterEncodingFilter();
         filter.setEncoding("UTF-8");
 
@@ -56,25 +56,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)//rest: stateless, cookie에 세션 저장 x
                 .and()
-                    .authorizeRequests()
-                        .antMatchers("/","/oauth2/**","/login/**", "/h2-console/**", "/v1/auth/users", "/v1/auth/login*", "/api/v1/products/**").permitAll()
-                        .antMatchers("/v1/admin/**").hasRole(Role.ADMIN.name()) //관리자페이지 권한
-                        .antMatchers("/v1/seller/**").hasRole(Role.SELLER.name())//판매자페이지 권한
-                        .antMatchers("/v1/users/**").hasRole(Role.USER.name())
-                        .anyRequest().authenticated()
+                .authorizeRequests()
+                .antMatchers("/", "/oauth2/**", "/login/**", "/h2-console/**", "/v1/auth/users", "/v1/auth/login*", "/api/v1/products/**").permitAll()
+                .antMatchers("/v1/admin/**").hasRole(Role.ADMIN.name()) //관리자페이지 권한
+                .antMatchers("/v1/seller/**").hasRole(Role.SELLER.name())//판매자페이지 권한
+                .antMatchers("/v1/users/**").hasRole(Role.USER.name())
+                .anyRequest().authenticated()
                 .and()
-                    .headers().frameOptions().disable()
+                .headers().frameOptions().disable()
                 .and()
-                    .logout()
-                        .logoutSuccessUrl("/") // 로그아웃 성공시 home으로
-                        .invalidateHttpSession(true)
+                .logout()
+                .logoutSuccessUrl("/") // 로그아웃 성공시 home으로
+                .invalidateHttpSession(true)
                 .and()
-                    .addFilterAt(getAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
-                    .addFilter(new JwtAuthorizationFilter(authenticationManager(),this.accountRepository));
+                .addFilterAt(getAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
+                .addFilter(new JwtAuthorizationFilter(authenticationManager(), this.accountRepository));
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth){
+    protected void configure(AuthenticationManagerBuilder auth) {
         auth.authenticationProvider(authenticationProvider());
     }
 
@@ -86,14 +86,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return daoAuthenticationProvider;
     }
 
+    /*    protected JwtAuthenticationFilter getAuthenticationFilter() throws Exception {
+            JwtAuthenticationFilter authenticationFilter = new JwtAuthenticationFilter(authenticationManager());
+            try{
+                authenticationFilter.setFilterProcessesUrl("/v1/auth/login");
+                authenticationFilter.setUsernameParameter("email");
+                authenticationFilter.setAuthenticationSuccessHandler(new CustomAuthorizationHandler().successHandler());
+                authenticationFilter.setAuthenticationFailureHandler(new CustomAuthenticationFailureHandler().failureHandler());
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            return authenticationFilter;
+        }*/
+
     protected JwtAuthenticationFilter getAuthenticationFilter() throws Exception {
         JwtAuthenticationFilter authenticationFilter = new JwtAuthenticationFilter(authenticationManager());
-        try{
+        try {
             authenticationFilter.setFilterProcessesUrl("/v1/auth/login");
             authenticationFilter.setUsernameParameter("email");
-            authenticationFilter.setAuthenticationSuccessHandler(new CustomAuthorizationHandler().successHandler());
-            authenticationFilter.setAuthenticationFailureHandler(new CustomAuthenticationFailureHandler().failureHandler());
-        }catch(Exception e){
+            authenticationFilter.setAuthenticationSuccessHandler(new CustomAuthorizationHandler());
+            authenticationFilter.setAuthenticationFailureHandler(new CustomAuthenticationFailureHandler());
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return authenticationFilter;
