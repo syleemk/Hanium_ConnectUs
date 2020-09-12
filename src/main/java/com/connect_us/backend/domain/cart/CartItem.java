@@ -24,12 +24,12 @@ public class CartItem extends BaseEntity {
     private Cart cart;
 
     @Column
-    private Long product_cnt;
+    private int productCnt;
 
     @Builder
-    public CartItem(Product product, Cart cart, Long product_cnt) {
+    public CartItem(Product product, Cart cart, int productCnt) {
         this.product = product;
         this.cart = cart;
-        this.product_cnt = product_cnt;
+        this.productCnt = productCnt;
     }
 }
