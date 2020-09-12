@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header" />
+<body>
+<div class="container">
+    <form role="form" action="/v1/auth/users"  method="post">
+        <div class="form-group">
+            <label th:for="email">이메일</label>
+            <input type="text" name="email" id="email" class="form-control" placeholder="이메일을 입력하세요">
+        </div>
+        <div class="form-group">
+            <label th:for="password">비밀번호</label>
+            <input type="text" name="password" id="password" class="form-control" placeholder="비밀번호를 입력하세요">
+        </div>
+        <div class="form-group">
+            <label th:for="name">이름</label>
+            <input type="text" name="name" id="name" class="form-control"
+                   placeholder="이름을 입력하세요">
+        </div>
+        <div class="form-group">
+            <label th:for="gender">성별</label>
+            <input type="text" name="gender" id="gender" class="form-control"
+                   placeholder="성별을 알려주세요">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <br/>
+    <div th:replace="fragments/footer :: footer" />
+</div> <!-- /container -->
+</body>
+</html>

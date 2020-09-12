@@ -1,0 +1,60 @@
+buildscript{
+	ext{//전역변수 설정
+		springBootVersion = '2.1.7.RELEASE'
+	}
+	repositories{
+		mavenCentral()
+		jcenter()
+	}
+	dependencies{
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+
+group = 'com.connect_us'
+version = '1.0-SNAPSHOT'
+sourceCompatibility = 1.8
+
+
+repositories {
+	mavenCentral()
+	jcenter()
+}
+
+dependencies {
+	/**Web, JPA, H2**/
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('com.h2database:h2')
+
+	/**Security**/
+	compile('org.springframework.boot:spring-boot-starter-security')//인증 관련
+	compile('org.springframework.boot:spring-boot-starter-oauth2-client')//client 자동 인증 설정
+	compile('org.thymeleaf.extras:thymeleaf-extras-springsecurity5')
+	compile('org.springframework.session:spring-session-jdbc')
+	compile "org.apache.httpcomponents:httpcore:4.2.4"
+	compile "org.apache.httpcomponents:httpmime:4.3"
+	compile 'com.auth0:java-jwt:3.10.3' 	 //jwt token
+	compile 'org.springframework.boot:spring-boot-starter-mail' //mail 전송
+
+	/**etc**/
+	implementation ('org.springframework.boot:spring-boot-starter-thymeleaf')
+	implementation ('org.springframework.boot:spring-boot-devtools')
+	compile('org.springframework.boot:spring-boot-configuration-processor')
+	compile('org.modelmapper:modelmapper:0.7.8')
+	compileOnly('org.projectlombok:lombok')
+	annotationProcessor('org.projectlombok:lombok')
+	implementation("com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.6.2") //logger
+
+	/**test**/
+	testCompile ('org.springframework.boot:spring-boot-starter-test')
+	testCompile('org.springframework.security:spring-security-test')
+}
+
+

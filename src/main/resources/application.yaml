@@ -1,0 +1,28 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/backend
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  h2:
+    console:
+      enabled: true
+  jpa:
+    properties:
+      hibernate:
+        ddl-auto: create-drop
+        show-sql: true
+        format-sql: true
+        dialect: org.hibernate.dialect.MariaDBDialect
+  session:
+    store-type: jdbc
+  profiles.include: oauth, mail, jwt
+
+
+logging.level:
+  org.hibernate.SQL: debug
+  org.springframework:
+    security: DEBUG
