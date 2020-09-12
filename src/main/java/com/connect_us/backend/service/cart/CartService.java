@@ -24,10 +24,11 @@ public class CartService {
     private final CartRepository cartRepository;
 
     // 카트 생성 메서드
-    public Cart create(Account account) {
-        return Cart.builder()
+    @Transactional
+    public void create(Account account) {
+        cartRepository.save(Cart.builder()
                 .account(account)
-                .build();
+                .build());
     }
 
     // 카트에 물품 추가
@@ -45,6 +46,8 @@ public class CartService {
                 .productCnt(resquestDto.getProductCnt())
                 .build();
 
+        cartItemRepository.save(cartItem);
+
         return CartItemAddResponseDto.builder()
                 .success(true)
                 .message("장바구니에 상품이 추가되었습니다.")
@@ -56,6 +59,8 @@ public class CartService {
     public CartItemListResponseDto get(String accountEmail) {
         Account account = accountRepository.findByEmail(accountEmail);
         Cart cart = cartRepository.getOne(account.getId());
+
+        cart.getCartItems().forEach(e -> System.out.println(e.getProduct().getName()));
         return CartItemListResponseDto.builder()
                 .success(true)
                 .message("장바구니 목록 조회 성공")

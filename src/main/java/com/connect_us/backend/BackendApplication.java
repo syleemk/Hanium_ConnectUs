@@ -9,6 +9,7 @@ import com.connect_us.backend.domain.enums.Role;
 import com.connect_us.backend.domain.enums.Social;
 import com.connect_us.backend.domain.product.Product;
 import com.connect_us.backend.domain.product.ProductRepository;
+import com.connect_us.backend.service.cart.CartService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -26,7 +27,7 @@ public class BackendApplication {
     }
 
     @Bean
-    public CommandLineRunner runner(AccountRepository accountRepository, ProductRepository productRepository,
+    public CommandLineRunner runner(CartService cartService, AccountRepository accountRepository, ProductRepository productRepository,
                                     CategoryRepository categoryRepository, PasswordEncoder passwordEncoder) throws Exception {
         return (args) -> {
             //initialize
@@ -36,7 +37,7 @@ public class BackendApplication {
             Account user = new Account("user", passwordEncoder.encode("1234"),"user", Social.FALSE, Gender.MALE, Role.USER);
             Account seller = new Account("seller", passwordEncoder.encode("1234"),"seller",Social.FALSE, Gender.MALE, Role.SELLER);
             Account admin = new Account("admin", passwordEncoder.encode("1234"),"admin",Social.FALSE,Gender.MALE, Role.ADMIN);
-
+            
             List<Account> accounts = Arrays.asList(user,seller,admin);
             accountRepository.saveAll(accounts);
 
@@ -47,6 +48,11 @@ public class BackendApplication {
                     .role(Role.SELLER)
                     .build()
             );
+
+            //장바구니 생성
+            cartService.create(user);
+            cartService.create(seller);
+            cartService.create(admin);
 
             IntStream.rangeClosed(1, 100).forEach(index -> {
                         Category category = categoryRepository.save(Category.builder()

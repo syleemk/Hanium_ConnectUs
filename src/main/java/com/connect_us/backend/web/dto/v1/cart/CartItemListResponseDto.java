@@ -6,12 +6,15 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Getter
+@NoArgsConstructor
 public class CartItemListResponseDto extends ResponseDto {
 
-    private List<Data> data;
+    private List<Data> data = new ArrayList<>();
 
     @Getter
     @NoArgsConstructor
