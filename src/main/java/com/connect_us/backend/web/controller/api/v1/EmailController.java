@@ -1,4 +1,4 @@
-package com.connect_us.backend.api;
+package com.connect_us.backend.web.controller.api.v1;
 
 import com.connect_us.backend.domain.account.MailDto;
 import com.connect_us.backend.domain.enums.Role;
@@ -18,7 +18,7 @@ import javax.validation.Valid;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
-@RequestMapping("v1/email")
+@RequestMapping("api/v1/email")
 @CrossOrigin
 public class EmailController {
     private final MailService mailService;

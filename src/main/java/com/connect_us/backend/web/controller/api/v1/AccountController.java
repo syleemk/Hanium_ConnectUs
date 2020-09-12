@@ -1,4 +1,4 @@
-package com.connect_us.backend.api;
+package com.connect_us.backend.web.controller.api.v1;
 
 import com.connect_us.backend.domain.account.Account;
 import com.connect_us.backend.domain.enums.Gender;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
-@RequestMapping("v1/users")
+@RequestMapping("api/v1/users")
 @CrossOrigin
 public class AccountController {
     private final AccountServiceImp accountServiceImp;

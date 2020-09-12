@@ -1,4 +1,4 @@
-package com.connect_us.backend.api;
+package com.connect_us.backend.web.controller.api.v1;
 
 import com.connect_us.backend.domain.account.Account;
 import com.connect_us.backend.domain.enums.Role;
@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
-@RequestMapping("v1/admin")
+@RequestMapping("api/v1/admin")
 @CrossOrigin
 public class AdminController {
     private final AccountServiceImp accountServiceImp;

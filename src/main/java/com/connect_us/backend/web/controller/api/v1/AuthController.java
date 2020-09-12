@@ -1,4 +1,4 @@
-package com.connect_us.backend.api;
+package com.connect_us.backend.web.controller.api.v1;
 
 import com.connect_us.backend.domain.account.Account;
 import com.connect_us.backend.domain.account.MailDto;
@@ -19,7 +19,7 @@ import javax.validation.Valid;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
-@RequestMapping("v1/auth")
+@RequestMapping("api/v1/auth")
 @CrossOrigin
 public class AuthController {
     private final AccountServiceImp accountServiceImp;
