@@ -10,6 +10,7 @@ import com.connect_us.backend.domain.product.Product;
 import com.connect_us.backend.domain.product.ProductRepository;
 import com.connect_us.backend.web.dto.v1.cart.CartItemAddResponseDto;
 import com.connect_us.backend.web.dto.v1.cart.CartItemAddResquestDto;
+import com.connect_us.backend.web.dto.v1.cart.CartItemListResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -49,8 +50,14 @@ public class CartService {
     }
 
     // 카트 물품 목록 조회
-    public void get(String accountEmail) {
-
+    public CartItemListResponseDto get(String accountEmail) {
+        Account account = accountRepository.findByEmail(accountEmail);
+        Cart cart = cartRepository.getOne(account.getId());
+        return CartItemListResponseDto.builder()
+                .success(true)
+                .message("장바구니 목록 조회 성공")
+                .data(cart.getCartItems())
+                .build();
     }
 
     // 카트 삭제

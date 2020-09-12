@@ -1,8 +1,6 @@
 package com.connect_us.backend.web.controller.api.v1.product;
 
-import com.connect_us.backend.domain.product.Product;
 import com.connect_us.backend.service.product.ProductService;
-import com.connect_us.backend.web.dto.v1.ResponseDto;
 import com.connect_us.backend.web.dto.v1.product.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
