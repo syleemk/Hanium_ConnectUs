@@ -13,6 +13,7 @@ import com.connect_us.backend.web.dto.v1.cart.CartItemAddResquestDto;
 import com.connect_us.backend.web.dto.v1.cart.CartItemListResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
@@ -29,7 +30,8 @@ public class CartService {
                 .build();
     }
 
-    // 카트에 물품 추가 
+    // 카트에 물품 추가
+    @Transactional
     public CartItemAddResponseDto add(String accountEmail, CartItemAddResquestDto resquestDto) {
         Account account = accountRepository.findByEmail(accountEmail);
         Cart cart = account.getCart();
@@ -50,6 +52,7 @@ public class CartService {
     }
 
     // 카트 물품 목록 조회
+    @Transactional(readOnly = true)
     public CartItemListResponseDto get(String accountEmail) {
         Account account = accountRepository.findByEmail(accountEmail);
         Cart cart = cartRepository.getOne(account.getId());
@@ -61,6 +64,7 @@ public class CartService {
     }
 
     // 카트 삭제
+    @Transactional
     public void delete(String accountEmail, Long id){
 
     }
