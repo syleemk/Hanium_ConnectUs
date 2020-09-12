@@ -1,4 +1,4 @@
-package com.connect_us.backend.web.controller.api.v1;
+package com.connect_us.backend.web.controller.api.v1.email;
 
 import com.connect_us.backend.domain.account.MailDto;
 import com.connect_us.backend.domain.enums.Role;

@@ -1,4 +1,4 @@
-package com.connect_us.backend.web.controller.api.v1;
+package com.connect_us.backend.web.controller.api.v1.admin;
 
 import com.connect_us.backend.domain.account.Account;
 import com.connect_us.backend.domain.enums.Role;
