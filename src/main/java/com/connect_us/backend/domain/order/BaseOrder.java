@@ -1,4 +1,4 @@
-package com.connect_us.backend.domain.orders;
+package com.connect_us.backend.domain.order;
 
 import com.connect_us.backend.domain.account.Account;
 import lombok.Getter;
@@ -8,10 +8,10 @@ import javax.persistence.*;
 
 @Entity
 @Getter @Setter
-public class Orders {
+public class BaseOrder {
 
     @Id @GeneratedValue
-    @Column(name="orders_id")
+    @Column(name="base_order_id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
