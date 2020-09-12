@@ -1,14 +1,15 @@
-package com.connect_us.backend.web.dto.v1.fund.product;
+package com.connect_us.backend.web.dto.v1.fund.product.res;
 
 import com.connect_us.backend.domain.account.Account;
 import com.connect_us.backend.domain.category.Category;
 import com.connect_us.backend.domain.enums.FundingStatus;
 import com.connect_us.backend.domain.fund.FundingProduct;
+import lombok.Data;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
 
-@Getter
+@Data
 public class FundingProductListResponseDto {
 
     private Long id;
@@ -19,6 +20,7 @@ public class FundingProductListResponseDto {
     private int goalPrice;
     private int currentPrice;
     private String address;
+    private String information;
     private LocalDateTime due;
     private FundingStatus fundingStatus;
 
@@ -31,6 +33,7 @@ public class FundingProductListResponseDto {
         this.goalPrice = entity.getGoalPrice();
         this.currentPrice = entity.getCurrentPrice();
         this.address = entity.getAddress();
+        this.information = entity.getInformation();
         this.due = entity.getDue();
         this.fundingStatus = entity.getFundingStatus();
     }

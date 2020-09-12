@@ -1,10 +1,10 @@
-package com.connect_us.backend.web.dto.v1.fund.product;
+package com.connect_us.backend.web.dto.v1.fund.product.res;
 
 import com.connect_us.backend.domain.account.Account;
 import com.connect_us.backend.domain.category.Category;
 import com.connect_us.backend.domain.enums.FundingStatus;
 import com.connect_us.backend.domain.fund.FundingProduct;
-import lombok.Getter;
+import lombok.Data;
 
 import java.time.LocalDateTime;
 
@@ -16,8 +16,11 @@ import java.time.LocalDateTime;
  *      requestDto : NoArgsConstructor, Builder
  * */
 
-@Getter
-public class FundingProductResponseDto {
+@Data
+public class FundingProductResponseDto{
+
+    private boolean success;
+    private String message;
 
     private Long id;
     private Category category;
@@ -27,10 +30,15 @@ public class FundingProductResponseDto {
     private int goalPrice;
     private int currentPrice;
     private String address;
+    private String information;
     private LocalDateTime due;
     private FundingStatus fundingStatus;
 
-    public FundingProductResponseDto(FundingProduct entity) {
+    public FundingProductResponseDto(boolean success, String message, FundingProduct entity) {
+
+        this.success = success;
+        this.message = message;
+
         this.id = entity.getId();
         this.category = entity.getCategory();
         this.account = entity.getAccount();
@@ -39,6 +47,7 @@ public class FundingProductResponseDto {
         this.goalPrice = entity.getGoalPrice();
         this.currentPrice = entity.getCurrentPrice();
         this.address = entity.getAddress();
+        this.information = entity.getInformation();
         this.due = entity.getDue();
         this.fundingStatus = entity.getFundingStatus();
     }
