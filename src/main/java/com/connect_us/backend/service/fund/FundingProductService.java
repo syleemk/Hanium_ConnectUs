@@ -1,10 +1,10 @@
 package com.connect_us.backend.service.fund;
 
-import com.connect_us.backend.web.controller.v1.fund.FundingProductApiController;
-import com.connect_us.backend.web.dto.v1.fund.product.FundingProductCreateRequestDto;
-import com.connect_us.backend.web.dto.v1.fund.product.FundingProductListResponseDto;
-import com.connect_us.backend.web.dto.v1.fund.product.FundingProductResponseDto;
-import com.connect_us.backend.web.dto.v1.fund.product.FundingProductUpdateResquestDto;
+import com.connect_us.backend.web.controller.api.v1.fund.FundingProductApiController;
+import com.connect_us.backend.web.dto.v1.fund.product.req.FundingProductCreateRequestDto;
+import com.connect_us.backend.web.dto.v1.fund.product.res.FundingProductListResponseDto;
+import com.connect_us.backend.web.dto.v1.fund.product.res.FundingProductResponseDto;
+import com.connect_us.backend.web.dto.v1.fund.product.req.FundingProductUpdateResquestDto;
 
 import java.util.List;
 
@@ -21,6 +21,8 @@ public interface FundingProductService {
     void delete(Long id);
 
     FundingProductResponseDto findById(Long id);
+
+    List<FundingProductListResponseDto> findByNameContaining(String name);
 
     List<FundingProductListResponseDto> findAllDesc();
 

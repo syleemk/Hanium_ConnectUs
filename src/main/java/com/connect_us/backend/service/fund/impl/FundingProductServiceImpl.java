@@ -3,17 +3,16 @@ package com.connect_us.backend.service.fund.impl;
 import com.connect_us.backend.domain.fund.FundingProduct;
 import com.connect_us.backend.domain.fund.FundingProductRepository;
 import com.connect_us.backend.service.fund.FundingProductService;
-import com.connect_us.backend.web.dto.v1.fund.product.FundingProductCreateRequestDto;
-import com.connect_us.backend.web.dto.v1.fund.product.FundingProductListResponseDto;
-import com.connect_us.backend.web.dto.v1.fund.product.FundingProductResponseDto;
-import com.connect_us.backend.web.dto.v1.fund.product.FundingProductUpdateResquestDto;
+import com.connect_us.backend.web.dto.v1.fund.product.req.FundingProductCreateRequestDto;
+import com.connect_us.backend.web.dto.v1.fund.product.res.FundingProductListResponseDto;
+import com.connect_us.backend.web.dto.v1.fund.product.res.FundingProductResponseDto;
+import com.connect_us.backend.web.dto.v1.fund.product.req.FundingProductUpdateResquestDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @Service
@@ -59,7 +58,7 @@ public class FundingProductServiceImpl implements FundingProductService {
     @Override
     public void delete(Long id) {
         FundingProduct fundingProduct = fundingProductRepository.findById(id)
-                .orElseThrow(()-> new IllegalArgumentException("해당 펀드가 없습니다. id="+id));
+                .orElseThrow(()-> new NoSuchElementException("해당 펀드가 없습니다. id="+id));
 
 //        fundingProductRepository.delete(fundingProduct); // 완전 삭제
         fundingProduct.setStatusDelete(); // 소프트 딜리트
@@ -72,9 +71,17 @@ public class FundingProductServiceImpl implements FundingProductService {
     @Override
     public FundingProductResponseDto findById(Long id) {
         FundingProduct entity = fundingProductRepository.findById(id)
-                .orElseThrow(()-> new IllegalArgumentException("해당 펀드가 없습니다. id="+id));
+                .orElseThrow(()-> new NoSuchElementException("해당 펀드가 없습니다. id="+id));
 
-        return new FundingProductResponseDto(entity);
+        return new FundingProductResponseDto(true,"펀딩 검색 성공",entity);
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<FundingProductListResponseDto> findByNameContaining(String name) {
+        return fundingProductRepository.findByNameContaining(name).stream()
+                .map(FundingProductListResponseDto::new)
+                .collect(Collectors.toList());
     }
 
 

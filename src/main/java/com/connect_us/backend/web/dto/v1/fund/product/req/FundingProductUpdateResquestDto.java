@@ -1,4 +1,4 @@
-package com.connect_us.backend.web.dto.v1.fund.product;
+package com.connect_us.backend.web.dto.v1.fund.product.req;
 
 import com.connect_us.backend.domain.enums.FundingStatus;
 import lombok.Builder;

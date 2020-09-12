@@ -1,4 +1,4 @@
-package com.connect_us.backend.api;
+package com.connect_us.backend.web.controller.api.v1;
 
 import com.connect_us.backend.domain.account.Account;
 import com.connect_us.backend.domain.account.MailDto;

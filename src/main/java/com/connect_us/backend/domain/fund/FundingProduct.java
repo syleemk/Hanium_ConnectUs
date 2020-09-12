@@ -41,7 +41,7 @@ public class FundingProduct extends BaseEntity {
     @Column(name = "current_price")
     private int currentPrice; // 현재 모금액
 
-    @Column(name = "addr") // addr : 물품을 배송할 재난지역 주소
+    @Column(name = "address") // addr : 물품을 배송할 재난지역 주소
     private String address;
 
     @Column(name = "information")
