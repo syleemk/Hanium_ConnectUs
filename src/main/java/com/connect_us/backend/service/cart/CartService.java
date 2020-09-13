@@ -68,9 +68,12 @@ public class CartService {
                 .build();
     }
 
-    // 카트 삭제
+    // 카트 물품 삭제
     @Transactional
-    public void delete(String accountEmail, Long id){
-
+    public void delete(String accountEmail, Long productId){
+        Account account = accountRepository.findByEmail(accountEmail);
+        Cart cart = account.getCart();
+        CartItem cartItem = cartItemRepository.findByCartIdAndProductId(cart.getId(), productId);
+        System.out.println(cartItem.getId());
     }
 }

@@ -33,6 +33,7 @@ public class CartApiController {
 
     @DeleteMapping(path = "/products/{id}")
     public void delete(Authentication authentication, @PathVariable Long id) {
-
+        String accountEmail = authentication.getName();
+        cartService.delete(accountEmail, id);
     }
 }
