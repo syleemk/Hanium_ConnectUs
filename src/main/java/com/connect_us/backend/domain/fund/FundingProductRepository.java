@@ -12,5 +12,5 @@ public interface FundingProductRepository extends JpaRepository<FundingProduct,L
     @Query("SELECT f FROM FundingProduct f ORDER BY f.id DESC")
     List<FundingProduct> findAllDesc();
 
-    List<FundingProduct> findByNameContaining(String name);
+    Page<FundingProduct> findByNameContaining(String name, Pageable pageable);
 }

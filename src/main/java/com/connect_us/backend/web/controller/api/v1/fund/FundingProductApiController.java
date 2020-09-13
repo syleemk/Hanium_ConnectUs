@@ -1,18 +1,21 @@
 package com.connect_us.backend.web.controller.api.v1.fund;
 
-import com.connect_us.backend.web.controller.api.v1.fund.res.SimpleResponse;
 import com.connect_us.backend.service.fund.FundingProductService;
-import com.connect_us.backend.web.dto.v1.fund.product.req.FundingProductCreateRequestDto;
-import com.connect_us.backend.web.dto.v1.fund.product.res.FundingProductListResponseDto;
-import com.connect_us.backend.web.dto.v1.fund.product.res.FundingProductResponseDto;
-import com.connect_us.backend.web.dto.v1.fund.product.req.FundingProductUpdateResquestDto;
+import com.connect_us.backend.web.dto.v1.ResponseDto;
+import com.connect_us.backend.web.dto.v1.fund.req.product.FundingProductSaveRequestDto;
+import com.connect_us.backend.web.dto.v1.fund.res.product.FundingProductDeleteResponseDto;
+import com.connect_us.backend.web.dto.v1.fund.res.product.FundingProductListFindResponseDto;
+import com.connect_us.backend.web.dto.v1.fund.res.product.FundingProductFindResponseDto;
+import com.connect_us.backend.web.dto.v1.fund.req.product.FundingProductUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
-@Slf4j
 @RequiredArgsConstructor
 @RestController
 @RequestMapping(path = "/v1/fund/products")
@@ -22,40 +25,46 @@ public class FundingProductApiController {
 
     /**펀딩 등록*/
     @PostMapping
-    public SimpleResponse save(@RequestBody FundingProductCreateRequestDto requestDto) {
-        Long id = fundingProductService.save(requestDto);
-        return new SimpleResponse(id, true, "펀딩 등록 성공");
+    public ResponseDto save(@RequestBody FundingProductSaveRequestDto requestDto) {
+        return fundingProductService.save(requestDto);
     }
 
     /**펀딩 수정*/
     @PutMapping("/{id}")
     public Long update(@PathVariable Long id,
-                       @RequestBody FundingProductUpdateResquestDto resquestDto) {
+                       @RequestBody FundingProductUpdateRequestDto resquestDto) {
         return fundingProductService.update(id,resquestDto);
     }
 
     /**펀딩 상세 정보*/
     @GetMapping("/{id}")
-    public FundingProductResponseDto findById(@PathVariable Long id)  {
+    public FundingProductFindResponseDto findById(@PathVariable Long id) {
         return fundingProductService.findById(id);
     }
 
-    /**모든 펀딩*/
+    /**
+     * 모든 펀딩 리스트 with 페이징
+     * modifiedDate 기준으로 desc(내림차순) 정렬
+     * @param pageable
+     * @return
+     */
     @GetMapping("/all")
-    public List<FundingProductListResponseDto> findAllDesc() {
-        return fundingProductService.findAllDesc();
+    public ResponseEntity<?> findAll(@PageableDefault(sort = {"modifiedDate"}, direction = Sort.Direction.DESC) Pageable pageable) {
+        Page<FundingProductListFindResponseDto> page = fundingProductService.findAll(pageable).map(FundingProductListFindResponseDto::new);
+        return ResponseEntity.ok(page);
     }
 
-    /**펀딩 이름으로 찾기 (LIKE) */
+    /**펀딩 이름으로 찾기 (%LIKE%) with 페이징 */
     @GetMapping("/search")
-    public List<FundingProductListResponseDto> findByNameContaining(@RequestParam String name) {
-        return fundingProductService.findByNameContaining(name);
+    public ResponseEntity<?> findByNameContaining(@RequestParam String name,
+                                                  @PageableDefault(sort = {"modifiedDate"}, direction = Sort.Direction.DESC) Pageable pageable) {
+        Page<FundingProductListFindResponseDto> page = fundingProductService.findByNameContaining(name, pageable).map(FundingProductListFindResponseDto::new);
+        return ResponseEntity.ok(page);
     }
 
     /**펀딩 삭제*/
     @DeleteMapping("/{id}")
-    public Long delete(@PathVariable Long id) {
-        fundingProductService.delete(id);
-        return id;
+    public FundingProductDeleteResponseDto delete(@PathVariable Long id) {
+        return fundingProductService.delete(id);
     }
 }

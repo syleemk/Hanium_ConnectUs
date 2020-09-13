@@ -1,6 +1,7 @@
 package com.connect_us.backend.domain;
 
 import com.connect_us.backend.domain.enums.Status;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
@@ -13,7 +14,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
-@Getter
+@Data
 @MappedSuperclass //entity의 상위클래스 되도록
 @EntityListeners(AuditingEntityListener.class) //Auditing 기능 포함
 public abstract class BaseEntity {
@@ -24,20 +25,19 @@ public abstract class BaseEntity {
     private LocalDateTime modifiedDate;
 
     @Enumerated(EnumType.STRING)
-    @Setter
     private Status status = Status.NORMAL;
 
     /**
      * soft delete
      * */
-    public void setStatusDelete() {
+    public void softDelete() {
         this.status = Status.DELETE;
     }
 
     /**
      * rollback
      * */
-    public void setStatusNormal() {
+    public void softDeleteRollback() {
         this.status = Status.NORMAL;
     }
 

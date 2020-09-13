@@ -4,6 +4,7 @@ import com.connect_us.backend.domain.BaseEntity;
 import com.connect_us.backend.domain.account.Account;
 import com.connect_us.backend.domain.category.Category;
 import com.connect_us.backend.domain.enums.FundingStatus;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,7 +13,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class FundingProduct extends BaseEntity {
 
@@ -54,14 +55,16 @@ public class FundingProduct extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private FundingStatus fundingStatus = FundingStatus.NORMAL;
 
-    @OneToOne(mappedBy = "fundingProduct", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "fundingProduct")
     private FundingCartItem fundingCartItem; // funding_cart_item table의 fundingProduct 의해 mapping
 
-    @OneToOne(mappedBy = "fundingProduct", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "fundingProduct")
     private FundingOrderItem fundingOrderItem; // funding_order_item table의 fundingProduct 의해 mapping
 
     @Builder
-    public FundingProduct(String name,String image,int goalPrice,int currentPrice,String address,String information,LocalDateTime due) {
+    public FundingProduct(Category category,Account account, String name,String image,int goalPrice,int currentPrice,String address,String information,LocalDateTime due) {
+        this.category = category;
+        this.account = account;
         this.name = name;
         this.image = image;
         this.goalPrice = goalPrice;

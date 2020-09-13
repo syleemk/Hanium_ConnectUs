@@ -3,17 +3,18 @@ package com.connect_us.backend.service.fund.impl;
 import com.connect_us.backend.domain.fund.FundingProduct;
 import com.connect_us.backend.domain.fund.FundingProductRepository;
 import com.connect_us.backend.service.fund.FundingProductService;
-import com.connect_us.backend.web.dto.v1.fund.product.req.FundingProductCreateRequestDto;
-import com.connect_us.backend.web.dto.v1.fund.product.res.FundingProductListResponseDto;
-import com.connect_us.backend.web.dto.v1.fund.product.res.FundingProductResponseDto;
-import com.connect_us.backend.web.dto.v1.fund.product.req.FundingProductUpdateResquestDto;
+import com.connect_us.backend.web.dto.v1.fund.req.product.FundingProductSaveRequestDto;
+import com.connect_us.backend.web.dto.v1.fund.res.product.FundingProductDeleteResponseDto;
+import com.connect_us.backend.web.dto.v1.fund.res.product.FundingProductFindResponseDto;
+import com.connect_us.backend.web.dto.v1.fund.req.product.FundingProductUpdateRequestDto;
+import com.connect_us.backend.web.dto.v1.fund.res.product.FundingProductSaveResponseDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -27,8 +28,13 @@ public class FundingProductServiceImpl implements FundingProductService {
      * */
     @Transactional
     @Override
-    public Long save(FundingProductCreateRequestDto createRequestDto) {
-        return fundingProductRepository.save(createRequestDto.toEntity()).getId();
+    public FundingProductSaveResponseDto save(FundingProductSaveRequestDto createRequestDto) {
+        Long id = fundingProductRepository.save(createRequestDto.toEntity()).getId();
+
+        return FundingProductSaveResponseDto.builder()
+                .success(true)
+                .message("펀드 상품 생성 성공 id="+id)
+                .build();
     }
 
     /**
@@ -36,7 +42,7 @@ public class FundingProductServiceImpl implements FundingProductService {
      * */
     @Transactional
     @Override
-    public Long update(Long id, FundingProductUpdateResquestDto resquestDto) {
+    public Long update(Long id, FundingProductUpdateRequestDto resquestDto) {
         FundingProduct fundingProduct = fundingProductRepository.findById(id)
                 .orElseThrow(()-> new IllegalArgumentException("해당 펀드가 없습니다. id="+id));
 
@@ -54,14 +60,22 @@ public class FundingProductServiceImpl implements FundingProductService {
 
     /**
      * 펀드 삭제 (soft delete)
-     * */
+     *
+     **/
+    @Transactional
     @Override
-    public void delete(Long id) {
+    public FundingProductDeleteResponseDto delete(Long id) {
+
         FundingProduct fundingProduct = fundingProductRepository.findById(id)
                 .orElseThrow(()-> new NoSuchElementException("해당 펀드가 없습니다. id="+id));
 
 //        fundingProductRepository.delete(fundingProduct); // 완전 삭제
-        fundingProduct.setStatusDelete(); // 소프트 딜리트
+        fundingProduct.softDelete(); // 소프트 딜리트
+
+        return FundingProductDeleteResponseDto.builder()
+                .success(true)
+                .message("펀드 상품 소프트 딜리트 완료 getStatus(id="+id+") : "+fundingProduct.getStatus())
+                .build();
     }
 
     /**
@@ -69,28 +83,29 @@ public class FundingProductServiceImpl implements FundingProductService {
      * */
     @Transactional(readOnly = true)
     @Override
-    public FundingProductResponseDto findById(Long id) {
+    public FundingProductFindResponseDto findById(Long id) {
         FundingProduct entity = fundingProductRepository.findById(id)
                 .orElseThrow(()-> new NoSuchElementException("해당 펀드가 없습니다. id="+id));
 
-        return new FundingProductResponseDto(true,"펀딩 검색 성공",entity);
+
+        return FundingProductFindResponseDto.builder()
+                .success(true)
+                .message("펀딩 검색 성공")
+                .entity(entity)
+                .build();
     }
 
     @Transactional(readOnly = true)
     @Override
-    public List<FundingProductListResponseDto> findByNameContaining(String name) {
-        return fundingProductRepository.findByNameContaining(name).stream()
-                .map(FundingProductListResponseDto::new)
-                .collect(Collectors.toList());
+    public Page<FundingProduct> findByNameContaining(String name, Pageable pageable) {
+        return fundingProductRepository.findByNameContaining(name,pageable);
     }
 
 
     @Transactional(readOnly = true)
     @Override
-    public List<FundingProductListResponseDto> findAllDesc() {
-        return fundingProductRepository.findAllDesc().stream()
-                .map(FundingProductListResponseDto::new)
-                .collect(Collectors.toList());
+    public Page<FundingProduct> findAll(Pageable pageable) {
+        return fundingProductRepository.findAll(pageable);
     }
 
 }

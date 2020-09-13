@@ -16,7 +16,6 @@ spring:
         ddl-auto: create-drop
         show-sql: true
         format-sql: true
-        dialect: org.hibernate.dialect.MariaDBDialect
   session:
     store-type: jdbc
   profiles.include: oauth, mail, jwt

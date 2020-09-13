@@ -3,17 +3,14 @@ package com.connect_us.backend.domain.fund;
 import com.connect_us.backend.domain.BaseEntity;
 import com.connect_us.backend.domain.account.Account;
 import com.connect_us.backend.domain.enums.Status;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter @Setter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class FundingCart extends BaseEntity {
 

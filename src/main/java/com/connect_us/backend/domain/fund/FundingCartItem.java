@@ -2,6 +2,7 @@ package com.connect_us.backend.domain.fund;
 
 import com.connect_us.backend.domain.enums.FundingStatus;
 import com.connect_us.backend.domain.BaseEntity;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,7 +10,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class FundingCartItem extends BaseEntity {
 

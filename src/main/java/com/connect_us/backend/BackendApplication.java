@@ -7,6 +7,8 @@ import com.connect_us.backend.domain.category.CategoryRepository;
 import com.connect_us.backend.domain.enums.Gender;
 import com.connect_us.backend.domain.enums.Role;
 import com.connect_us.backend.domain.enums.Social;
+import com.connect_us.backend.domain.fund.FundingProduct;
+import com.connect_us.backend.domain.fund.FundingProductRepository;
 import com.connect_us.backend.domain.product.Product;
 import com.connect_us.backend.domain.product.ProductRepository;
 import com.connect_us.backend.service.cart.CartService;
@@ -16,6 +18,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -26,9 +29,10 @@ public class BackendApplication {
         SpringApplication.run(BackendApplication.class, args);
     }
 
+
     @Bean
     public CommandLineRunner runner(CartService cartService, AccountRepository accountRepository, ProductRepository productRepository,
-                                    CategoryRepository categoryRepository, PasswordEncoder passwordEncoder) throws Exception {
+                                    CategoryRepository categoryRepository, FundingProductRepository fundingProductRepository, PasswordEncoder passwordEncoder) throws Exception {
         return (args) -> {
             //initialize
             accountRepository.deleteAll();
@@ -37,7 +41,7 @@ public class BackendApplication {
             Account user = new Account("user", passwordEncoder.encode("1234"),"user", Social.FALSE, Gender.MALE, Role.USER);
             Account seller = new Account("seller", passwordEncoder.encode("1234"),"seller",Social.FALSE, Gender.MALE, Role.SELLER);
             Account admin = new Account("admin", passwordEncoder.encode("1234"),"admin",Social.FALSE,Gender.MALE, Role.ADMIN);
-            
+
             List<Account> accounts = Arrays.asList(user,seller,admin);
             accountRepository.saveAll(accounts);
 
@@ -54,20 +58,34 @@ public class BackendApplication {
             cartService.create(seller);
             cartService.create(admin);
 
-            IntStream.rangeClosed(1, 100).forEach(index -> {
-                        Category category = categoryRepository.save(Category.builder()
-                                .name("카테고리" + index)
-                                .build());
+            IntStream.rangeClosed(1, 10).forEach(index -> {
+                Category category = categoryRepository.save(Category.builder()
+                        .name("카테고리" + index)
+                        .build());
 
-                        productRepository.save(Product.builder()
-                                .category(category)
-								.account(seller)
-								.name("상품" + index)
-								.price(1000)
-								.stock(40)
-								.build());
+                productRepository.save(Product.builder()
+                        .category(category)
+                        .account(seller)
+                        .name("상품" + index)
+                        .price(1000)
+                        .stock(40)
+                        .build());
+
+
+                fundingProductRepository.save(FundingProduct.builder()
+                        .category(category)
+                        .account(seller)
+                        .image("image"+index)
+                        .name("펀드상품"+index)
+                        .address("주소"+index)
+                        .goalPrice(1000)
+                        .information("정보"+index)
+                        .due(LocalDateTime.now())
+                        .build());
                     }
             );
         };
     }
+
+
 }
