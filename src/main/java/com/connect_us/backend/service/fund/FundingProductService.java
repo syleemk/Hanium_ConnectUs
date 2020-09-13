@@ -3,11 +3,8 @@ package com.connect_us.backend.service.fund;
 import com.connect_us.backend.domain.fund.FundingProduct;
 import com.connect_us.backend.service.fund.impl.FundingProductServiceImpl;
 import com.connect_us.backend.web.controller.api.v1.fund.FundingProductApiController;
-import com.connect_us.backend.web.dto.v1.fund.req.product.FundingProductSaveRequestDto;
-import com.connect_us.backend.web.dto.v1.fund.res.product.FundingProductDeleteResponseDto;
-import com.connect_us.backend.web.dto.v1.fund.res.product.FundingProductFindResponseDto;
-import com.connect_us.backend.web.dto.v1.fund.req.product.FundingProductUpdateRequestDto;
-import com.connect_us.backend.web.dto.v1.fund.res.product.FundingProductSaveResponseDto;
+import com.connect_us.backend.web.dto.v1.fund.req.product.*;
+import com.connect_us.backend.web.dto.v1.fund.res.product.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -19,7 +16,7 @@ public interface FundingProductService {
 
     FundingProductSaveResponseDto save(FundingProductSaveRequestDto createRequestDto);
 
-    Long update(Long id, FundingProductUpdateRequestDto resquestDto);
+    FundingProductUpdateResponseDto update(Long id, FundingProductUpdateRequestDto requestDto);
 
     FundingProductDeleteResponseDto delete(Long id);
 

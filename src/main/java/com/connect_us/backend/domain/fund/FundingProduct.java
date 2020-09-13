@@ -78,14 +78,13 @@ public class FundingProduct extends BaseEntity {
      * currentPrice 정보는 변경불가
      * @see com.connect_us.backend.service.fund.impl.FundingProductServiceImpl
      * */
-    public void update(String name,String image,int goalPrice,String address,String information,LocalDateTime due,FundingStatus fundingStatus) {
+    public void update(String name,String image,int goalPrice,String address,String information,LocalDateTime due) {
         this.name = name;
         this.image = image;
         this.goalPrice = goalPrice;
         this.address = address;
         this.information = information;
         this.due = due;
-        this.fundingStatus = fundingStatus;
     }
 
 }

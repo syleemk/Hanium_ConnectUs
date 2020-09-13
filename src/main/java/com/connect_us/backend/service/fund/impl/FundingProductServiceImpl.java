@@ -3,11 +3,8 @@ package com.connect_us.backend.service.fund.impl;
 import com.connect_us.backend.domain.fund.FundingProduct;
 import com.connect_us.backend.domain.fund.FundingProductRepository;
 import com.connect_us.backend.service.fund.FundingProductService;
-import com.connect_us.backend.web.dto.v1.fund.req.product.FundingProductSaveRequestDto;
-import com.connect_us.backend.web.dto.v1.fund.res.product.FundingProductDeleteResponseDto;
-import com.connect_us.backend.web.dto.v1.fund.res.product.FundingProductFindResponseDto;
-import com.connect_us.backend.web.dto.v1.fund.req.product.FundingProductUpdateRequestDto;
-import com.connect_us.backend.web.dto.v1.fund.res.product.FundingProductSaveResponseDto;
+import com.connect_us.backend.web.dto.v1.fund.req.product.*;
+import com.connect_us.backend.web.dto.v1.fund.res.product.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -42,20 +39,23 @@ public class FundingProductServiceImpl implements FundingProductService {
      * */
     @Transactional
     @Override
-    public Long update(Long id, FundingProductUpdateRequestDto resquestDto) {
+    public FundingProductUpdateResponseDto update(Long id, FundingProductUpdateRequestDto requestDto) {
         FundingProduct fundingProduct = fundingProductRepository.findById(id)
                 .orElseThrow(()-> new IllegalArgumentException("해당 펀드가 없습니다. id="+id));
 
         fundingProduct.update(
-                resquestDto.getName(),
-                resquestDto.getImage(),
-                resquestDto.getGoalPrice(),
-                resquestDto.getAddress(),
-                resquestDto.getInformation(),
-                resquestDto.getDue(),
-                resquestDto.getFundingStatus());
+                requestDto.getName(),
+                requestDto.getImage(),
+                requestDto.getGoalPrice(),
+                requestDto.getAddress(),
+                requestDto.getInformation(),
+                requestDto.getDue());
 
-        return id;
+        return FundingProductUpdateResponseDto.builder()
+                .success(true)
+                .message("펀드 상품 정보 업데이트 성공 id="+id)
+                .entity(fundingProduct)
+                .build();
     }
 
     /**
@@ -69,7 +69,10 @@ public class FundingProductServiceImpl implements FundingProductService {
         FundingProduct fundingProduct = fundingProductRepository.findById(id)
                 .orElseThrow(()-> new NoSuchElementException("해당 펀드가 없습니다. id="+id));
 
-//        fundingProductRepository.delete(fundingProduct); // 완전 삭제
+        /*
+        fundingProductRepository.delete(fundingProduct); // 완전 삭제
+        */
+
         fundingProduct.softDelete(); // 소프트 딜리트
 
         return FundingProductDeleteResponseDto.builder()

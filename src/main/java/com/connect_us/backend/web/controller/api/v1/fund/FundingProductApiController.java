@@ -7,6 +7,7 @@ import com.connect_us.backend.web.dto.v1.fund.res.product.FundingProductDeleteRe
 import com.connect_us.backend.web.dto.v1.fund.res.product.FundingProductListFindResponseDto;
 import com.connect_us.backend.web.dto.v1.fund.res.product.FundingProductFindResponseDto;
 import com.connect_us.backend.web.dto.v1.fund.req.product.FundingProductUpdateRequestDto;
+import com.connect_us.backend.web.dto.v1.fund.res.product.FundingProductUpdateResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -31,9 +32,9 @@ public class FundingProductApiController {
 
     /**펀딩 수정*/
     @PutMapping("/{id}")
-    public Long update(@PathVariable Long id,
-                       @RequestBody FundingProductUpdateRequestDto resquestDto) {
-        return fundingProductService.update(id,resquestDto);
+    public FundingProductUpdateResponseDto update(@PathVariable Long id,
+                                                  @RequestBody FundingProductUpdateRequestDto requestDto) {
+        return fundingProductService.update(id,requestDto);
     }
 
     /**펀딩 상세 정보*/

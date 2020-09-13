@@ -10,5 +10,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = "/v1/fund/cart_items")
 public class FundingCartItemApiController {
 
-    private final FundingCartItemService fundingCartItemService;
+//    private final FundingCartItemService fundingCartItemService;
 }
