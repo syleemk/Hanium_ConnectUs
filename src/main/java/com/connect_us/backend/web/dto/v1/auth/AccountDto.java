@@ -8,7 +8,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
+@Getter @Setter
 @AllArgsConstructor
 public class AccountDto {//회원가입정보 꼬이지 않기 위해 따로 관리
     private String email;

@@ -6,11 +6,17 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 
 public class CreateUserResponseDto extends ResponseDto {
-    private Long id;
+    private Data data;
 
-    @Builder
-    public CreateUserResponseDto(Long id, Boolean success, String message){
+    class Data{
+        private Long id;
+        public Data(Long id) {
+            this.id = id;
+        }
+    }
+
+    public CreateUserResponseDto(Boolean success, String message, Long id){
         super(success,message);
-        this.id=id;
+        this.data = new Data(id);
     }
 }

@@ -35,7 +35,7 @@ public class AuthController {
         System.out.println("신규가입"+newAccount.getEmail() );
         MailDto dto = mailService.createValidationEmail(newAccount.getEmail(), id, newAccount.getName());
         mailService.sendEmail(dto);
-        return new CreateUserResponseDto(id, true, "회원가입 성공");
+        return new CreateUserResponseDto(true, "회원가입 성공",id);
     }
 
     /** 로그아웃
