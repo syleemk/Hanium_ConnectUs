@@ -4,7 +4,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.connect_us.backend.security.config.JwtProperties;
 import com.connect_us.backend.security.dto.AccountPrincipal;
-import com.connect_us.backend.security.dto.LoginModel;
+import com.connect_us.backend.web.dto.v1.auth.LoginModel;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

@@ -1,4 +1,4 @@
-package com.connect_us.backend.domain.account;
+package com.connect_us.backend.web.dto.v1.email;
 
 import lombok.Builder;
 import lombok.Getter;

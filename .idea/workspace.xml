@@ -25,9 +25,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6979e3c9-81a6-49db-9c58-51e2683f64b7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/account/EditPasswordRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/account/EditResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/account/EditUserRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/account/ProfileResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/admin/RoleChangeRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/admin/RoleChangeResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/admin/UserDeleteResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/admin/UserListResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/auth/CreateUserRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/auth/CreateUserResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/email/MailValidationRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/email/MailValidationResponseDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/security/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/security/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/domain/account/MailDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/email/MailDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/security/config/JwtUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/security/config/JwtUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/security/dto/AccountDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/auth/AccountDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/security/dto/LoginModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/auth/LoginModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/security/filter/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/security/filter/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/service/account/impl/AccountServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/service/account/impl/AccountServiceImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/service/mail/MailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/service/mail/MailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/controller/api/v1/account/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/controller/api/v1/account/AccountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/controller/api/v1/admin/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/controller/api/v1/admin/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/controller/api/v1/auth/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/controller/api/v1/auth/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/controller/api/v1/email/EmailController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/controller/api/v1/email/EmailController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,6 +99,19 @@
     <property name="aspect.path.notification.shown" value="true" />
   </component>
   <component name="RunManager">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="BackendApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="backend.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.connect_us.backend.BackendApplication" />
@@ -95,6 +129,8 @@
       <option name="presentableId" value="Default" />
       <updated>1599922997653</updated>
       <workItem from="1599923000106" duration="1340000" />
+      <workItem from="1600008131538" duration="5038000" />
+      <workItem from="1600067547070" duration="2474000" />
     </task>
     <servers />
   </component>
@@ -130,6 +166,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="[ETC] merge하다가 BaseOrder날라가서 다시 올림" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="446" y="61" key="#com.intellij.ide.util.MemberChooser" timestamp="1600069727048">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="446" y="61" key="#com.intellij.ide.util.MemberChooser/0.0.1280.689@0.0.1280.689" timestamp="1600069727048" />
     <state width="1493" height="173" key="GridCell.Tab.0.bottom" timestamp="1599926115721">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -166,5 +206,13 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1599924468623" />
+    <state x="347" y="77" width="587" height="536" key="find.popup" timestamp="1600008161102">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="347" y="77" width="587" height="536" key="find.popup/0.0.1280.689@0.0.1280.689" timestamp="1600008161102" />
+    <state x="414" y="57" key="git4idea.branch.GitSmartOperationDialog" timestamp="1600070018120">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="414" y="57" key="git4idea.branch.GitSmartOperationDialog/0.0.1280.689@0.0.1280.689" timestamp="1600070018120" />
   </component>
 </project>

@@ -1,6 +1,6 @@
 package com.connect_us.backend.service.mail;
 
-import com.connect_us.backend.domain.account.MailDto;
+import com.connect_us.backend.web.dto.v1.email.MailDto;
 import com.connect_us.backend.service.account.impl.AccountServiceImp;
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.MailException;

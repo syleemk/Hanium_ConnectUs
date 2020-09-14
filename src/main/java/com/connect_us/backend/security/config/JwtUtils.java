@@ -13,10 +13,8 @@ public class JwtUtils {
             return false;
         }else{
             try{
-                Algorithm algorithm= Algorithm.HMAC256("SECRET");
-                JWTVerifier verifier = JWT.require(algorithm)
-                        .withIssuer("auth0")
-                        .build();
+                Algorithm algorithm= Algorithm.HMAC256(JwtProperties.SECRET.getBytes());
+                JWTVerifier verifier = JWT.require(algorithm).build();
                 DecodedJWT jwt = verifier.verify(token);
                 return true;
             }catch (JWTVerificationException exception){

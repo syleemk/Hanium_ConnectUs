@@ -6,7 +6,7 @@ import com.connect_us.backend.domain.enums.Gender;
 import com.connect_us.backend.domain.enums.Role;
 import com.connect_us.backend.domain.enums.Social;
 import com.connect_us.backend.domain.enums.Status;
-import com.connect_us.backend.security.dto.AccountDto;
+import com.connect_us.backend.web.dto.v1.auth.AccountDto;
 import com.connect_us.backend.service.account.AccountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
