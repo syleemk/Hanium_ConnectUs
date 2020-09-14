@@ -14,7 +14,7 @@ import org.springframework.data.domain.Pageable;
  * */
 public interface FundingProductService {
 
-    FundingProductSaveResponseDto save(FundingProductSaveRequestDto createRequestDto);
+    FundingProductSaveResponseDto save(String accountEmail,FundingProductSaveRequestDto requestDto);
 
     FundingProductUpdateResponseDto update(Long id, FundingProductUpdateRequestDto requestDto);
 

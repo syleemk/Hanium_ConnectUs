@@ -1,5 +1,9 @@
 package com.connect_us.backend.service.fund.impl;
 
+import com.connect_us.backend.domain.account.Account;
+import com.connect_us.backend.domain.account.AccountRepository;
+import com.connect_us.backend.domain.category.Category;
+import com.connect_us.backend.domain.category.CategoryRepository;
 import com.connect_us.backend.domain.fund.FundingProduct;
 import com.connect_us.backend.domain.fund.FundingProductRepository;
 import com.connect_us.backend.service.fund.FundingProductService;
@@ -18,15 +22,22 @@ import java.util.NoSuchElementException;
 public class FundingProductServiceImpl implements FundingProductService {
 
     private final FundingProductRepository fundingProductRepository;
-
+    private final CategoryRepository categoryRepository;
+    private final AccountRepository accountRepository;
     /**
      * interface가 아닌 class속에 @Transactional 어노테이션 선언하는게 바람직하다.
      * save : 펀드생성
      * */
     @Transactional
     @Override
-    public FundingProductSaveResponseDto save(FundingProductSaveRequestDto createRequestDto) {
-        Long id = fundingProductRepository.save(createRequestDto.toEntity()).getId();
+    public FundingProductSaveResponseDto save(String accountEmail,FundingProductSaveRequestDto requestDto) {
+
+        // 폼에서 선택한 카테고리 이름 전송 받음
+        Category category = categoryRepository.findByName(requestDto.getCategoryName());
+        // user 정보에서 email 가져와서 검색 (현재는 일단 클라이언트에서 전송받는 것으로 구현)
+        Account account = accountRepository.findByEmail(accountEmail);
+
+        Long id = fundingProductRepository.save(requestDto.toEntity(category, account)).getId();
 
         return FundingProductSaveResponseDto.builder()
                 .success(true)
@@ -35,7 +46,7 @@ public class FundingProductServiceImpl implements FundingProductService {
     }
 
     /**
-     * 펀드 정보 수정 (FundingStatus 수정)
+     * 펀드 정보 수정
      * */
     @Transactional
     @Override
