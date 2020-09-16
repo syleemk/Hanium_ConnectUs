@@ -24,20 +24,19 @@ public abstract class BaseEntity {
     private LocalDateTime modifiedDate;
 
     @Enumerated(EnumType.STRING)
-    @Setter
     private Status status = Status.NORMAL;
 
     /**
      * soft delete
      * */
-    public void setStatusDelete() {
+    public void softDelete() {
         this.status = Status.DELETE;
     }
 
     /**
      * rollback
      * */
-    public void setStatusNormal() {
+    public void rollback() {
         this.status = Status.NORMAL;
     }
 
