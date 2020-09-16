@@ -3,6 +3,7 @@ package com.connect_us.backend.web.controller.api.v1.cart;
 import com.connect_us.backend.service.cart.CartService;
 import com.connect_us.backend.web.dto.v1.cart.CartItemAddResponseDto;
 import com.connect_us.backend.web.dto.v1.cart.CartItemAddResquestDto;
+import com.connect_us.backend.web.dto.v1.cart.CartItemDeleteResponseDto;
 import com.connect_us.backend.web.dto.v1.cart.CartItemListResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -32,7 +33,8 @@ public class CartApiController {
     }
 
     @DeleteMapping(path = "/products/{id}")
-    public void delete(Authentication authentication, @PathVariable Long id) {
-
+    public CartItemDeleteResponseDto delete(Authentication authentication, @PathVariable Long id) {
+        String accountEmail = authentication.getName();
+        return cartService.delete(accountEmail, id);
     }
 }

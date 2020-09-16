@@ -10,6 +10,7 @@ import com.connect_us.backend.domain.product.Product;
 import com.connect_us.backend.domain.product.ProductRepository;
 import com.connect_us.backend.web.dto.v1.cart.CartItemAddResponseDto;
 import com.connect_us.backend.web.dto.v1.cart.CartItemAddResquestDto;
+import com.connect_us.backend.web.dto.v1.cart.CartItemDeleteResponseDto;
 import com.connect_us.backend.web.dto.v1.cart.CartItemListResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,13 @@ public class CartService {
         cartRepository.save(Cart.builder()
                 .account(account)
                 .build());
+    }
+
+    //카트 삭제 메서드
+    @Transactional
+    public void delete(Account account){
+        Cart cart = account.getCart();
+        cart.softDelete();
     }
 
     // 카트에 물품 추가
@@ -68,9 +76,20 @@ public class CartService {
                 .build();
     }
 
-    // 카트 삭제
+    // 카트 물품 삭제
     @Transactional
-    public void delete(String accountEmail, Long id){
+    public CartItemDeleteResponseDto delete(String accountEmail, Long productId){
+        Account account = accountRepository.findByEmail(accountEmail);
+        Cart cart = account.getCart();
+        
+        // 삭제해야할 장바구니 상품 가져오기
+        CartItem cartItem = cartItemRepository.findByCartIdAndProductId(cart.getId(), productId);
 
+        cartItemRepository.delete(cartItem);
+
+        return CartItemDeleteResponseDto.builder()
+                .success(true)
+                .message("상품이 장바구니에서 삭제되었습니다.")
+                .build();
     }
 }

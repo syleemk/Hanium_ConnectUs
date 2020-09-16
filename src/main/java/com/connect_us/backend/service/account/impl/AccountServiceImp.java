@@ -92,7 +92,7 @@ public class AccountServiceImp implements AccountService {
     @Transactional
     public void deleteUser(Long id){
         Account account = accountRepository.findById(id).orElse(null);
-        account.setStatus(Status.DELETE);
+        account.softDelete();
     }
 
     //중복 회원 검사

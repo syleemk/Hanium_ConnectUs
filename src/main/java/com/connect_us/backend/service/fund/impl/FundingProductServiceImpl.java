@@ -61,7 +61,7 @@ public class FundingProductServiceImpl implements FundingProductService {
                 .orElseThrow(()-> new NoSuchElementException("해당 펀드가 없습니다. id="+id));
 
 //        fundingProductRepository.delete(fundingProduct); // 완전 삭제
-        fundingProduct.setStatusDelete(); // 소프트 딜리트
+        fundingProduct.softDelete(); // 소프트 딜리트
     }
 
     /**
