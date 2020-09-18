@@ -4,12 +4,12 @@ import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-public class CartItemAddResquestDto {
+public class CartItemAddRequestDto {
     private Long id;
     private int productCnt;
 
     @Builder
-    public CartItemAddResquestDto(Long id, int productCnt) {
+    public CartItemAddRequestDto(Long id, int productCnt) {
         this.id = id;
         this.productCnt = productCnt;
     }
