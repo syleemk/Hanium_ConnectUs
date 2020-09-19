@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(path = "/v1/fund/products")
+@RequestMapping(path = "/api/v1/fund/products")
 public class FundingProductApiController {
 
     private final FundingProductService fundingProductService;

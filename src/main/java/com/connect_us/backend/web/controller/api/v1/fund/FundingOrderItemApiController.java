@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(path = "/v1/fund/order_items")
+@RequestMapping(path = "/api/v1/fund/order_items")
 public class FundingOrderItemApiController {
 
 //    private final FundingOrderItemService fundingOrderItemService;

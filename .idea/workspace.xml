@@ -46,10 +46,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6979e3c9-81a6-49db-9c58-51e2683f64b7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/service/fund/FundingProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/service/fund/FundingProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/service/fund/impl/FundingProductServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/service/fund/impl/FundingProductServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/controller/api/v1/fund/FundingProductApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/controller/api/v1/fund/FundingProductApiController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/fund/req/product/FundingProductSaveRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/fund/req/product/FundingProductSaveRequestDto.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,6 +157,10 @@
       <workItem from="1600003470838" duration="13389000" />
       <workItem from="1600054224494" duration="2645000" />
       <workItem from="1600073413942" duration="1101000" />
+      <workItem from="1600075365862" duration="2611000" />
+      <workItem from="1600085728226" duration="1029000" />
+      <workItem from="1600089127458" duration="177000" />
+      <workItem from="1600092141118" duration="1608000" />
     </task>
     <task id="LOCAL-00001" summary="[ADD] FundingProduct api complete">
       <created>1600012517571</created>

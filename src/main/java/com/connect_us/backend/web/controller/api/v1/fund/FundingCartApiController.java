@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(path = "/v1/fund/carts")
+@RequestMapping(path = "/api/v1/fund/carts")
 public class FundingCartApiController {
 
 //    private final FundingCartService fundingCartService;
