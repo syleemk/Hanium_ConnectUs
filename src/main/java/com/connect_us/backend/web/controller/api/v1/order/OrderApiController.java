@@ -20,8 +20,10 @@ public class OrderApiController {
     private final OrderService orderService;
 
     @PostMapping
-    public void save(Authentication authentication, @RequestBody OrderSaveRequestDto requestDto) {
+    public String save(Authentication authentication, @RequestBody OrderSaveRequestDto requestDto) {
         Account account = accountService.findByEmail(authentication.getName());
         orderService.save(account, requestDto);
+
+        return "성공";
     }
 }

@@ -1,8 +1,8 @@
 package com.connect_us.backend.web.controller.api.v1.cart;
 
 import com.connect_us.backend.service.cart.CartService;
+import com.connect_us.backend.web.dto.v1.cart.CartItemAddRequestDto;
 import com.connect_us.backend.web.dto.v1.cart.CartItemAddResponseDto;
-import com.connect_us.backend.web.dto.v1.cart.CartItemAddResquestDto;
 import com.connect_us.backend.web.dto.v1.cart.CartItemDeleteResponseDto;
 import com.connect_us.backend.web.dto.v1.cart.CartItemListResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +17,7 @@ public class CartApiController {
     private final CartService cartService;
 
     @PostMapping
-    public CartItemAddResponseDto add(Authentication authentication, @RequestBody CartItemAddResquestDto resquestDto){
+    public CartItemAddResponseDto add(Authentication authentication, @RequestBody CartItemAddRequestDto resquestDto){
         // authenticaiton에서 user 정보 가져오는 것
         // 추후 accountService의 메서드로 대체하는 것이 좋아보임
         String accountEmail = authentication.getName();

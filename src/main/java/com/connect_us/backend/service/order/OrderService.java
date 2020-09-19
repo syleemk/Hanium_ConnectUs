@@ -29,7 +29,7 @@ public class OrderService {
     private final ProductOrderItemRepository productOrderItemRepository;
 
     @Transactional
-    public void save(Account account, OrderSaveRequestDto requestDto){
+    public String save(Account account, OrderSaveRequestDto requestDto){
         // 주문 생성
         BaseOrder productOrder = orderRepository.save(BaseOrder.builder()
                 .account(account)
@@ -53,6 +53,6 @@ public class OrderService {
         }
         
         // 주문서 작성 성공 리턴
-
+        return "성공";
     }
 }

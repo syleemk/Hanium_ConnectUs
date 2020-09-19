@@ -8,8 +8,8 @@ import com.connect_us.backend.domain.cart.CartItemRepository;
 import com.connect_us.backend.domain.cart.CartRepository;
 import com.connect_us.backend.domain.product.Product;
 import com.connect_us.backend.domain.product.ProductRepository;
+import com.connect_us.backend.web.dto.v1.cart.CartItemAddRequestDto;
 import com.connect_us.backend.web.dto.v1.cart.CartItemAddResponseDto;
-import com.connect_us.backend.web.dto.v1.cart.CartItemAddResquestDto;
 import com.connect_us.backend.web.dto.v1.cart.CartItemDeleteResponseDto;
 import com.connect_us.backend.web.dto.v1.cart.CartItemListResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -41,7 +41,7 @@ public class CartService {
 
     // 카트에 물품 추가
     @Transactional
-    public CartItemAddResponseDto add(String accountEmail, CartItemAddResquestDto resquestDto) {
+    public CartItemAddResponseDto add(String accountEmail, CartItemAddRequestDto resquestDto) {
         Account account = accountRepository.findByEmail(accountEmail);
         Cart cart = account.getCart();
 
