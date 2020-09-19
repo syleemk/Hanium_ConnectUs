@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 public class FundingProduct extends BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "funding_product_id")
     private Long id; // PK
 

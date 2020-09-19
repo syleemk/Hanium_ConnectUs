@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class FundingOrderItem {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "funding_order_item_id")
     private Long id; //PK
 

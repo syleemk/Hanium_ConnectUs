@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 public class FundingProductUpdateRequestDto {
+
     private String name;
     private String image;
     private int goalPrice;

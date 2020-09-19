@@ -9,13 +9,13 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter @Setter
+@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class FundingCart extends BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "funding_cart_id")
     private Long id; // PK
 
@@ -31,5 +31,16 @@ public class FundingCart extends BaseEntity {
      * */
     public void update(List<FundingCartItem> fundingCartItems) {
         this.fundingCartItems = fundingCartItems;
+    }
+
+    public List<Long> getFundingProductIds() {
+        List<Long> list = new ArrayList<>();
+        this.fundingCartItems.forEach(e -> list.add(e.getFundingProduct().getId()));
+        return list;
+    }
+
+    @Builder
+    public FundingCart(Account account) {
+        this.account = account;
     }
 }

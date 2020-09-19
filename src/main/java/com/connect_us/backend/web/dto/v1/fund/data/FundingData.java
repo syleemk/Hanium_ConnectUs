@@ -1,4 +1,4 @@
-package com.connect_us.backend.web.dto.v1.fund;
+package com.connect_us.backend.web.dto.v1.fund.data;
 
 import com.connect_us.backend.domain.enums.FundingStatus;
 import com.connect_us.backend.domain.enums.Status;
@@ -23,7 +23,7 @@ public class FundingData {
     private String information;
     private LocalDateTime due;
     private FundingStatus fundingStatus;
-    private com.connect_us.backend.domain.enums.Status Status;
+    private Status Status;
 
     public FundingData(FundingProduct entity) {
         this.id = entity.getId();

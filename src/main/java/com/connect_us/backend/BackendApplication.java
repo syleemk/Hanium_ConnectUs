@@ -7,11 +7,11 @@ import com.connect_us.backend.domain.category.CategoryRepository;
 import com.connect_us.backend.domain.enums.Gender;
 import com.connect_us.backend.domain.enums.Role;
 import com.connect_us.backend.domain.enums.Social;
-import com.connect_us.backend.domain.fund.FundingProduct;
-import com.connect_us.backend.domain.fund.FundingProductRepository;
+import com.connect_us.backend.domain.fund.*;
 import com.connect_us.backend.domain.product.Product;
 import com.connect_us.backend.domain.product.ProductRepository;
 import com.connect_us.backend.service.cart.CartService;
+import com.connect_us.backend.service.fund.FundingCartService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -31,8 +31,8 @@ public class BackendApplication {
 
 
     @Bean
-    public CommandLineRunner runner(CartService cartService, AccountRepository accountRepository, ProductRepository productRepository,
-                                    CategoryRepository categoryRepository, FundingProductRepository fundingProductRepository, PasswordEncoder passwordEncoder) throws Exception {
+    public CommandLineRunner runner(CartService cartService, FundingCartService fundingCartService, AccountRepository accountRepository, ProductRepository productRepository,
+                                    CategoryRepository categoryRepository, FundingProductRepository fundingProductRepository,FundingCartRepository fundingCartRepository ,FundingCartItemRepository fundingCartItemRepository, PasswordEncoder passwordEncoder) throws Exception {
         return (args) -> {
             //initialize
             accountRepository.deleteAll();
@@ -58,7 +58,12 @@ public class BackendApplication {
             cartService.create(seller);
             cartService.create(admin);
 
-            IntStream.rangeClosed(1, 10).forEach(index -> {
+
+            //펀딩 장바구니 생성
+            fundingCartService.createFundingCart(seller.getEmail());
+            FundingCart fundingCart = fundingCartRepository.findByAccount_Email(seller.getEmail());
+
+            IntStream.rangeClosed(1, 15).forEach(index -> {
                 Category category = categoryRepository.save(Category.builder()
                         .name("카테고리" + index)
                         .build());
@@ -72,7 +77,7 @@ public class BackendApplication {
                         .build());
 
 
-                fundingProductRepository.save(FundingProduct.builder()
+                FundingProduct fundingProduct = FundingProduct.builder()
                         .category(category)
                         .account(seller)
                         .image("image"+index)
@@ -81,9 +86,18 @@ public class BackendApplication {
                         .goalPrice(1000)
                         .information("정보"+index)
                         .due(LocalDateTime.now())
-                        .build());
-                    }
-            );
+                        .build();
+
+                fundingProductRepository.save(fundingProduct);
+
+                if (index%2 == 0)
+                    fundingCartItemRepository.save(FundingCartItem.builder()
+                            .fundingCart(fundingCart)
+                            .fundingProduct(fundingProduct)
+                            .fundingInvestment(100*index)
+                            .build());
+            });
+
         };
     }
 
