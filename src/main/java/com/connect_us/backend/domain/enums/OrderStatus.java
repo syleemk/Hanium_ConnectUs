@@ -6,10 +6,11 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum OrderStatus {
-   DONE("DONE","결제완료"),
-   PREPARE("PREPARE", "배송준비중"),
-   SHIP("SHIP", "배송중"),
-   ARRIVE("ARRIVE","배송완료"),
+   PAYMENT_WAITING("PAYMENT_WAITING", "결제대기"),
+   PAYMENT_COMPLETE("PAYMENT_COMPLETE","결제완료"),
+   PREPARE_SHIPPING("PREPARE_SHIPPING", "배송준비중"),
+   SHIPPING("SHIPPING", "배송중"),
+   ARRIVED("ARRIVED","배송완료"),
    CANCLE("CANCLE","주문취소");
 
    private final String key;

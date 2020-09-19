@@ -5,6 +5,7 @@ import com.connect_us.backend.service.account.AccountService;
 import com.connect_us.backend.service.account.impl.AccountServiceImp;
 import com.connect_us.backend.service.order.OrderService;
 import com.connect_us.backend.web.dto.v1.order.OrderSaveRequestDto;
+import com.connect_us.backend.web.dto.v1.order.OrderSaveResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,16 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(path = "/v1/order")
+@RequestMapping(path = "/api/v1/orders")
 public class OrderApiController {
     private final AccountServiceImp accountService;
     private final OrderService orderService;
 
     @PostMapping
-    public String save(Authentication authentication, @RequestBody OrderSaveRequestDto requestDto) {
+    public OrderSaveResponseDto save(Authentication authentication, @RequestBody OrderSaveRequestDto requestDto) {
         Account account = accountService.findByEmail(authentication.getName());
-        orderService.save(account, requestDto);
-
-        return "성공";
+        return orderService.save(account, requestDto);
     }
 }

@@ -4,6 +4,7 @@ import com.connect_us.backend.domain.account.Account;
 import com.connect_us.backend.domain.account.AccountRepository;
 import com.connect_us.backend.domain.cart.CartItemRepository;
 import com.connect_us.backend.domain.cart.CartRepository;
+import com.connect_us.backend.domain.enums.OrderStatus;
 import com.connect_us.backend.domain.enums.OrderType;
 import com.connect_us.backend.domain.order.BaseOrder;
 import com.connect_us.backend.domain.order.BaseOrderRepository;
@@ -12,6 +13,7 @@ import com.connect_us.backend.domain.order.ProductOrderItemRepository;
 import com.connect_us.backend.domain.product.Product;
 import com.connect_us.backend.domain.product.ProductRepository;
 import com.connect_us.backend.web.dto.v1.order.OrderSaveRequestDto;
+import com.connect_us.backend.web.dto.v1.order.OrderSaveResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,7 +31,7 @@ public class OrderService {
     private final ProductOrderItemRepository productOrderItemRepository;
 
     @Transactional
-    public String save(Account account, OrderSaveRequestDto requestDto){
+    public OrderSaveResponseDto save(Account account, OrderSaveRequestDto requestDto){
         // 주문 생성
         BaseOrder productOrder = orderRepository.save(BaseOrder.builder()
                 .account(account)
@@ -41,18 +43,23 @@ public class OrderService {
        
         // 주문 상품 목록 생성
         List<OrderSaveRequestDto.OrderItem> productOrderItems = requestDto.getProducts();
-        for(OrderSaveRequestDto.OrderItem orderItem : productOrderItems){
-            Product product = productRepository.findById(orderItem.getProductId())
-                    .orElseThrow(() -> new IllegalArgumentException("해당 상품이 없습니다 id = " + orderItem.getProductId()));
 
+        productOrderItems.stream().forEach((item)-> {
+            Product product = productRepository.findById(item.getProductId())
+                    .orElseThrow(() -> new IllegalArgumentException("해당 상품이 없습니다 id = " + item.getProductId()));
+
+            // product 재고 수 줄이는 로직 추가되어야함 (계산 완료시)
             productOrderItemRepository.save(ProductOrderItem.builder()
                     .baseOrder(productOrder)
                     .product(product)
-                    .product_cnt(orderItem.getProductCnt())
+                    .product_cnt(item.getProductCnt())
                     .build());
-        }
-        
+        });
+
         // 주문서 작성 성공 리턴
-        return "성공";
+        return OrderSaveResponseDto.builder()
+                .success(true)
+                .message("주문서 작성 완료")
+                .build();
     }
 }
