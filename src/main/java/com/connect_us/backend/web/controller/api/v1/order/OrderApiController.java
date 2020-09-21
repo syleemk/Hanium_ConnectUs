@@ -4,14 +4,15 @@ import com.connect_us.backend.domain.account.Account;
 import com.connect_us.backend.service.account.AccountService;
 import com.connect_us.backend.service.account.impl.AccountServiceImp;
 import com.connect_us.backend.service.order.OrderService;
+import com.connect_us.backend.web.dto.v1.order.OrderListResponseDto;
 import com.connect_us.backend.web.dto.v1.order.OrderSaveRequestDto;
 import com.connect_us.backend.web.dto.v1.order.OrderSaveResponseDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
@@ -24,5 +25,12 @@ public class OrderApiController {
     public OrderSaveResponseDto save(Authentication authentication, @RequestBody OrderSaveRequestDto requestDto) {
         Account account = accountService.findByEmail(authentication.getName());
         return orderService.save(account, requestDto);
+    }
+
+    @GetMapping
+    public OrderListResponseDto findByAccount(Authentication authentication,
+                                              @PageableDefault (sort = {"modifiedDate"}, direction = Sort.Direction.DESC) Pageable pageable){
+        Account account = accountService.findByEmail(authentication.getName());
+        return orderService.findByAccount(account, pageable);
     }
 }

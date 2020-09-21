@@ -12,9 +12,11 @@ import com.connect_us.backend.domain.order.ProductOrderItem;
 import com.connect_us.backend.domain.order.ProductOrderItemRepository;
 import com.connect_us.backend.domain.product.Product;
 import com.connect_us.backend.domain.product.ProductRepository;
+import com.connect_us.backend.web.dto.v1.order.OrderListResponseDto;
 import com.connect_us.backend.web.dto.v1.order.OrderSaveRequestDto;
 import com.connect_us.backend.web.dto.v1.order.OrderSaveResponseDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -60,6 +62,16 @@ public class OrderService {
         return OrderSaveResponseDto.builder()
                 .success(true)
                 .message("주문서 작성 완료")
+                .build();
+    }
+
+    @Transactional
+    public OrderListResponseDto findByAccount(Account account, Pageable pageable){
+        List<BaseOrder> orderList = orderRepository.findByAccountId(pageable, account.getId()).getContent();
+        return OrderListResponseDto.builder()
+                .success(true)
+                .message("주문 목록 조회 성공")
+                .data(orderList)
                 .build();
     }
 }
