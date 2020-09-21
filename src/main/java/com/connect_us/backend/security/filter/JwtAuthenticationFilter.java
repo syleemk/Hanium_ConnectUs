@@ -3,9 +3,12 @@ package com.connect_us.backend.security.filter;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.connect_us.backend.security.config.JwtProperties;
+import com.connect_us.backend.security.config.JwtUtils;
 import com.connect_us.backend.security.dto.AccountPrincipal;
-import com.connect_us.backend.web.dto.v1.auth.LoginModel;
+import com.connect_us.backend.security.dto.LoginModel;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -16,6 +19,7 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.constraints.Null;
 import java.io.IOException;
 import java.util.Date;
 
@@ -24,11 +28,14 @@ import java.util.Date;
  *  make JWT token
  * **/
 
+@NoArgsConstructor
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private AuthenticationManager authenticationManager;
+    private JwtUtils jwtUtils;
 
-    public JwtAuthenticationFilter(AuthenticationManager authenticationManager) {
+    public JwtAuthenticationFilter(AuthenticationManager authenticationManager, JwtUtils jwtUtils) {
         this.authenticationManager = authenticationManager;
+        this.jwtUtils=jwtUtils;
     }
 
     /** v1/auth/login/normal
@@ -36,20 +43,42 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
      * **/
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
+        System.out.println("this is request: "+request);
+        System.out.println("this is response: "+response);
         LoginModel credentials =null;
         try{
             credentials= new ObjectMapper().readValue(request.getInputStream(), LoginModel.class);
         } catch(IOException e){
             e.printStackTrace();
         }
-
+        System.out.println(credentials);
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                 credentials.getUsername(),
                 credentials.getPassword()
         );
+        System.out.println(authenticationManager);
         Authentication auth = authenticationManager.authenticate(authenticationToken);
         return auth;
     }
+
+    public Authentication attemptAuthentication(LoginModel loginModel) throws AuthenticationException {
+        System.out.println("for oauth2 login");
+        LoginModel credentials =null;
+        try{
+            credentials= loginModel;
+        } catch(NullPointerException e){
+            e.printStackTrace();
+        }
+        System.out.println(credentials);
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
+                credentials.getUsername(),
+                credentials.getPassword()
+        );
+        System.out.println(authenticationManager);
+        Authentication auth = authenticationManager.authenticate(authenticationToken);
+        return auth;
+    }
+
 
     /** 로그인 성공시 수행 **/
     @Override
@@ -58,11 +87,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         AccountPrincipal principal = (AccountPrincipal)authResult.getPrincipal();
 
         /**create jwt token**/
-        String jwtToken = JWT.create()
-                .withSubject(principal.getUsername())
-                .withExpiresAt(new Date(System.currentTimeMillis() + JwtProperties.EXPIRATION_TIME))
-                .sign(Algorithm.HMAC512(JwtProperties.SECRET.getBytes()));
-
+        String jwtToken = jwtUtils.createToken(principal.getUsername());
         response.addHeader(JwtProperties.HEADER_STRING, JwtProperties.TOKEN_PREFIX + jwtToken);
     }
 }

@@ -1,17 +1,15 @@
 package com.connect_us.backend.security.dto;
 
 import com.connect_us.backend.domain.account.Account;
-import lombok.Getter;
 
 import java.io.Serializable;
 
-@Getter
-public class SessionUser implements Serializable {
-    private String name;
+public class SocialUser implements Serializable {
     private String email;
+    private String name;
 
-    public SessionUser(Account account){
-        this.name= account.getName();
+    public SocialUser(Account account){
         this.email=account.getEmail();
+        this.name=account.getName();
     }
 }

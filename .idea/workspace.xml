@@ -25,22 +25,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6979e3c9-81a6-49db-9c58-51e2683f64b7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/security/config/ModifiableHttpServletRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/security/dto/SocialUser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/BackendApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/BackendApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/DBInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/DBInit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/security/config/JwtUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/security/config/JwtUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/security/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/security/config/SecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/security/dto/OAuthAttributes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/security/dto/OAuthAttributes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/security/dto/SessionUser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/security/filter/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/security/filter/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/security/filter/JwtAuthorizationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/security/filter/JwtAuthorizationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/security/provider/JwtProvider.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/security/service/CustomOAuth2UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/security/service/CustomOAuth2UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/controller/api/v1/auth/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/controller/api/v1/auth/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/account/EditPasswordRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/account/EditPasswordRequestDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/account/ProfileResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/account/ProfileResponseDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/admin/RoleChangeResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/admin/RoleChangeResponseDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/admin/UserDeleteResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/admin/UserDeleteResponseDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/admin/UserListResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/admin/UserListResponseDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/auth/AccountDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/auth/AccountDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/auth/CreateUserResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/auth/CreateUserResponseDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/email/MailValidationRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/email/MailValidationRequestDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/controller/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/auth/LoginModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/security/dto/LoginModel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,6 +92,17 @@
     <property name="aspect.path.notification.shown" value="true" />
   </component>
   <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="BackendApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="backend.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.connect_us.backend.BackendApplication" />
@@ -117,6 +125,9 @@
       <workItem from="1600070978100" duration="1608000" />
       <workItem from="1600072638012" duration="2063000" />
       <workItem from="1600074754140" duration="326000" />
+      <workItem from="1600090693894" duration="1693000" />
+      <workItem from="1600401396867" duration="66000" />
+      <workItem from="1600589004096" duration="19638000" />
     </task>
     <servers />
   </component>
@@ -156,57 +167,61 @@
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="446" y="61" key="#com.intellij.ide.util.MemberChooser/0.0.1280.689@0.0.1280.689" timestamp="1600073843244" />
-    <state width="1237" height="141" key="GridCell.Tab.0.bottom" timestamp="1600075199929">
+    <state width="1237" height="318" key="GridCell.Tab.0.bottom" timestamp="1600658691131">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="141" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1600075199929" />
+    <state width="1237" height="318" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1600658691131" />
     <state width="1493" height="173" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1599926115721" />
-    <state width="1237" height="141" key="GridCell.Tab.0.center" timestamp="1600075199929">
+    <state width="1237" height="318" key="GridCell.Tab.0.center" timestamp="1600658691131">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="141" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1600075199929" />
+    <state width="1237" height="318" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1600658691131" />
     <state width="1493" height="173" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1599926115721" />
-    <state width="1237" height="141" key="GridCell.Tab.0.left" timestamp="1600075199929">
+    <state width="1237" height="318" key="GridCell.Tab.0.left" timestamp="1600658691130">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="141" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1600075199929" />
+    <state width="1237" height="318" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1600658691130" />
     <state width="1493" height="173" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1599926115720" />
-    <state width="1237" height="141" key="GridCell.Tab.0.right" timestamp="1600075199929">
+    <state width="1237" height="318" key="GridCell.Tab.0.right" timestamp="1600658691131">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="141" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1600075199929" />
+    <state width="1237" height="318" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1600658691131" />
     <state width="1493" height="173" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1599926115721" />
-    <state width="1237" height="141" key="GridCell.Tab.1.bottom" timestamp="1600075199930">
+    <state width="1237" height="318" key="GridCell.Tab.1.bottom" timestamp="1600658691131">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="141" key="GridCell.Tab.1.bottom/0.0.1280.689@0.0.1280.689" timestamp="1600075199930" />
+    <state width="1237" height="318" key="GridCell.Tab.1.bottom/0.0.1280.689@0.0.1280.689" timestamp="1600658691131" />
     <state width="1493" height="173" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1599926115721" />
-    <state width="1237" height="141" key="GridCell.Tab.1.center" timestamp="1600075199930">
+    <state width="1237" height="318" key="GridCell.Tab.1.center" timestamp="1600658691131">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="141" key="GridCell.Tab.1.center/0.0.1280.689@0.0.1280.689" timestamp="1600075199930" />
+    <state width="1237" height="318" key="GridCell.Tab.1.center/0.0.1280.689@0.0.1280.689" timestamp="1600658691131" />
     <state width="1493" height="173" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1599926115721" />
-    <state width="1237" height="141" key="GridCell.Tab.1.left" timestamp="1600075199930">
+    <state width="1237" height="318" key="GridCell.Tab.1.left" timestamp="1600658691131">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="141" key="GridCell.Tab.1.left/0.0.1280.689@0.0.1280.689" timestamp="1600075199930" />
+    <state width="1237" height="318" key="GridCell.Tab.1.left/0.0.1280.689@0.0.1280.689" timestamp="1600658691131" />
     <state width="1493" height="173" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1599926115721" />
-    <state width="1237" height="141" key="GridCell.Tab.1.right" timestamp="1600075199930">
+    <state width="1237" height="318" key="GridCell.Tab.1.right" timestamp="1600658691131">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="141" key="GridCell.Tab.1.right/0.0.1280.689@0.0.1280.689" timestamp="1600075199930" />
+    <state width="1237" height="318" key="GridCell.Tab.1.right/0.0.1280.689@0.0.1280.689" timestamp="1600658691131" />
     <state width="1493" height="173" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1599926115721" />
     <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1599924468623">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1599924468623" />
-    <state x="347" y="77" width="587" height="536" key="find.popup" timestamp="1600008161102">
+    <state x="347" y="77" width="587" height="536" key="find.popup" timestamp="1600609194458">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="347" y="77" width="587" height="536" key="find.popup/0.0.1280.689@0.0.1280.689" timestamp="1600008161102" />
+    <state x="347" y="77" width="587" height="536" key="find.popup/0.0.1280.689@0.0.1280.689" timestamp="1600609194458" />
     <state x="414" y="57" key="git4idea.branch.GitSmartOperationDialog" timestamp="1600070018120">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="414" y="57" key="git4idea.branch.GitSmartOperationDialog/0.0.1280.689@0.0.1280.689" timestamp="1600070018120" />
+    <state x="303" y="10" key="search.everywhere.popup" timestamp="1600656339651">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="303" y="10" key="search.everywhere.popup/0.0.1280.689@0.0.1280.689" timestamp="1600656339651" />
   </component>
 </project>
