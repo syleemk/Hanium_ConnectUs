@@ -1,14 +1,12 @@
 package com.connect_us.backend.security.filter;
 
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.algorithms.Algorithm;
 import com.connect_us.backend.security.config.JwtProperties;
 import com.connect_us.backend.security.config.JwtUtils;
 import com.connect_us.backend.security.dto.AccountPrincipal;
 import com.connect_us.backend.security.dto.LoginModel;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -19,15 +17,14 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.constraints.Null;
 import java.io.IOException;
-import java.util.Date;
 
 /** change username, password to JSON
  *  do Login
  *  make JWT token
  * **/
 
+@Slf4j
 @NoArgsConstructor
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private AuthenticationManager authenticationManager;
@@ -49,14 +46,13 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         try{
             credentials= new ObjectMapper().readValue(request.getInputStream(), LoginModel.class);
         } catch(IOException e){
-            e.printStackTrace();
+            log.error("Failed json parser: {}", request, e);
         }
         System.out.println(credentials);
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                 credentials.getUsername(),
                 credentials.getPassword()
         );
-        System.out.println(authenticationManager);
         Authentication auth = authenticationManager.authenticate(authenticationToken);
         return auth;
     }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
@@ -29,12 +30,10 @@ public class AdminController {
     @GetMapping("users")
     public UserListResponseDto userList(){
         List<Account> accounts = accountServiceImp.findAll();
-        List<Account> results = new ArrayList<>();
-        for (Account account : accounts){
-            if(account.getStatus().equals(Status.NORMAL)){
-                results.add(account);
-            }
-        }
+        //stream 사용
+        List<Account> results = accounts.stream()
+                                        .filter(account->account.getStatus()==Status.NORMAL)
+                                        .collect(Collectors.toList());
         return new UserListResponseDto( true, "사용자 불러오기 성공",results);
     }
 
@@ -46,16 +45,18 @@ public class AdminController {
     public RoleChangeResponseDto userRoleChange(@PathVariable Long id, @RequestBody RoleChangeRequestDto roleChangeRequestDto){
         Role before = accountServiceImp.findOne(id).getRole();
         Role after =Role.NOT_PERMITTED;
-        System.out.println(roleChangeRequestDto.getRole());
-        if(roleChangeRequestDto.getRole().equals("USER")){
-            after =Role.USER;
+        switch(roleChangeRequestDto.getRole()){
+            case "USER":
+                after = Role.USER;
+                break;
+            case "SELLER":
+                after=Role.SELLER;
+                break;
+            case "ADMIN":
+                after=Role.ADMIN;
+                break;
         }
-        else if(roleChangeRequestDto.getRole().equals("SELLER")){
-            after =Role.SELLER;
-        }
-        else if(roleChangeRequestDto.getRole().equals("ADMIN")){
-            after =Role.ADMIN;
-        }
+
         String email = accountServiceImp.findOne(id).getEmail();
         accountServiceImp.changeRole(email,after);
         return new RoleChangeResponseDto(true,"회원 권한 변경", before, after);
