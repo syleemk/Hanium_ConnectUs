@@ -4,7 +4,6 @@ import com.connect_us.backend.domain.account.Account;
 import com.connect_us.backend.domain.account.AccountRepository;
 import com.connect_us.backend.domain.cart.CartItemRepository;
 import com.connect_us.backend.domain.cart.CartRepository;
-import com.connect_us.backend.domain.enums.OrderStatus;
 import com.connect_us.backend.domain.enums.OrderType;
 import com.connect_us.backend.domain.order.BaseOrder;
 import com.connect_us.backend.domain.order.BaseOrderRepository;

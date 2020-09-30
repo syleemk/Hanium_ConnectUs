@@ -1,7 +1,6 @@
 package com.connect_us.backend.web.controller.api.v1.order;
 
 import com.connect_us.backend.domain.account.Account;
-import com.connect_us.backend.service.account.AccountService;
 import com.connect_us.backend.service.account.impl.AccountServiceImp;
 import com.connect_us.backend.service.order.OrderService;
 import com.connect_us.backend.web.dto.v1.order.OrderListResponseDto;
@@ -21,13 +20,13 @@ public class OrderApiController {
     private final AccountServiceImp accountService;
     private final OrderService orderService;
 
-    @PostMapping
+    @PostMapping("/products")
     public OrderSaveResponseDto save(Authentication authentication, @RequestBody OrderSaveRequestDto requestDto) {
         Account account = accountService.findByEmail(authentication.getName());
         return orderService.save(account, requestDto);
     }
 
-    @GetMapping
+    @GetMapping("/products")
     public OrderListResponseDto findByAccount(Authentication authentication,
                                               @PageableDefault (sort = {"modifiedDate"}, direction = Sort.Direction.DESC) Pageable pageable){
         Account account = accountService.findByEmail(authentication.getName());
