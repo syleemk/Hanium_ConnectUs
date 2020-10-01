@@ -18,6 +18,7 @@ public class OrderSaveRequestDto {
     // 여러 개의 상품을 한번에 주문하는 경우가 있기에, 주문 상품들을 배열 형태로 전달받는다.
     private List<OrderItem> products;
 
+    // 추후 분리해야할 수도, (내부클래스가 클래스 외부에서 사용되면 안됨)
     @Getter
     @NoArgsConstructor
     public static class OrderItem {
