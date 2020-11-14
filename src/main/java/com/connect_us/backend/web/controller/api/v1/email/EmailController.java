@@ -57,7 +57,8 @@ public class EmailController {
                     message = "메일 발송 완료";
                     return new MailValidationResponseDto(true,message);
                 } catch (MailException mailException) {
-                    System.out.println(mailException);
+                    //log (data binding+ exception stack trace)
+                    log.error("request data: {}", request, mailException);
                     message = "메일 발송 실패";
                     return new MailValidationResponseDto(false,message);
                 }
@@ -66,7 +67,7 @@ public class EmailController {
                 return new MailValidationResponseDto(false,message);
             }
         } catch (NullPointerException nullPointerException) {
-            nullPointerException.printStackTrace();
+            log.error("token doesn't exist: {}", nullPointerException);
             message = "토큰 만료 또는 존재하지 않음";
             return new MailValidationResponseDto(false,message);
         }

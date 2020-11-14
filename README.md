@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ConnectUS
 **한이음 프로젝트-소상공인 전용 온라인 판매+펀딩 플랫폼🙌**
 1. 쇼핑몰 기능
@@ -31,3 +32,25 @@ by 한비(Admin, User), 수영(Product, Cart, Order), 현준(Funding)
 
 
 
+=======
+# USER
+- [x] POST v1/auth/users
+- [x] POST v1/auth/login
+- [ ] GET v1/auth/logout
+- [x] GET v1/users/me
+- [x] PUT v1/users/me
+- [x] PUT v1/users/me/password
+- [x] GET v1/email/userVerification
+- [x] POST v1/email/password
+
+# ADMIN
+- [x] GET v1/admin/users
+- [x] POST v1/admin/users
+- [x] POST v1/admin/users/delete
+
+# TODO
+OAuth2 API <br/>
+Redis
+
+test test
+>>>>>>> feature/v2/user

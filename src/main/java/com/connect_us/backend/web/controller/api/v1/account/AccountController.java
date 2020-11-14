@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 public class AccountController {
     private final AccountServiceImp accountServiceImp;
-
     @GetMapping("me") //유저 한명 프로필 조회
     public ProfileResponseDto getProfile(){
         try {
@@ -46,5 +45,4 @@ public class AccountController {
         accountServiceImp.updatePassword(request.getPassword());
         return new EditResponseDto(true,"비밀번호 수정 완료");
     }
-
 }

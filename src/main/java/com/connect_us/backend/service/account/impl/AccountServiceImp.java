@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional(readOnly = true)
+@Transactional
 @RequiredArgsConstructor
 public class AccountServiceImp implements AccountService {
     private final AccountRepository accountRepository;
@@ -36,7 +36,6 @@ public class AccountServiceImp implements AccountService {
      * @param //infoDto 회원정보가 들어있는 DTO
      * @return 저장되는 회원의 PK
      */
-    @Transactional
     public Long save(AccountDto accountDto){
         validateDuplicate(accountDto);
         validateDuplicateName(accountDto);
@@ -59,14 +58,13 @@ public class AccountServiceImp implements AccountService {
                 .password(accountDto.getPassword()).build()).getId();
     }
 
-    @Transactional
+
     public void changeRole(String email, Role role){
         Account account = accountRepository.findByEmail(email);
         account.setRole(role);
     }
 
     //회원정보 업데이트
-    @Transactional
     public void update(String name, String addr, String phone, Gender gender){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String email = authentication.getName();
@@ -79,7 +77,6 @@ public class AccountServiceImp implements AccountService {
     }
 
     //비밀번호 업데이트
-    @Transactional
     public void updatePassword(String password){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String email = authentication.getName();
@@ -89,7 +86,6 @@ public class AccountServiceImp implements AccountService {
     }
 
     // 회원 삭제(Status 변경)
-    @Transactional
     public void deleteUser(Long id){
         Account account = accountRepository.findById(id).orElse(null);
         account.softDelete();
