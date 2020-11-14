@@ -10,8 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class CustomAccessDeniedHandler implements AccessDeniedHandler {
-    public void handle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AccessDeniedException e) throws IOException, ServletException {
-        httpServletResponse.setStatus(HttpStatus.FORBIDDEN.value());
-        httpServletResponse.getWriter().append("Access denied");
+    @Override
+    public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException e) throws IOException, ServletException {
+        String errorMessage = "Access denied";
+        //response 상수 사용
+        response.setStatus(HttpStatus.FORBIDDEN.value());
+        response.getWriter().append(errorMessage);
     }
 }
