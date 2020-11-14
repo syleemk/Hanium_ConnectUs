@@ -1,5 +1,6 @@
 package com.connect_us.backend.security.config;
 
+import com.connect_us.backend.domain.account.Account;
 import com.connect_us.backend.domain.account.AccountRepository;
 import com.connect_us.backend.domain.enums.Role;
 import com.connect_us.backend.security.filter.JwtAuthenticationFilter;
@@ -33,10 +34,9 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 @EnableJpaAuditing
 @EnableWebSecurity //Spring Security 활성화
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    private final AccountServiceImp accountServiceImp;
     private final AccountPrincipalDetailService accountPrincipalDetailService;
     private final CustomOAuth2UserService customOAuth2UserService;
-    private final JwtUtils jwtUtils;
+    private final AccountRepository accountRepository;
 
     @Bean //Security에서 제공하는 비밀번호 암호화 객체
     public PasswordEncoder passwordEncoder() {
@@ -77,7 +77,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                             .userService(customOAuth2UserService);
         http
                 .addFilterAt(getAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
-                .addFilter(new JwtAuthorizationFilter(authenticationManager(), this.accountServiceImp, this.jwtUtils));
+                .addFilter(new JwtAuthorizationFilter(authenticationManager(),this.accountRepository));
 
     }
 
@@ -95,7 +95,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     protected JwtAuthenticationFilter getAuthenticationFilter() throws Exception {
-        JwtAuthenticationFilter authenticationFilter = new JwtAuthenticationFilter(authenticationManager(), this.jwtUtils);
+        JwtAuthenticationFilter authenticationFilter = new JwtAuthenticationFilter(authenticationManager());
         try {
             authenticationFilter.setFilterProcessesUrl("/api/v1/auth/login");
             authenticationFilter.setUsernameParameter("email");
