@@ -29,13 +29,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Collections;
 /*소셜 로그인으로 가져온 사용자 정보 기반으로 가입, 정보수정, 세션 저장 등의 기능 지원 */
-
+// failed "/oauth2/authorization/google"
 @WebServlet(initParams={@WebInitParam(name="request", value=" ")})
 @RequiredArgsConstructor
 @Service
 public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
     private final AccountRepository accountRepository;
-    private final JwtUtils jwtUtils;
     private final HttpServletResponse httpServletResponse;
     private final HttpServletRequest httpServletRequest;
 
