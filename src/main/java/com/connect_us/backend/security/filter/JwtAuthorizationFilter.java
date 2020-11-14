@@ -4,10 +4,7 @@ import com.auth0.jwt.JWT;
 import com.connect_us.backend.domain.account.Account;
 import com.connect_us.backend.domain.account.AccountRepository;
 import com.connect_us.backend.security.config.JwtProperties;
-import com.connect_us.backend.security.config.JwtUtils;
 import com.connect_us.backend.security.dto.AccountPrincipal;
-import com.connect_us.backend.service.account.impl.AccountServiceImp;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -64,11 +61,9 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
      * Password Authentication
      **/
     private Authentication getUsernamePasswordAuthentication(HttpServletRequest request) {
-        System.out.println("getgetget");
         //Get JWT token
         String token = request.getHeader(JwtProperties.HEADER_STRING)
                 .replace(JwtProperties.TOKEN_PREFIX, "");
-        System.out.println(token);
         if (Objects.isNull(token)) {
             log.info("token doesn't exist");
             return null;
@@ -91,7 +86,6 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
             log.info("username is not in db");
             return null;
         }
-        System.out.println(account.getRole());
         AccountPrincipal accountPrincipal = new AccountPrincipal(account);
         UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(username, null, accountPrincipal.getAuthorities());
         return auth;
