@@ -1,9 +1,11 @@
-<<<<<<< HEAD
 # ConnectUS
 **한이음 프로젝트-소상공인 전용 온라인 판매+펀딩 플랫폼🙌**
-1. 쇼핑몰 기능
+
+
+**1. 쇼핑몰 기능**
 - 소상공인들이 온라인에서 물품을 등록하고 판매할 수 있음
-2. 크라우드 도네이션 기능
+
+**2. 크라우드 도네이션 기능**
 - 재난 발생 시 특정 지역에 필요한 물품을 소상공인에게서 얻고 소비자가 크라우드 펀딩 형식으로 가격을 지불한 후 재난 지역에 배송
 
 * * *
@@ -20,8 +22,18 @@
 ### 개발도구
 Spring Boot, JPA, React.js, Docker, MariaDB
 
+### 아키텍처
+![image](https://user-images.githubusercontent.com/36736904/99148187-ba407300-26c9-11eb-97bc-65efe1a9c1a2.png)
+
 ### 구현 화면
 by 정은, 인환   
+메인 화면
+
+![image](https://user-images.githubusercontent.com/36736904/99148255-08ee0d00-26ca-11eb-9849-3f4c3751be0d.png)
+
+펀딩 페이지
+
+![image](https://user-images.githubusercontent.com/36736904/99148288-33d86100-26ca-11eb-850f-1815131c1e12.png)
 
 ### API
 by 한비(Admin, User), 수영(Product, Cart, Order), 현준(Funding)   
@@ -32,25 +44,4 @@ by 한비(Admin, User), 수영(Product, Cart, Order), 현준(Funding)
 
 
 
-=======
-# USER
-- [x] POST v1/auth/users
-- [x] POST v1/auth/login
-- [ ] GET v1/auth/logout
-- [x] GET v1/users/me
-- [x] PUT v1/users/me
-- [x] PUT v1/users/me/password
-- [x] GET v1/email/userVerification
-- [x] POST v1/email/password
 
-# ADMIN
-- [x] GET v1/admin/users
-- [x] POST v1/admin/users
-- [x] POST v1/admin/users/delete
-
-# TODO
-OAuth2 API <br/>
-Redis
-
-test test
->>>>>>> feature/v2/user
