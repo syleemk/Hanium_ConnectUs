@@ -60,7 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)//rest: stateless, cookie에 세션 저장 x
                 .and()
                     .authorizeRequests()
-                    .antMatchers("/", "/oauth2/**", "/login/**", "/h2-console/**", "/api/v1/auth/users", "/api/v1/auth/login*", "/api/v1/email/userVerification/**","/api/v1/products/**").permitAll()
+                    .antMatchers("/", "/oauth2/**", "/login/**", "/h2-console/**", "/api/v1/auth/users", "/api/v1/auth/login*", "/api/v1/email/userVerification/**","/api/v1/products/**","/api/v1/fund/**","/api/v1/fund/products/*","/api/v1/fund/carts/*").permitAll()
                     .antMatchers("/api/v1/admin/**").hasRole(Role.ADMIN.name()) //관리자페이지 권한
                     .antMatchers("/api/v1/seller/**").hasRole(Role.SELLER.name())//판매자페이지 권한
                     .antMatchers("/api/v1/users/**").hasRole(Role.USER.name())

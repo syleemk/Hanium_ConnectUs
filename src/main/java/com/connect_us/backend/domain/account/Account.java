@@ -5,6 +5,7 @@ import com.connect_us.backend.domain.cart.Cart;
 import com.connect_us.backend.domain.enums.Gender;
 import com.connect_us.backend.domain.enums.Role;
 import com.connect_us.backend.domain.enums.Social;
+import com.connect_us.backend.domain.fund.FundingCart;
 import com.connect_us.backend.domain.order.BaseOrder;
 import com.connect_us.backend.domain.cart.Cart;
 import lombok.Builder;
@@ -55,6 +56,9 @@ public class Account extends BaseEntity {
     private Long point;
     @OneToOne(mappedBy = "account")//cart table의 user에 의해 mapping
     private Cart cart;
+
+    @OneToOne(mappedBy = "account")//cart table의 user에 의해 mapping
+    private FundingCart fundingCart;
 
     @OneToMany(mappedBy = "account") //order table의 account 의해 mapping
     private List<BaseOrder> baseOrder = new ArrayList<>();

@@ -7,15 +7,18 @@ import com.connect_us.backend.domain.category.CategoryRepository;
 import com.connect_us.backend.domain.enums.Gender;
 import com.connect_us.backend.domain.enums.Role;
 import com.connect_us.backend.domain.enums.Social;
+import com.connect_us.backend.domain.fund.*;
 import com.connect_us.backend.domain.product.Product;
 import com.connect_us.backend.domain.product.ProductRepository;
 import com.connect_us.backend.service.cart.CartService;
+import com.connect_us.backend.service.fund.FundingCartService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -26,9 +29,10 @@ public class BackendApplication {
         SpringApplication.run(BackendApplication.class, args);
     }
 
+
     @Bean
-    public CommandLineRunner runner(CartService cartService, AccountRepository accountRepository, ProductRepository productRepository,
-                                    CategoryRepository categoryRepository, PasswordEncoder passwordEncoder) throws Exception {
+    public CommandLineRunner runner(CartService cartService, FundingCartService fundingCartService, AccountRepository accountRepository, ProductRepository productRepository,
+                                    CategoryRepository categoryRepository, FundingProductRepository fundingProductRepository,FundingCartRepository fundingCartRepository ,FundingCartItemRepository fundingCartItemRepository, PasswordEncoder passwordEncoder) throws Exception {
         return (args) -> {
 //            //initialize
 //            accountRepository.deleteAll();
@@ -57,20 +61,48 @@ public class BackendApplication {
             cartService.create(seller);
             cartService.create(admin);
 
-            IntStream.rangeClosed(1, 100).forEach(index -> {
-                        Category category = categoryRepository.save(Category.builder()
-                                .name("카테고리" + index)
-                                .build());
 
-                        productRepository.save(Product.builder()
-                                .category(category)
-								.account(seller)
-								.name("상품" + index)
-								.price(1000)
-								.stock(40)
-								.build());
-                    }
-            );
+            //펀딩 장바구니 생성
+            fundingCartService.createFundingCart(seller.getEmail());
+            FundingCart fundingCart = fundingCartRepository.findByAccount_Email(seller.getEmail());
+
+            IntStream.rangeClosed(1, 15).forEach(index -> {
+                Category category = categoryRepository.save(Category.builder()
+                        .name("카테고리" + index)
+                        .build());
+
+                productRepository.save(Product.builder()
+                        .category(category)
+                        .account(seller)
+                        .name("상품" + index)
+                        .price(1000)
+                        .stock(40)
+                        .build());
+
+
+                FundingProduct fundingProduct = FundingProduct.builder()
+                        .category(category)
+                        .account(seller)
+                        .image("image"+index)
+                        .name("펀드상품"+index)
+                        .address("주소"+index)
+                        .goalPrice(1000)
+                        .information("정보"+index)
+                        .due(LocalDateTime.now())
+                        .build();
+
+                fundingProductRepository.save(fundingProduct);
+
+                if (index%2 == 0)
+                    fundingCartItemRepository.save(FundingCartItem.builder()
+                            .fundingCart(fundingCart)
+                            .fundingProduct(fundingProduct)
+                            .fundingInvestment(100*index)
+                            .build());
+            });
+
         };
     }
+
+
 }

@@ -1,29 +1,29 @@
 package com.connect_us.backend.service.fund;
 
+import com.connect_us.backend.domain.fund.FundingProduct;
+import com.connect_us.backend.service.fund.impl.FundingProductServiceImpl;
 import com.connect_us.backend.web.controller.api.v1.fund.FundingProductApiController;
-import com.connect_us.backend.web.dto.v1.fund.product.req.FundingProductCreateRequestDto;
-import com.connect_us.backend.web.dto.v1.fund.product.res.FundingProductListResponseDto;
-import com.connect_us.backend.web.dto.v1.fund.product.res.FundingProductResponseDto;
-import com.connect_us.backend.web.dto.v1.fund.product.req.FundingProductUpdateResquestDto;
-
-import java.util.List;
+import com.connect_us.backend.web.dto.v1.fund.req.product.*;
+import com.connect_us.backend.web.dto.v1.fund.res.product.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /**
- * @see com.connect_us.backend.service.fund.impl.FundingProductServiceImpl 에서 구현
+ * @see FundingProductServiceImpl 에서 구현
  * @see FundingProductApiController 에서 사용
  * */
 public interface FundingProductService {
 
-    Long save(FundingProductCreateRequestDto createRequestDto);
+    FundingProductSaveResponseDto save(String accountEmail,FundingProductSaveRequestDto requestDto);
 
-    Long update(Long id, FundingProductUpdateResquestDto resquestDto);
+    FundingProductUpdateResponseDto update(Long id, FundingProductUpdateRequestDto requestDto);
 
-    void delete(Long id);
+    FundingProductDeleteResponseDto delete(Long id);
 
-    FundingProductResponseDto findById(Long id);
+    FundingProductFindResponseDto findById(Long id);
 
-    List<FundingProductListResponseDto> findByNameContaining(String name);
+    Page<FundingProduct> findByNameContaining(String name, Pageable pageable);
 
-    List<FundingProductListResponseDto> findAllDesc();
+    Page<FundingProduct> findAll(Pageable pageable);
 
 }

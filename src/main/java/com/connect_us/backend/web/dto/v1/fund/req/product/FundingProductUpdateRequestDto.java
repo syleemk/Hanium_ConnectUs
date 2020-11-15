@@ -1,4 +1,4 @@
-package com.connect_us.backend.web.dto.v1.fund.product.req;
+package com.connect_us.backend.web.dto.v1.fund.req.product;
 
 import com.connect_us.backend.domain.enums.FundingStatus;
 import lombok.Builder;
@@ -9,7 +9,8 @@ import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor
-public class FundingProductUpdateResquestDto {
+public class FundingProductUpdateRequestDto {
+
     private String name;
     private String image;
     private int goalPrice;
@@ -19,7 +20,7 @@ public class FundingProductUpdateResquestDto {
     private FundingStatus fundingStatus;
 
     @Builder
-    public FundingProductUpdateResquestDto(String name, String image, int goalPrice, String address, String information, LocalDateTime due, FundingStatus fundingStatus) {
+    public FundingProductUpdateRequestDto(String name, String image, int goalPrice, String address, String information, LocalDateTime due, FundingStatus fundingStatus) {
         this.name = name;
         this.image = image;
         this.goalPrice = goalPrice;

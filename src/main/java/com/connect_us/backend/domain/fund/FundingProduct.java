@@ -4,6 +4,7 @@ import com.connect_us.backend.domain.BaseEntity;
 import com.connect_us.backend.domain.account.Account;
 import com.connect_us.backend.domain.category.Category;
 import com.connect_us.backend.domain.enums.FundingStatus;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,12 +13,12 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class FundingProduct extends BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "funding_product_id")
     private Long id; // PK
 
@@ -54,14 +55,16 @@ public class FundingProduct extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private FundingStatus fundingStatus = FundingStatus.NORMAL;
 
-    @OneToOne(mappedBy = "fundingProduct", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "fundingProduct")
     private FundingCartItem fundingCartItem; // funding_cart_item table의 fundingProduct 의해 mapping
 
-    @OneToOne(mappedBy = "fundingProduct", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "fundingProduct")
     private FundingOrderItem fundingOrderItem; // funding_order_item table의 fundingProduct 의해 mapping
 
     @Builder
-    public FundingProduct(String name,String image,int goalPrice,int currentPrice,String address,String information,LocalDateTime due) {
+    public FundingProduct(Category category,Account account, String name,String image,int goalPrice,int currentPrice,String address,String information,LocalDateTime due) {
+        this.category = category;
+        this.account = account;
         this.name = name;
         this.image = image;
         this.goalPrice = goalPrice;
@@ -75,14 +78,13 @@ public class FundingProduct extends BaseEntity {
      * currentPrice 정보는 변경불가
      * @see com.connect_us.backend.service.fund.impl.FundingProductServiceImpl
      * */
-    public void update(String name,String image,int goalPrice,String address,String information,LocalDateTime due,FundingStatus fundingStatus) {
+    public void update(String name,String image,int goalPrice,String address,String information,LocalDateTime due) {
         this.name = name;
         this.image = image;
         this.goalPrice = goalPrice;
         this.address = address;
         this.information = information;
         this.due = due;
-        this.fundingStatus = fundingStatus;
     }
 
 }

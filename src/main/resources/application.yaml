@@ -13,10 +13,9 @@ spring:
   jpa:
     properties:
       hibernate:
-        ddl-auto: create-drop
+        ddl-auto: create
         show-sql: true
         format-sql: true
-
   session:
     store-type: jdbc
   profiles.include: oauth, mail, jwt
@@ -26,3 +25,4 @@ logging.level:
   org.hibernate.SQL: debug
   org.springframework:
     security: DEBUG
+  root: info

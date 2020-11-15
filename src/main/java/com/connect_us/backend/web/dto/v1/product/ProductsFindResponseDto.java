@@ -8,6 +8,7 @@ import lombok.Getter;
 // list 형식으로 표시할 정보만 넣어둔다
 @Getter
 public class ProductsFindResponseDto extends ResponseDto {
+
     private Long id;
     private String account;
     private String name;
