@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -8,74 +11,31 @@
       </path>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
         <item name="GROUP_NODE:feature" type="e8cecc67:BranchNodeDescriptor" />
       </path>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
         <item name="GROUP_NODE:feature" type="e8cecc67:BranchNodeDescriptor" />
         <item name="GROUP_NODE:v2" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:feature" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
-    <select>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:feature" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:v2" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:feature/v2/fund" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </select>
+    <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6979e3c9-81a6-49db-9c58-51e2683f64b7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/fund/data/FundingCartItemData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/fund/req/cart/FundingCartItemAddRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/fund/req/cart/FundingCartItemUpdateRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/fund/res/cart/FundingCartCreateResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/fund/res/cart/FundingCartItemAddResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/fund/res/cart/FundingCartItemDeleteResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/fund/res/cart/FundingCartItemListResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/fund/res/cart/FundingCartItemUpdateResponseDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/BackendApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/BackendApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/domain/account/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/domain/account/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/domain/fund/FundingCart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/domain/fund/FundingCart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/domain/fund/FundingCartItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/domain/fund/FundingCartItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/domain/fund/FundingCartItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/domain/fund/FundingCartItemRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/domain/fund/FundingCartRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/domain/fund/FundingCartRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/domain/fund/FundingOrderItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/domain/fund/FundingOrderItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/domain/fund/FundingProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/domain/fund/FundingProduct.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/security/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/security/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/service/fund/FundingCartItemService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/service/fund/FundingCartService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/service/fund/FundingCartService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/service/fund/impl/FundingCartItemServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/service/fund/impl/FundingCartServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/service/fund/impl/FundingCartServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/controller/api/v1/fund/FundingCartApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/controller/api/v1/fund/FundingCartApiController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/controller/api/v1/fund/FundingCartItemApiController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/fund/FundingData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/fund/data/FundingData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/fund/req/product/FundingProductUpdateRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/fund/req/product/FundingProductUpdateRequestDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/fund/res/product/FundingProductFindResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/fund/res/product/FundingProductFindResponseDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/fund/res/product/FundingProductListFindResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/fund/res/product/FundingProductListFindResponseDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/fund/res/product/FundingProductUpdateResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/connect_us/backend/web/dto/v1/fund/res/product/FundingProductUpdateResponseDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yaml" afterDir="false" />
-    </list>
+    <list default="true" id="6979e3c9-81a6-49db-9c58-51e2683f64b7" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -169,7 +129,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="false" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -212,7 +172,7 @@
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
