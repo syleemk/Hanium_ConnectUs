@@ -3,8 +3,6 @@ package com.connect_us.backend.security.service;
 import com.connect_us.backend.domain.account.Account;
 import com.connect_us.backend.domain.account.AccountRepository;
 import com.connect_us.backend.security.config.JwtProperties;
-import com.connect_us.backend.security.config.JwtUtils;
-import com.connect_us.backend.security.config.ModifiableHttpServletRequest;
 import com.connect_us.backend.security.dto.AccountPrincipal;
 import com.connect_us.backend.security.dto.LoginModel;
 import com.connect_us.backend.security.dto.OAuthAttributes;

@@ -34,18 +34,19 @@ public class BackendApplication {
     public CommandLineRunner runner(CartService cartService, FundingCartService fundingCartService, AccountRepository accountRepository, ProductRepository productRepository,
                                     CategoryRepository categoryRepository, FundingProductRepository fundingProductRepository,FundingCartRepository fundingCartRepository ,FundingCartItemRepository fundingCartItemRepository, PasswordEncoder passwordEncoder) throws Exception {
         return (args) -> {
-//            //initialize
-//            accountRepository.deleteAll();
-//            productRepository.deleteAll();
-//            categoryRepository.deleteAll();
-//            productRepository.deleteAll();
+            //initialize
+            accountRepository.deleteAll();
+            productRepository.deleteAll();
+            categoryRepository.deleteAll();
+            productRepository.deleteAll();
 
             //user, admin+password encode
             Account user = new Account("user", passwordEncoder.encode("1234"),"user", Social.FALSE, Gender.MALE, Role.USER);
             Account seller = new Account("seller", passwordEncoder.encode("1234"),"seller",Social.FALSE, Gender.MALE, Role.SELLER);
             Account admin = new Account("admin", passwordEncoder.encode("1234"),"admin",Social.FALSE,Gender.MALE, Role.ADMIN);
+            Account h = new Account("hanb222@gmail.com", passwordEncoder.encode("1234"),"hanbi",Social.FALSE,Gender.FEMALE, Role.USER);
 
-            List<Account> accounts = Arrays.asList(user,seller,admin);
+            List<Account> accounts = Arrays.asList(user,seller,admin,h);
             accountRepository.saveAll(accounts);
 
             accountRepository.save(Account.builder()

@@ -81,8 +81,7 @@ public class AccountServiceImp implements AccountService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String email = authentication.getName();
         Account account = accountRepository.findByEmail(email);
-        String encodedPassword = passwordEncoder.encode(password);
-        account.setPassword(encodedPassword);
+        account.setPassword(password);
     }
 
     // 회원 삭제(Status 변경)
@@ -94,7 +93,7 @@ public class AccountServiceImp implements AccountService {
     //중복 회원 검사
     private void validateDuplicate(AccountDto accountDto){
         Account findAccount = accountRepository.findByEmail(accountDto.getEmail());
-        if(findAccount!=null){
+        if(findAccount != null ) {
             throw new IllegalStateException("이미 존재하는 회원 이메일 입니다.");
         }
     }

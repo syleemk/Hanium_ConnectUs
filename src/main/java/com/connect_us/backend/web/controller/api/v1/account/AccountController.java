@@ -32,16 +32,14 @@ public class AccountController {
     }
 
     @PutMapping("me")
-    public EditResponseDto editProfile(
-            @RequestBody EditUserRequestDto request){
+    public EditResponseDto editProfile(@RequestBody EditUserRequestDto request){
         accountServiceImp.update(request.getName(), request.getAddr(),
                                 request.getPhone(),request.getGender());
         return new EditResponseDto(true,"수정 완료");
     }
 
     @PutMapping("me/password") //비밀번호 수정
-    public EditResponseDto editPassword(
-            @RequestBody EditPasswordRequestDto request){
+    public EditResponseDto editPassword(@RequestBody EditPasswordRequestDto request){
         accountServiceImp.updatePassword(request.getPassword());
         return new EditResponseDto(true,"비밀번호 수정 완료");
     }

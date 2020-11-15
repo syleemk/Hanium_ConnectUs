@@ -7,7 +7,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 import java.util.Map;
-
+/**failed*/
 //social dto
 @Getter
 public class OAuthAttributes {

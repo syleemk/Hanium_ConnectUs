@@ -46,8 +46,6 @@ public class EmailController {
         try {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             String getEmail = authentication.getName();
-            System.out.println("이메일이메일:" + getEmail);
-            System.out.println("디비이메일: " + request.getEmail());
 
             if (getEmail.equals(request.getEmail())) {
                 String name = accountServiceImp.findByEmail(request.getEmail()).getName();
