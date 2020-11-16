@@ -2,20 +2,16 @@ package com.connect_us.backend.security.service;
 
 import com.connect_us.backend.domain.account.Account;
 import com.connect_us.backend.domain.account.AccountRepository;
-import com.connect_us.backend.security.config.JwtProperties;
-import com.connect_us.backend.security.config.JwtUtils;
-import com.connect_us.backend.security.config.ModifiableHttpServletRequest;
-import com.connect_us.backend.security.dto.AccountPrincipal;
 import com.connect_us.backend.security.dto.LoginModel;
 import com.connect_us.backend.security.dto.OAuthAttributes;
-import com.connect_us.backend.security.dto.SocialUser;
-import com.connect_us.backend.security.filter.JwtAuthenticationFilter;
+import com.connect_us.backend.service.account.impl.AccountServiceImp;
+import com.connect_us.backend.web.dto.v1.auth.AccountDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
+import org.springframework.security.oauth2.core.OAuth2AccessToken;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -35,8 +31,6 @@ import java.util.Collections;
 @Service
 public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
     private final AccountRepository accountRepository;
-    private final HttpServletResponse httpServletResponse;
-    private final HttpServletRequest httpServletRequest;
 
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
@@ -52,6 +46,8 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         //소셜 로그인 진행시 키가 되는 필드값, pk (구글은 sub로 기본지원, 나머지는 기본 지원 안함)
         String userNameAttributeName = userRequest.getClientRegistration().getProviderDetails()
                 .getUserInfoEndpoint().getUserNameAttributeName();
+
+        String uid = userRequest.getClientRegistration().getClientId();
 
         //OAuth2UserService를 통해 가져온 OAuth2User의 attribute 담음
         OAuthAttributes attributes =
@@ -75,9 +71,12 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         if(account == null || account.getEmail().isEmpty()){
             account = attributes.toEntity();
             accountRepository.save(account);
+            System.out.println(account);
         }
-        //로그인 해야 함
-       LoginModel loginModel=new LoginModel(account.getEmail(), null);
+
+        //토큰 얻기
+
+       //LoginModel loginModel = new LoginModel(account.getEmail(), null);
 
         return account;
     }

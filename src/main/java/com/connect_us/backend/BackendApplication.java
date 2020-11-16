@@ -9,7 +9,6 @@ import com.connect_us.backend.domain.enums.Role;
 import com.connect_us.backend.domain.enums.Social;
 import com.connect_us.backend.domain.product.Product;
 import com.connect_us.backend.domain.product.ProductRepository;
-import com.connect_us.backend.security.config.JwtUtils;
 import com.connect_us.backend.service.cart.CartService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

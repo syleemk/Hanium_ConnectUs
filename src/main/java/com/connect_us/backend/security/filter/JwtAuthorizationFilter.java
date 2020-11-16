@@ -4,7 +4,6 @@ import com.auth0.jwt.JWT;
 import com.connect_us.backend.domain.account.Account;
 import com.connect_us.backend.domain.account.AccountRepository;
 import com.connect_us.backend.security.config.JwtProperties;
-import com.connect_us.backend.security.config.JwtUtils;
 import com.connect_us.backend.security.dto.AccountPrincipal;
 import com.connect_us.backend.service.account.impl.AccountServiceImp;
 import lombok.RequiredArgsConstructor;

@@ -2,6 +2,7 @@ package com.connect_us.backend.web.controller.api.v1.account;
 
 import com.connect_us.backend.domain.account.Account;
 import com.connect_us.backend.service.account.impl.AccountServiceImp;
+import com.connect_us.backend.web.dto.v1.ResponseDto;
 import com.connect_us.backend.web.dto.v1.account.EditPasswordRequestDto;
 import com.connect_us.backend.web.dto.v1.account.EditUserRequestDto;
 import com.connect_us.backend.web.dto.v1.account.EditResponseDto;

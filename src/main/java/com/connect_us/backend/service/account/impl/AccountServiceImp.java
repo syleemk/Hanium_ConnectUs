@@ -49,6 +49,7 @@ public class AccountServiceImp implements AccountService {
         else{
             gender=Gender.FEMALE;
         }
+
         return accountRepository.save(Account.builder()
                 .email(accountDto.getEmail())
                 .name(accountDto.getName())
