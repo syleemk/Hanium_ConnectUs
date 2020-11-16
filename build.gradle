@@ -36,7 +36,6 @@ dependencies {
 	/**Security**/
 	compile('org.springframework.boot:spring-boot-starter-security')//인증 관련
 	compile('org.springframework.boot:spring-boot-starter-oauth2-client')//client 자동 인증 설정
-	compile('org.thymeleaf.extras:thymeleaf-extras-springsecurity5')
 	compile('org.springframework.session:spring-session-jdbc')
 	compile "org.apache.httpcomponents:httpcore:4.2.4"
 	compile "org.apache.httpcomponents:httpmime:4.3"
@@ -44,7 +43,6 @@ dependencies {
 	compile 'org.springframework.boot:spring-boot-starter-mail' //mail 전송
 
 	/**etc**/
-	implementation ('org.springframework.boot:spring-boot-starter-thymeleaf')
 	implementation ('org.springframework.boot:spring-boot-devtools')
 	compile('org.springframework.boot:spring-boot-configuration-processor')
 	compile('org.modelmapper:modelmapper:0.7.8')
