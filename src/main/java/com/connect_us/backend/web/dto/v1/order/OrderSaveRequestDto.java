@@ -16,27 +16,15 @@ public class OrderSaveRequestDto {
     private String address;
     private String number;
     // 여러 개의 상품을 한번에 주문하는 경우가 있기에, 주문 상품들을 배열 형태로 전달받는다.
-    private List<OrderItem> products;
-
-    // 추후 분리해야할 수도, (내부클래스가 클래스 외부에서 사용되면 안됨)
-    @Getter
-    @NoArgsConstructor
-    public static class OrderItem {
-        private Long productId;
-        private int productCnt;
-
-        @Builder
-        public OrderItem(Long productId, int productCnt){
-            this.productId = productId;
-            this.productCnt = productCnt;
-        }
-    }
+    private List<OrderItemDto> products;
+    private int totalPrice;
 
     @Builder
-    public OrderSaveRequestDto(String name, String address, String number, OrderItem[] orderItems){
+    public OrderSaveRequestDto(String name, String address, String number, OrderItemDto[] orderItems, int totalPrice){
         this.name = name;
         this.address = address;
         this.number = number;
         this.products = Arrays.stream(orderItems).collect(Collectors.toList());
+        this.totalPrice = totalPrice;
     }
 }

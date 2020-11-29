@@ -14,6 +14,7 @@ import com.connect_us.backend.domain.product.ProductRepository;
 import com.connect_us.backend.web.dto.v1.order.OrderListResponseDto;
 import com.connect_us.backend.web.dto.v1.order.OrderSaveRequestDto;
 import com.connect_us.backend.web.dto.v1.order.OrderSaveResponseDto;
+import com.connect_us.backend.web.dto.v1.order.OrderItemDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -43,7 +44,7 @@ public class OrderService {
                 .build());
        
         // 주문 상품 목록 생성
-        List<OrderSaveRequestDto.OrderItem> productOrderItems = requestDto.getProducts();
+        List<OrderItemDto> productOrderItems = requestDto.getProducts();
 
         productOrderItems.stream().forEach((item)-> {
             Product product = productRepository.findById(item.getProductId())
@@ -57,7 +58,7 @@ public class OrderService {
                     .build());
         });
 
-        // 주문서 작성 성공 리턴
+        // 주문서 작성 후, 결제 API에 전달할 정보 리턴하도록 수정
         return OrderSaveResponseDto.builder()
                 .success(true)
                 .message("주문서 작성 완료")

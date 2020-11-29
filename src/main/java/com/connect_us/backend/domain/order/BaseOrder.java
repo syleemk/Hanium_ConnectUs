@@ -46,6 +46,9 @@ public class BaseOrder extends BaseEntity {
     @Column
     private String number;
 
+    @Column
+    private int totalPrice;
+
     @OneToMany(mappedBy = "fundingBaseOrder",cascade = CascadeType.ALL)
     private List<FundingOrderItem> fundingOrderItems = new ArrayList<>(); // funding_order_item table의 fundingBaseOrder 의해 mapping
     @OneToMany(mappedBy = "baseOrder",cascade = CascadeType.ALL)
@@ -54,12 +57,13 @@ public class BaseOrder extends BaseEntity {
     private List<Payment> payments = new ArrayList<>(); // payments table의 baseOrder 의해 mapping
 
     @Builder
-    public BaseOrder(Account account, OrderType orderType, String name, String address, String number){
+    public BaseOrder(Account account, OrderType orderType, String name, String address, String number, int totalPrice){
         this.account = account;
         this.orderType = orderType;
         this.name = name;
         this.address = address;
         this.number = number;
+        this.totalPrice = totalPrice;
     }
 
     public void paymentComplete(){
